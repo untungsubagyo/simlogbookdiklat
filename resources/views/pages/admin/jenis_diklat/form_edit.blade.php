@@ -22,7 +22,14 @@
         <div class="col-6">
             <div class="form-group">
                 <label for="name">
-                    Image
+                    ID
+                </label>
+                <input type="text" name="name" id="name" class="form-control" value="{{$jenis_diklat->name}}" required>
+                <div class="invalid-feedback">Please, enter your name!</div>
+            </div>
+            <div class="form-group">
+                <label for="name">
+                    Nama
                 </label>
                 <input type="text" name="name" id="name" class="form-control" value="{{$jenis_diklat->name}}" required>
                 <div class="invalid-feedback">Please, enter your name!</div>
