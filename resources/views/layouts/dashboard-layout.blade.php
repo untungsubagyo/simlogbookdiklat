@@ -1,5 +1,5 @@
 @extends('layouts.root-layout')
 
 @section('body-content')
-	@yield('content')
+   @yield('content')
 @endsection
