@@ -36,8 +36,8 @@ return new class extends Migration
                 'updated_at' => now(),
             ],
             [
-                'name' => 'User',
-                'email' => 'user@example.com',
+                'name' => 'guru',
+                'email' => 'guru@example.com',
                 'password' => Hash::make('password'),
                 'role_id' => 2, // User role
                 'created_at' => now(),
