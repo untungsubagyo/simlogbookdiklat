@@ -25,8 +25,8 @@
             <table class="table-borderless datatable">
                 <thead>
                     <tr>
-                        <th>Jenis Diklat</th>
-                        <th>Aksi</th>
+                        <th>ID</th>
+                        <th>Nama</th>
                     </tr>
                 </thead>
                 <tbody>
