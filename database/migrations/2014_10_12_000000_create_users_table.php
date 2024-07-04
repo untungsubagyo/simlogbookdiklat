@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
-
 return new class extends Migration
 {
     /**
@@ -36,19 +35,16 @@ return new class extends Migration
                 'updated_at' => now(),
             ],
             [
-                'name' => 'guru',
+                'name' => 'Guru',
                 'email' => 'guru@example.com',
                 'password' => Hash::make('password'),
-                'role_id' => 2, // User role
+                'role_id' => 2, // guru role
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
         ]);
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('users');
