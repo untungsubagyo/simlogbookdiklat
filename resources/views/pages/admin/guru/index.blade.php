@@ -1,9 +1,9 @@
 <div class="pagetitle">
-  <h1>Golongan</h1>
+  <h1>Guru</h1>
   <nav>
       <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Golongan</li>
+          <li class="breadcrumb-item active">Guru</li>
       </ol>
   </nav>
 </div><!-- End Page Title -->
@@ -12,7 +12,7 @@
   <div class="row">
       <div class="col-1">
           <div class="row">
-              <a href="{{ route('golongan_guru.create') }}" class="btn btn-primary">Tambah</a>
+              <a href="{{ route('guru.create') }}" class="btn btn-primary">Tambah</a>
           </div>
       </div>
 
@@ -25,7 +25,9 @@
       <table class="table table-borderless datatable">
           <thead>
               <tr>
-                  <th>Golongan</th>
+                  <th>No</th>
+                  <th>NIP</th>
+                  <th>Nama</th>
                   <th>Pangkat</th>
                   <th>Aksi</th>
               </tr>
@@ -33,11 +35,13 @@
           <tbody>
               @forelse ($datas as $data)
                   <tr>
-                      <td>{{ $data->golongan }}</td>
-                      <td>{{ $data->pangkat }}</td>
+                      <td>{{ $data->id }}</td>
+                      <td>{{ $data->NIP }}</td>
+                      <td>{{ $data->user_id }}</td>
+                      <td>{{ $data->golongan_id }}</td>
                       <td>
-                          <form onsubmit="return confirm('Apakah Anda yakin?')" action="{{ route('golongan_guru.destroy', $data->id) }}" method="POST">
-                              <a href="{{ route('golongan_guru.edit', $data->id) }}" class="btn btn-warning">Edit</a>
+                          <form onsubmit="return confirm('Apakah Anda yakin?')" action="{{ route('guru.destroy', $data->id) }}" method="POST">
+                              <a href="{{ route('golongan_guru.edit', $data->golongan) }}" class="btn btn-warning">Edit</a>
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="btn btn-danger">Hapus</button>
