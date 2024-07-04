@@ -4,12 +4,16 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
-   <title>Document</title>
+   <title>Admin Page</title>
 </head>
 <body>
-   @include('components.admin.navbar')
+   @include('components.navbar')
    <div class="container">
-      <h1>Dashboard</h1>
+      @if (session()->has('username'))
+         <h1>Selamat Datang {{ session('username') }}</h1>
+      @else
+         <h1>Selamat Datang {{ $username }}</h1>
+      @endif
 
       <div class="card-container">
          <div class="card">
