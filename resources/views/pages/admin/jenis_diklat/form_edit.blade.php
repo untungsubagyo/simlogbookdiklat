@@ -1,5 +1,4 @@
-@extends('dashboard.master')
-@section('content')
+
     <div class="pagetitle">
         <h1>Jenis Diklat</h1>
         <nav>
@@ -22,16 +21,9 @@
         <div class="col-6">
             <div class="form-group">
                 <label for="name">
-                    ID
-                </label>
-                <input type="text" name="name" id="name" class="form-control" value="{{$jenis_diklat->name}}" required>
-                <div class="invalid-feedback">Please, enter your name!</div>
-            </div>
-            <div class="form-group">
-                <label for="name">
                     Nama
                 </label>
-                <input type="text" name="name" id="name" class="form-control" value="{{$jenis_diklat->name}}" required>
+                <input type="text" name="nama" id="name" class="form-control" value="{{$jenis_diklat->name}}" required>
                 <div class="invalid-feedback">Please, enter your name!</div>
             </div>
             </div class="form-group mt-4">
@@ -40,4 +32,3 @@
       </form>
         </div>
     </section>
-@endsection

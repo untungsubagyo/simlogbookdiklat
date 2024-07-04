@@ -12,7 +12,7 @@ class DiklatController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**

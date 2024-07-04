@@ -5,6 +5,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KategoriKegiatanController;
 use App\Http\Controllers\TambahGuruController;
+use App\Http\Controllers\JenisDiklatController;
+use App\Models\JenisDiklat;
+use App\Http\Controllers\GolonganController;
+use App\Http\Controllers\GuruController;
+// use App\Models\golongan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,15 +24,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
 //LOGIN
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 //
 Route::get('/admin', [AdminController::class, 'index']);
-Route::resource('kategori_kegiatans', KategoriKegiatanController::class);
-Route::get('/admin/kategori_kegiatans', [KategoriKegiatanController::class, 'index'])->name('pages.admin.kategori_kegiatans.index');
 
-
-Route::resource('gurus', TambahGuruController::class);
+// Route::resource('/admin', AdminController::class);
+Route::resource('/admin/golongan_guru', GolonganController::class);
+Route::resource('/admin/guru', GuruController::class);
+Route::get('/guru/create', [GuruController::class, 'create'])->name('guru.create');
+Route::post('/guru', [GuruController::class, 'store'])->name('guru.store');
+Route::resource('/jenis_diklat', JenisDiklatController::class);
