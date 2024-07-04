@@ -9,6 +9,6 @@ class JenisDiklat extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nama',
+        'nama', 
     ];
 }

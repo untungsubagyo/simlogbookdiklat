@@ -30,4 +30,5 @@ Route::get('/dashboard', function () {
     $role = $user->role_id == 1 ? 'admin' : 'user';
     return 'Welcome to your dashboard, ' . $user->name . '! You are logged in as ' . $role . '.';
 })->middleware('auth');
-Route::get('/jenis-diklat', [JenisDiklatController::class, 'index']) ->name('jenis-diklat');
+
+Route::resource('jenis_diklat', JenisDiklatController::class);
