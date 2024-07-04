@@ -5,9 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\golongan;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GolonganController extends Controller
 {
+    public function __construct()
+    {
+      if (!Auth::check()) {
+        return redirect('login');
+      }
+    }
+
     public function index(): View
     {
         $menu = 'data';
