@@ -34,18 +34,18 @@ class GuruController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'NIP' => 'required|string|max:255',
-            'pangkat' => 'required|string|max:255',
-        ]);
+    $request->validate([
+        // 'id' => 'required',
+        'NIP' => 'required',
+        'golongan_id' => 'required',
+        'user_id' => 'required',
+    ]);
 
-        guru::create([
-            'golongan' => $request->golongan,
-            'pangkat' => $request->pangkat,
-        ]);
+    Guru::create($request->all());
 
-        return redirect()->route('guru.index')->with('success', 'Data Golongan berhasil disimpan');
-    }
+    return redirect()->route('guru.index')->with('success', 'Data guru berhasil disimpan');
+}
+
 
     public function edit(string $id)
     {

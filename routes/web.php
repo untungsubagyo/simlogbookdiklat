@@ -32,5 +32,8 @@ Route::get('/dashboard', function () {
     return 'Welcome to your dashboard, ' . $user->name . '! You are logged in as ' . $role . '.';
 })->middleware('auth');
 
-Route::resource('/golongan_guru', GolonganController::class);
-Route::resource('/guru', GuruController::class);
+// Route::resource('/admin', AdminController::class);
+Route::resource('/admin/golongan_guru', GolonganController::class);
+Route::resource('/admin/guru', GuruController::class);
+Route::get('/guru/create', [GuruController::class, 'create'])->name('guru.create');
+Route::post('/guru', [GuruController::class, 'store'])->name('guru.store');
