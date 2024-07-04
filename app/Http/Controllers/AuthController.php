@@ -22,11 +22,19 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard');
+            $user = Auth::user();
+            if ($user->role_id == 1) {
+                return redirect()->intended('admin/dashboard');
+            } elseif ($user->role_id == 2) {
+                return redirect()->intended('guru/dashboard');
+            } else {
+                return redirect()->intended('dashboard');
+            }
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+        // Authentication failed
+        return redirect('/login')->withErrors([
+            'email' => 'These credentials do not match our records.',
         ]);
     }
 

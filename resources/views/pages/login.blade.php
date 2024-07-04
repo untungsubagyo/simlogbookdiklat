@@ -1,33 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
-    <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold mb-6 text-gray-800">Login</h2>
+@extends('layouts.root-layout')
 
-        @if($errors->any())
-            <div class="bg-red-500 text-white p-2 rounded mb-4">
-                {{ $errors->first() }}
-            </div>
-        @endif
+@section('body-content')
+<div class="container-fluid p-0" style="background: url('{{ asset('asset/background.jpg') }}') no-repeat center center; background-size: cover; height: 100vh;">
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="card p-4" style="background-color: rgba(255, 255, 255, 0.8);">
+            <h2 class="text-center mb-4 text-black">Login</h2>
 
-        <form action="{{ route('login') }}" method="POST">
-            @csrf
-            <div class="mb-4">
-                <label for="email" class="block text-gray-700">Email</label>
-                <input type="email" name="email" id="email" class="w-full p-2 border border-gray-300 rounded mt-1" required>
-            </div>
-            <div class="mb-6">
-                <label for="password" class="block text-gray-700">Password</label>
-                <input type="password" name="password" id="password" class="w-full p-2 border border-gray-300 rounded mt-1" required>
-            </div>
-            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200">Login</button>
-        </form>
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    {{ $errors->first() }}
+                </div>
+            @endif
+
+            <form action="{{ route('login') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label for="email" class="text-black">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="text-black">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+        </div>
     </div>
-</body>
-</html>
+</div>
+@endsection
