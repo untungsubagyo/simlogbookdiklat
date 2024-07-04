@@ -4,11 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     public function showLoginForm()
     {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $username = $user->name;
+
+            if ($user->role_id == 1) {
+                return view('pages.admin.dashboard', compact('username'));
+            }
+            elseif ($user->role_id == 2) {
+                return view('pages.guru.home', compact('username'));
+            }
+            else {
+                return view('pages.login');
+            }
+        }
+
         return view('pages.login');
     }
 
@@ -24,16 +40,16 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             if ($user->role_id == 1) {
-                return redirect()->intended('admin/dashboard');
+                return redirect()->intended('admin/')->with('username', $user->name);
             } elseif ($user->role_id == 2) {
-                return redirect()->intended('guru/dashboard');
+                return redirect()->intended('guru/');
             } else {
-                return redirect()->intended('dashboard');
+                return redirect()->intended('/');
             }
         }
 
         // Authentication failed
-        return redirect('/login')->withErrors([
+        return redirect('/')->withErrors([
             'email' => 'These credentials do not match our records.',
         ]);
     }
@@ -41,6 +57,6 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/login');
+        return redirect('/');
     }
 }
