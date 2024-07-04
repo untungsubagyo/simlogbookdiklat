@@ -25,12 +25,16 @@
                 <thead>
                     <tr>
                         <th>Nama</th>
+                        <th>Jenis Diklat</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                    @forelse ($datas as $data)
                        <tr>
-                        <td>{{ $data->name }}</td>
+                        <td>{{ $data->nama }}</td>
+                        <td>{{ $data->jenis_diklat }}</td>
+                        
                         <td>
                             <form onsubmit="return confirm('Apakah Anda yakin?')" action="{{route('jenis_diklat.destroy',$data->id)}}" method="POST">
                                 <a href="{{route('jenis_diklat.edit', $data->id)}}" class="btn btn-warning ">Edit</a>

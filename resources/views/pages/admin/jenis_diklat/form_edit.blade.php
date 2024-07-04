@@ -23,7 +23,7 @@
                 <label for="name">
                     Nama
                 </label>
-                <input type="text" name="name" id="name" class="form-control" value="{{$jenis_diklat->name}}" required>
+                <input type="text" name="nama" id="name" class="form-control" value="{{$jenis_diklat->name}}" required>
                 <div class="invalid-feedback">Please, enter your name!</div>
             </div>
             </div class="form-group mt-4">
