@@ -10,7 +10,7 @@
     <section class="section dashboard">
       <div class="row">
         
-        <form action="{{ route('golongan.store') }}" method="POST" class="row g-3 needs-validation" novalidate>
+        <form action="{{ route('golongan_guru.store') }}" method="POST" class="row g-3 needs-validation" novalidate>
           @csrf
           <div class="col-6">
             <div class="form-group">

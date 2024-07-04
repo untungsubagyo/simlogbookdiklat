@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GolonganController;
+use App\Http\Controllers\GuruController;
+// use App\Models\golongan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +32,6 @@ Route::get('/dashboard', function () {
     $role = $user->role_id == 1 ? 'admin' : 'user';
     return 'Welcome to your dashboard, ' . $user->name . '! You are logged in as ' . $role . '.';
 })->middleware('auth');
+
+Route::resource('/golongan_guru', GolonganController::class);
+Route::resource('/guru', GuruController::class);
