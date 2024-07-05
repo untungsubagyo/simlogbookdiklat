@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h1>View Guru</h1>
+    <h1>Lihat Guru</h1>
     <div class="card">
         <div class="card-header">
             {{ $guru->name }}

@@ -44,7 +44,7 @@ class TambahGuruController extends Controller
             'role_id' => 2, // Guru role
         ]);
 
-        return redirect()->route('gurus.index')->with('success', 'Guru created successfully.');
+        return redirect()->route('gurus.index')->with('success', 'Guru created succes.');
     }
 
     /**
@@ -85,7 +85,7 @@ class TambahGuruController extends Controller
         }
         $guru->save();
 
-        return redirect()->route('gurus.index')->with('success', 'Guru updated successfully.');
+        return redirect()->route('gurus.index')->with('success', 'Guru updated .');
     }
 
     /**
@@ -96,6 +96,6 @@ class TambahGuruController extends Controller
         $guru = User::findOrFail($id);
         $guru->delete();
 
-        return redirect()->route('gurus.index')->with('success', 'Guru deleted successfully.');
+        return redirect()->route('gurus.index')->with('success', 'Guru deleted succes.');
     }
 }
