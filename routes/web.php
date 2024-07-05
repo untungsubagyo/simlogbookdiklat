@@ -33,7 +33,7 @@ Route::resource('/golongan_guru', GolonganController::class)->middleware('auth')
 Route::resource('/guru', GuruController::class)->middleware('auth');
 Route::get('/guru/create', [GuruController::class, 'create'])->name('guru.create');
 Route::post('/guru', [GuruController::class, 'store'])->name('guru.store');
-Route::resource('/jenis_diklat', JenisDiklatController::class);
+// Route::resource('/jenis_diklat', JenisDiklatController::class);
 Route::resource('/admin/jenis_diklat', JenisDiklatController::class);
 
 Route::resource('/admin/diklat', DiklatController::class);

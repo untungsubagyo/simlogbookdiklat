@@ -61,7 +61,7 @@
    <h1>Logbook App</h1>
    <ul>
       <li><a class="text-decoration-none text-body-emphasis" href="{{ route('diklat.index') }}">Diklat</a></li>
-      <li><a class="text-decoration-none text-body-emphasis" href="/">Golongan Guru</a></li>
+      <li><a class="text-decoration-none text-body-emphasis" href="{{ route('golongan_guru.index') }}">Golongan Guru</a></li>
       <li><a class="text-decoration-none text-body-emphasis" href="{{ route('jenis_diklat.index') }}">Jenis Diklat</a></li>
       <li><a class="text-decoration-none text-body-emphasis" href="/services">Jenis Dokumen</a></li>
       <li><a class="text-decoration-none text-body-emphasis" href="/contact">Kategori Kegiatan</a></li>
