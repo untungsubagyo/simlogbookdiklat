@@ -5,11 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JenisDiklat extends Model
+class guru extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'nama', 
-        'jenis_diklat',
-    ];
+    protected $fillable = ['NIP','golongan_id','user_id'];
 }

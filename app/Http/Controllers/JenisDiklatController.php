@@ -27,9 +27,11 @@ class JenisDiklatController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:50',
+            'nama'=>'required|string|max:50',
+            'jenis_diklat' => 'required|in:Pelatihan Profesional,Lemhanas,Diklat Prajabatan,Diklat Kepemimpinan,Academic Exchange',
         ]);
         JenisDiklat::create($request->all());
+       JenisDiklat::create($request->all());
 
         return redirect()->route('jenis_diklat.index')->with('success', 'Jenis Diklat berhasil ditambahkan.');
     }
@@ -45,7 +47,8 @@ class JenisDiklatController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:50',
+            'nama' => 'required|string|max:50',
+            'jenis_diklat' => 'required|in:Pelatihan Profesional,Lemhanas,Diklat Prajabatan,Diklat Kepemimpinan,Academic Exchange',
         ]);
 
         $jenis_diklat = JenisDiklat::findOrFail($id);

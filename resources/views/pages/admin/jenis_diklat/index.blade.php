@@ -17,19 +17,23 @@
         @if (@session('success'))
             <div class="alert alert-success">
                 {{session('success')}}
-            </div>
-
-        @endif
-        <table class="table-borderless datatable">
-            <thead>
-                <tr>
-                    <th>Nama</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($datas as $data)
+                </div>  
+               
+           @endif
+            <table class="table-borderless datatable">
+                <thead>
                     <tr>
+                        <th>Nama</th>
+                        <th>Jenis Diklat</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   @forelse ($datas as $data)
+                       <tr>
                         <td>{{ $data->nama }}</td>
+                        <td>{{ $data->jenis_diklat }}</td>
+                        
                         <td>
                             <form onsubmit="return confirm('Apakah Anda yakin?')"
                                 action="{{route('jenis_diklat.destroy', $data->id)}}" method="POST">
