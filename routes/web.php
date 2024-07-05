@@ -21,14 +21,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('postLogin');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/admin', [AdminController::class, 'index']);
 
 // Route::resource('/admin', AdminController::class);
-Route::resource('/admin/golongan_guru', GolonganController::class);
-Route::resource('/admin/guru', GuruController::class);
+Route::resource('/golongan_guru', GolonganController::class)->middleware('auth');
+Route::resource('/guru', GuruController::class)->middleware('auth');
 Route::get('/guru/create', [GuruController::class, 'create'])->name('guru.create');
 Route::post('/guru', [GuruController::class, 'store'])->name('guru.store');
