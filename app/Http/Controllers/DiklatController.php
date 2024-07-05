@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Diklat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DiklatController extends Controller
 {
+    public function __construct() {
+        if (!Auth::check()) {
+            redirect('/');
+        }
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
+        return view('pages.admin.diklat.index');
     }
 
     /**
