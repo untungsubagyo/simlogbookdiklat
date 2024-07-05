@@ -1,5 +1,5 @@
-@extends('dashboard.master')
-@section('content')
+{{-- @extends('dashboard.master')
+@section('content') --}}
 <div class="pagetitle">
       <h1>Kategory</h1>
       <nav>
@@ -13,7 +13,7 @@
       <div class="row">
 
         
-        <form action="{{ route('posts.update', $posts->id) }}" enctype="multipart/form-data" method="POST" class="row g-3 needs-validation" novalidate>
+        <form action="{{ route('guru.update', $guru->id) }}" enctype="multipart/form-data" method="POST" class="row g-3 needs-validation" novalidate>
           @csrf
           @method('PUT')
           <div class="col-6">
@@ -65,4 +65,4 @@
          }
       })
    </script>
-@endsection
+{{-- @endsection --}}

@@ -10,11 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class GuruController extends Controller
 {
-    public function __construct()
-    {
-      if (!Auth::check()) {
-        return redirect('login');
-      }
+    public function __construct() {
+        if (!Auth::check()) {
+            return redirect('/');
+        }
     }
 
     public function index(): View
@@ -28,7 +27,7 @@ class GuruController extends Controller
     public function create()
     {
     $golongan = golongan::all();
-    return view('guru.create', compact('golongan'));
+    return view('pages.admin.guru.form_edit', compact('golongan'));
     }
 
 
@@ -49,10 +48,13 @@ class GuruController extends Controller
 
     public function edit(string $id)
     {
-        $menu = 'data';
-        $submenu = 'guru';
-        $guru = guru::find($id);
-        return view('pages.admin.guru.form_edit', compact('guru', 'menu', 'submenu'));
+        // $menu = 'data';
+        // $submenu = 'guru';
+        // $guru = guru::find($id);
+        // return view('pages.admin.guru.form_edit', compact('guru', 'menu', 'submenu'));
+        $guru = Guru::findOrFail($id);
+    $golongan = Golongan::all(); // Jika diperlukan untuk select option
+    return view('pages.admin.guru.form_edit', compact('guru', 'golongan'));
     }
 
     public function update(Request $request, string $id)
