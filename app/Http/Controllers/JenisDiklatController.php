@@ -31,7 +31,6 @@ class JenisDiklatController extends Controller
             'jenis_diklat' => 'required|in:Pelatihan Profesional,Lemhanas,Diklat Prajabatan,Diklat Kepemimpinan,Academic Exchange',
         ]);
         JenisDiklat::create($request->all());
-       JenisDiklat::create($request->all());
 
         return redirect()->route('jenis_diklat.index')->with('success', 'Jenis Diklat berhasil ditambahkan.');
     }
