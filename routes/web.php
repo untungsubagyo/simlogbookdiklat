@@ -6,6 +6,7 @@ use App\Http\Controllers\DiklatController;
 use App\Http\Controllers\GolonganController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JenisDiklatController;
+use App\Http\Controllers\TambahGuruController;
 // use App\Models\golongan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,5 +36,5 @@ Route::get('/guru/create', [GuruController::class, 'create'])->name('guru.create
 Route::post('/guru', [GuruController::class, 'store'])->name('guru.store');
 Route::resource('/jenis_diklat', JenisDiklatController::class);
 Route::resource('/admin/jenis_diklat', JenisDiklatController::class);
-
+Route::resource('/gurus', TambahGuruController::class);
 Route::resource('/admin/diklat', DiklatController::class);
