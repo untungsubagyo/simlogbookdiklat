@@ -15,16 +15,15 @@ class AuthController extends Controller
             $username = $user->name;
 
             if ($user->role_id == 1) {
-                return view('pages.admin.dashboard', compact('username'));
+                return redirect('/admin')->with('username', $username);
             }
             elseif ($user->role_id == 2) {
-                return view('pages.guru.home', compact('username'));
+                return redirect('/guru')->with('username', $username);
             }
             else {
                 return view('pages.login');
             }
         }
-
         return view('pages.login');
     }
 

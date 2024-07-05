@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DiklatController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\JenisDiklatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +26,6 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/admin', [AdminController::class, 'index']);
 
 Route::get('/guru', [GuruController::class, 'index']);
+Route::resource('/admin/jenis_diklat', JenisDiklatController::class);
+
+Route::resource('/admin/diklat', DiklatController::class);

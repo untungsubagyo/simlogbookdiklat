@@ -7,36 +7,37 @@ use Illuminate\Http\Request;
 
 class JenisDiklatController extends Controller
 {
-      public function index()
+    public function index()
     {
         $menu = 'data';
         $submenu = 'JenisDiklat';
-        $datas =  JenisDiklat::latest()->paginate(5);
-        return view('pages.admin.jenis_diklat.index', compact('datas','menu','submenu'));
+        $datas = JenisDiklat::latest()->paginate(5);
+        return view('pages.admin.jenis_diklat.index', compact('datas', 'menu', 'submenu'));
     }
 
     // controller create
-    public function create(){
+    public function create()
+    {
         $menu = 'data';
         $submenu = 'JenisDiklat';
-        return view('pages.admin.jenis_diklat.form', compact('menu','submenu'));
+        return view('pages.admin.jenis_diklat.form', compact('menu', 'submenu'));
     }
 
     // controller store
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
-            'nama'=>'required|string|max:50',
+            'nama' => 'required|string|max:50',
         ]);
-        JenisDiklat::create([
-            "nama" => $request->name
-        ]);
+        JenisDiklat::create($request->all());
 
         return redirect()->route('jenis_diklat.index')->with('success', 'Jenis Diklat berhasil ditambahkan.');
     }
 
     // controller edit
-    function edit($id){
-       $jenis_diklat = JenisDiklat::findOrFail($id);
+    function edit($id)
+    {
+        $jenis_diklat = JenisDiklat::findOrFail($id);
         return view('pages.admin.jenis_diklat.form_edit', compact('jenis_diklat'));
     }
 
