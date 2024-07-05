@@ -27,6 +27,17 @@
                         required>
                     <div class="invalid-feedback">Please, enter your name!</div>
                 </div>
+                <div class="form-group">
+                    <label for="jenis_diklat">Jenis Diklat:</label>
+                        <select class="form-control" id="jenis_diklat" name="jenis_diklat" required>
+                            <option value="">Pilih Jenis Diklat</option>
+                            <option value="Pelatihan Profesional">Pelatihan Profesional</option>
+                            <option value="Lemhanas">Lemhanas</option>
+                            <option value="Diklat Prajabatan">Diklat Prajabatan</option>
+                            <option value="Diklat Kepemimpinan">Diklat Kepemimpinan</option>
+                            <option value="Academic Exchange">Academic Exchange</option>
+                        </select>
+                </div>
             </div class="form-group mt-4">
             <button type="submit" class="btn btn-primary">Simpan</button>
     </div>
