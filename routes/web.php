@@ -1,13 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiklatController;
-use App\Http\Controllers\KategoriKegiatanController;
-use App\Http\Controllers\TambahGuruController;
-use App\Http\Controllers\JenisDiklatController;
-use App\Models\JenisDiklat;
 use App\Http\Controllers\GolonganController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JenisDiklatController;
