@@ -12,13 +12,7 @@
 
 
 <div class="pagetitle">
-    <h1>Jenis Diklat</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Jenis Diklat</li>
-        </ol>
-    </nav>
+    <h1 style="padding: 3rem; margin-top:4rem">Jenis Diklat</h1>
 </div><!-- End Page Title -->
 <section class="section dashboard">
     <div class="row">
