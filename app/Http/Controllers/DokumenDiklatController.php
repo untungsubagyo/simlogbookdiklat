@@ -18,18 +18,14 @@ class DokumenDiklatController extends Controller
     public function store(Request $request)
     {
         $file = $request->file('file');
-        $file->storeAs('public/pages/dokumen_diklat', $file->hashName());
-
+        $file->storeAs('public/pages.dokumen_diklat', $file->hashName());
         dokumen_diklat::create([
             'file'=>$file->hashName(),
             'nama_dokumen'=>$request->nama_dokumen,
             'keterangan'=>$request->keterangan,
-            'jenis_dokumen_id'=>$request->jenis_dokumen_id,
-            'link'=>$request->link,
         ]);
-        return redirect()->route('dokumen_diklat.index')->with('success', 'Data Diklat berhasil di simpan.');
+        return redirect()->route('pages.dokumen_diklat.index')->with('success', 'Data Posts berhasil di simpan.');
     }
-
     public function show($id)
     {
         $menu = 'data';
