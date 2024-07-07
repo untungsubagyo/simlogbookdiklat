@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiklatController;
+use App\Http\Controllers\DokumenDiklatController;
 use App\Http\Controllers\GolonganController;
 use App\Http\Controllers\HomeGuru;
 use App\Http\Controllers\JenisDiklatController;
@@ -35,6 +36,7 @@ Route::resource('/admin/manage_guru', ManageGuruController::class)->middleware('
 Route::resource('/admin/manage_users', ManageUsersController::class)->middleware('auth');
 Route::resource('/admin/golongan_guru', GolonganController::class)->middleware('auth');
 Route::resource('/admin/jenis_diklat', JenisDiklatController::class);
+Route:: resource('admin/dokumen_diklat', DokumenDiklatController::class);
 
 // Guru Router
 Route::get('/guru', [HomeGuru::class, 'index'])->name('homePageGuru');
