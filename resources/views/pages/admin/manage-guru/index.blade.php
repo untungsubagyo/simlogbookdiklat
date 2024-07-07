@@ -46,11 +46,11 @@
                                 </form>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="3" class="text-center alert alert-danger">Data Kategori masih Kosong</td>
-                        </tr>
-                    @endforelse
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center alert alert-danger">Data Guru masih Kosong</td>
+                            </tr>
+                        @endforelse
                 </tbody>
             </table>
         </div>

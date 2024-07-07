@@ -9,7 +9,7 @@ class JenisDiklatController extends Controller
 {
       public function index()
     {
-        $menu = 'data';
+        $menu = 'jenis_diklat';
         $submenu = 'JenisDiklat';
         $datas =  JenisDiklat::latest()->paginate(5);
         return view('pages.admin.jenis_diklat.index', compact('menu','submenu','datas'));
