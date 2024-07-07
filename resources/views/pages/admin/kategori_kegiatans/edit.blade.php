@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.root-layout')
 
 @section('content')
 <div class="container">
     <h1>Edit Kategori Kegiatan</h1>
-    <form action="{{ route('kategori-kegiatan.update', $kategoriKegiatan->id) }}" method="POST">
+    <form action="{{ route('kategori_kegiatan.update', $kategoriKegiatan->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="mb-3">

@@ -1,3 +1,6 @@
+@extends('layouts.root-layout')
+@section('content')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,10 +11,10 @@
     <title>Edit Guru</title>
 </head>
 <body>
-    @extends('components.navbar')
-<div class="container" style="margin-top: 8rem;">
+    
+<div class="container" >
     <h1>Edit Guru</h1>
-    <form id="guruForm" action="{{ route('manage-users.update', $usersData->id) }}" method="POST" onsubmit="return validatePassword()">
+    <form id="guruForm" action="{{ route('manage_users.update', $usersData->id) }}" method="POST" onsubmit="return validatePassword()">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -66,3 +69,4 @@
 </script>
 </body>
 </html>
+@endsection
