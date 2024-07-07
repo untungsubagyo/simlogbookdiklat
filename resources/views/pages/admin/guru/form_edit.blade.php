@@ -1,68 +1,37 @@
-{{-- @extends('dashboard.master')
-@section('content') --}}
-<div class="pagetitle">
-      <h1>Kategory</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Kategory</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-    <section class="section dashboard">
-      <div class="row">
+{{-- @extends('layouts.app') --}}
 
-        
-        <form action="{{ route('guru.update', $guru->id) }}" enctype="multipart/form-data" method="POST" class="row g-3 needs-validation" novalidate>
-          @csrf
-          @method('PUT')
-          <div class="col-6">
-            <div class="form-group">
-              <label for="image">
-                Image
-              </label>
-              <input type="file" name="image" id="image" class="form-control" value="{{ $posts->image }}" required>
-              <div class="invalid-feedback">Please, enter your name!</div>
-            </div>
-            <div class="form-group">
-              <label for="title">
-                Title
-              </label>
-              <input type="text" name="title" id="title" class="form-control" value="{{ $posts->title }}" required>
-              <div class="invalid-feedback">Please, enter your name!</div>
-            </div>
-            <div class="form-group">
-              <label for="content">
-                Content
-              </label>
-              <textarea name="content" id="content" cols="30" rows="10" class="form-control tinymce-editor" required>
-                {{ $posts->content }}
-              </textarea>
-              <div class="invalid-feedback">Please, enter your name!</div>
-            </div>
-            <div class="form-group mt-4">
-              <button type="submit" class="btn btn-primary">Simpan</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </section>
-    <script>
-      window.addEventListener('load', () => {
-         /** @type {HTMLInputElement} */
-         const image = document.getElementById('image')
-         try {
-            fetch('/storage/posts/{{ $posts->image }}').then(data => {
-               return data.blob()
-            }).then(img => {
-               const dataTr = new DataTransfer()
-               const imgFile = new File([img], '{{ $posts->image }}') 
-               dataTr.items.add(imgFile)
-               image.files = dataTr.files
-            })
-         } catch (error) {
-            console.log(error)
-         }
-      })
-   </script>
+{{-- @section('content') --}}
+<div class="container">
+    <h2>Edit Data Guru</h2>
+    <form action="{{ route('guru.update', $guru->id) }}" method="POST">
+        @csrf
+        @method('PUT')
+        {{-- <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id" value="{{ old('id') }}" required>
+        </div> --}}
+
+        <div class="form-group">
+            <label for="NIP">NIP</label>
+            <input type="text" class="form-control" id="NIP" name="NIP" value="{{ $guru->NIP }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="golongan_id">Golongan</label>
+            <select class="form-control" id="golongan_id" name="golongan_id" required>
+                <option value="">Pilih Golongan</option>
+                @foreach($golongan as $gol)
+                    <option value="{{ $gol->id }}" {{ $guru->golongan_id == $gol->id ? 'selected' : '' }} >{{ $gol->golongan }} - {{ $gol->pangkat }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="user_id">User ID</label>
+            <input type="text" class="form-control" id="user_id" name="user_id" value="{{ $guru->user_id }}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Simpan</button>
+    </form>
+</div>
 {{-- @endsection --}}

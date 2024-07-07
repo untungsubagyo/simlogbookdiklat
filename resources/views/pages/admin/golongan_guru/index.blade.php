@@ -8,7 +8,12 @@
 </head>
 <body>
    @extends('components.navbar')
-    <main> GOLONGAN </main>
+    <main> 
+        <ol>
+            <li>GOLONGAN</li>
+            <li><a href="{{ route('guru.index') }}">GURU</a></li>
+        </ol>
+    </main>
 
 <section class="section dashboard">
   {{-- <div class="row">

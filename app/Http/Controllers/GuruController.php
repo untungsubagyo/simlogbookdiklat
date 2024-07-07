@@ -10,40 +10,43 @@ use Illuminate\Support\Facades\Auth;
 
 class GuruController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         if (!Auth::check()) {
             return redirect('/');
         }
     }
 
-    public function index(): View
+    public function index()
     {
         $menu = 'data';
         $submenu = 'guru';
-        $datas = guru::latest()->paginate(10);
+        $datas = guru::join('golongans', 'golongan_id', '=', 'golongans.id')->select("NIP", "golongan", "user_id", "gurus.id AS id")->paginate(10);
         return view('pages.admin.guru.index', compact('datas', 'menu', 'submenu'));
     }
 
     public function create()
     {
-    $golongan = golongan::all();
-    return view('pages.admin.guru.form_edit', compact('golongan'));
+        $menu = 'data';
+        $submenu = 'guru';
+        $golongan = golongan::all();
+        return view('pages.admin.guru.form', compact('menu', 'submenu', 'golongan'));
     }
 
 
     public function store(Request $request)
     {
-    $request->validate([
-        // 'id' => 'required',
-        'NIP' => 'required',
-        'golongan_id' => 'required',
-        'user_id' => 'required',
-    ]);
+        $request->validate([
+            // 'id' => 'required',
+            'NIP' => 'required',
+            'golongan_id' => 'required',
+            'user_id' => 'required',
+        ]);
 
-    Guru::create($request->all());
+        guru::create($request->all());
 
-    return redirect()->route('guru.index')->with('success', 'Data guru berhasil disimpan');
-}
+        return redirect()->route('guru.index')->with('success', 'Data guru berhasil disimpan');
+    }
 
 
     public function edit(string $id)
@@ -53,30 +56,28 @@ class GuruController extends Controller
         // $guru = guru::find($id);
         // return view('pages.admin.guru.form_edit', compact('guru', 'menu', 'submenu'));
         $guru = Guru::findOrFail($id);
-    $golongan = Golongan::all(); // Jika diperlukan untuk select option
-    return view('pages.admin.guru.form_edit', compact('guru', 'golongan'));
+        $golongan = Golongan::all(); // Jika diperlukan untuk select option
+        return view('pages.admin.guru.form_edit', compact('guru', 'golongan'));
     }
 
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'golongan' => 'required|min:3|max:5',
-            'pangkat' => 'required|min:5',
+            'NIP' => 'required|min:2',
+            'golongan_id' => 'required',
+            'user_id' => 'required|min:2',
         ]);
 
-        $gol = guru::findOrFail($id);
-        $gol->update([
-            'golongan' => $request->golongan,
-            'pangkat' => $request->pangkat,
-        ]);
+        $guru = Guru::findOrFail($id);
+        $guru->update($request->all());
 
         return redirect()->route('guru.index')->with('success', 'Data berhasil diubah');
     }
 
     public function destroy(string $id)
     {
-        $gol = guru::findOrFail($id);
-        $gol->delete();
+        $guru = guru::findOrFail($id);
+        $guru->delete();
         return redirect()->route('guru.index')->with('success', 'Data berhasil dihapus');
     }
 }
