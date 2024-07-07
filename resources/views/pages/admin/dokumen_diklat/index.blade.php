@@ -1,3 +1,6 @@
+@extends('layouts.root-layout')
+
+@section('content')
 <div class="pagetitle">
     <h1>Dokumen Diklat</h1>
     <nav>
@@ -56,3 +59,4 @@
         </table>
     </div>
 </section>
+@endsection
