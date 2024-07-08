@@ -13,13 +13,13 @@
 
 <section class="section dashboard">
     <div class="row">
-        <form action="{{route('dokumen_diklat.update', $dokumen_diklat->id)}}" method="POST" class="row g-3 needs-validation" novalidate>
+        <form action="{{route('dokumen_diklat.update', $dokumen_diklat->id)}}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
             @csrf
             @method('PUT')
             <div class="col-6">
                 <div class="form-group">
-                    <label for="file">File</label>
-                    <input type="file" name="file" id="file" class="form-control" value="{{$dokumen_diklat->file}}" required>
+                    <label for="file_dokumen_diklat">File</label>
+                    <input type="file" name="file" id="file_dokumen_diklat" class="form-control" required>
                     <div class="invalid-feedback">Please, enter File!</div>
                 <div>
                 <div class="form-group">
@@ -55,4 +55,20 @@
         </form>
     </div>
 </section>
+<script>
+    /** @type {HTMLInputElement} */
+    const inputFile = document.getElementById('file_dokumen_diklat')
+    try {
+       fetch('$dokumen_diklat->file')
+          .then(data => data.blob())
+          .then(file => {
+             const dataTr = new DataTransfer()
+             const imgFile = new File([file], '{{$dokumen_diklat->file}}', {type: file.type}) 
+             dataTr.items.add(imgFile)
+             inputFile.files = dataTr.files
+          })
+    } catch (error) {
+       console.log(error)
+    }
+ </script>
 @endsection

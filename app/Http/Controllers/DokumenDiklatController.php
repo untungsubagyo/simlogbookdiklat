@@ -80,13 +80,13 @@ class DokumenDiklatController extends Controller
         ]);
 
         $file = $request->file('file');
-        $request->file('file')->storeAs('/dokument', $file->hashName() . $file->getClientOriginalExtension());
+        $request->file('file')->storeAs('/dokument', $file->hashName());
         
 
         $datas = dokumen_diklat::findOrFail($id);
         $datas-> update($request->all());
         
-        return redirect()->route('admin/dokumen_diklat')->with(['success'=>'Data berhasil diubah!']);
+        return redirect()->route('dokumen_diklat.index')->with(['success'=>'Data berhasil diubah!']);
     }
 
     function destroy(string $id)
