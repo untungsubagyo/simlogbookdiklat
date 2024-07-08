@@ -67,9 +67,9 @@
    <ul>
       <li><a href="{{ route('golongan_guru.index') }}">Golongan Guru</a></li>
       <li><a href="{{ route('jenis_diklat.index') }}">Jenis Diklat</a></li>
-      <li><a href="{{ route('manage-users.index') }}">Kelola User</a></li>
-      <li><a href="{{ route('manage-guru.index') }}">Kelola Guru</a></li>
-      <li><a href="{{ route('kategori-kegiatan.index') }}">Kategori Kegiatan</a></li>
+      <li><a href="{{ route('manage_users.index') }}">Kelola User</a></li>
+      <li><a href="{{ route('manage_guru.index') }}">Kelola Guru</a></li>
+      <li><a href="{{ route('kategori_kegiatan.index') }}">Kategori Kegiatan</a></li>
    </ul>
    <a id="logout-btn">Logout</a>
    <script>

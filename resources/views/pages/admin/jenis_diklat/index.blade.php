@@ -12,19 +12,24 @@
 </div>
 <section>
 	<h1>Jenis Diklat</h1>
-	<div class="row">
-		<div class="col-1">
-			<div class="row">
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Jenis Diklat</li>
+        </ol>
+    </nav>
+
+	<section class="section jenis_diklat">
+		<div class="col-lg-12">
 				<a href="{{route('jenis_diklat.create')}}" class="btn btn-primary">Tambah</a>
-			</div>
 		</div>
 		@if (@session('success'))
-			<div class="alert alert-success">
+			<div class="alert alert-success mt-3">
 				{{session('success')}}
 			</div>
 
 		@endif
-		<table class="table-borderless datatable">
+		<table class="table datatable table-stripped">
 			<thead>
 				<tr>
 					<th>Nama</th>
@@ -49,11 +54,13 @@
 						</td>
 					</tr>
 				@empty
-					<div class="alert alert-danger">kosong</div>
+                <tr>
+					<td colspan="3" class="alert alert-danger">Jenis Pangkat masih kosong</td>
+                </tr>
 				@endforelse
 			</tbody>
 		</table>
-
 	</div>
 </section>
+@endsection
 @endsection
