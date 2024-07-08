@@ -55,7 +55,7 @@
 					</tr>
 				@empty
 					<tr>
-						<td colspan="3" class="alert alert-danger">Jenis Pangkat masih kosong</td>
+						<td colspan="3" class="text-center alert alert-danger">Jenis Pangkat masih kosong</td>
 					</tr>
 				@endforelse
 			</tbody>
