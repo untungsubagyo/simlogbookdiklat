@@ -29,7 +29,7 @@
          font-weight: 300;
       }
 
-      .navbar > a {
+      .navbar>a {
          padding: .5rem 1.5rem;
          border-radius: .5rem;
          border: solid red 2px;
@@ -60,17 +60,10 @@
       }
    </style>
    <h1>
-      <a href="/admin" style="color: white">
+      <a href="{{ route('homePageGuru') }}">
          Logbook App
       </a>
    </h1>
-   <ul>
-      <li><a href="{{ route('golongan_guru.index') }}">Golongan Guru</a></li>
-      <li><a href="{{ route('jenis_diklat.index') }}">Jenis Diklat</a></li>
-      <li><a href="{{ route('manage-users.index') }}">Kelola User</a></li>
-      <li><a href="{{ route('manage-guru.index') }}">Kelola Guru</a></li>
-      <li><a href="{{ route('kategori-kegiatan.index') }}">Kategori Kegiatan</a></li>
-   </ul>
    <a id="logout-btn">Logout</a>
    <script>
       document.getElementById('logout-btn').onclick = () => {
@@ -79,7 +72,4 @@
          }
       }
    </script>
-   <!-- <div>
-      <div style="width: 3rem; height: 3rem; border-radius: 50%" class="bg-secondary"></div>
-   </div> -->
 </nav>

@@ -1,9 +1,10 @@
 {{-- @extends('layouts.app') --}}
 
 {{-- @section('content') --}}
-<div class="container">
+@extends('components.navbar')
+<div class="container" style="margin-top: 8rem;">
     <h2>Tambah Data Guru</h2>
-    <form action="{{ route('guru.store') }}" method="POST">
+    <form action="{{ route('manage-guru.store') }}" method="POST">
         @csrf
         {{-- <div class="form-group">
             <label for="id">ID</label>

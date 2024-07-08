@@ -8,11 +8,8 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">CRUD Kategori Kegiatan</a>
-
-    </nav>
-    <div class="container mt-4">
+    @extends('components.navbar')
+    <div class="container" style="margin-top: 8rem;">
         @yield('content')
     </div>
 </body>

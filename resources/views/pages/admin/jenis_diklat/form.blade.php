@@ -1,41 +1,33 @@
-
-    <div class="pagetitle">
-        <h1>Jenis Diklat</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Jenis Diklat</li>
-            </ol>
-        </nav>
-    </div>
-    <section class="section dashboard">
-        <div class="row">
-            <form action="{{route('jenis_diklat.store')}}" method="post" class="row g-3 needs-validation" novalidate>
-                @csrf
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="name">
-                            Nama
-                        </label>
-                        <input type="text" name="nama" id="name" class="form-control" required>
-                        <div class="invalid-feedback">Please, enter your name!</div>
-                        <div class="form-group">
-                <div class="form-group">
-                    <label for="jenis_diklat">Jenis Diklat:</label>
-                        <select class="form-control" id="jenis_diklat" name="jenis_diklat" required>
-                            <option value="">Pilih Jenis Diklat</option>
-                            <option value="Pelatihan Profesional">Pelatihan Profesional</option>
-                            <option value="Lemhanas">Lemhanas</option>
-                            <option value="Diklat Prajabatan">Diklat Prajabatan</option>
-                            <option value="Diklat Kepemimpinan">Diklat Kepemimpinan</option>
-                            <option value="Academic Exchange">Academic Exchange</option>
-                        </select>
-                </div>
-                    </div>
-                    </div class="form-group mt-4">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </section>
+@extends('components.navbar')
+<section style="margin-top: 8rem;">
+	<h1>Jenis Diklat</h1>
+	<div class="row">
+		<form action="{{route('jenis_diklat.store')}}" method="post" class="row g-3 needs-validation" novalidate>
+			@csrf
+			<div class="col-6">
+				<div class="form-group">
+					<label for="name">
+						Nama
+					</label>
+					<input type="text" name="nama" id="name" class="form-control" required>
+					<div class="invalid-feedback">Please, enter your name!</div>
+					<div class="form-group">
+						<div class="form-group">
+							<label for="jenis_diklat">Jenis Diklat:</label>
+							<select class="form-control" id="jenis_diklat" name="jenis_diklat" required>
+								<option value="">Pilih Jenis Diklat</option>
+								<option value="Pelatihan Profesional">Pelatihan Profesional</option>
+								<option value="Lemhanas">Lemhanas</option>
+								<option value="Diklat Prajabatan">Diklat Prajabatan</option>
+								<option value="Diklat Kepemimpinan">Diklat Kepemimpinan</option>
+								<option value="Academic Exchange">Academic Exchange</option>
+							</select>
+						</div>
+					</div>
+				</div class="form-group mt-4">
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
