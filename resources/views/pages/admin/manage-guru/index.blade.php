@@ -35,11 +35,11 @@
                         <tr>
                             <td>{{ $data->NIP }}</td>
                             <td>{{ $data->golongan }}</td>
-                            <td>{{ $data->user_id }}</td>
+                            <td>{{ $data->name }}</td>
                             <td>
                                 <form onsubmit="return confirm('Apakah Anda yakin?')"
                                     action="{{ route('manage_guru.destroy', $data->id) }}" method="POST">
-                               z     <a href="{{ route('manage_guru.edit', $data->id) }}" class="btn btn-warning">Edit</a>
+                                    <a href="{{ route('manage_guru.edit', $data->id) }}" class="btn btn-warning">Edit</a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Hapus</button>
