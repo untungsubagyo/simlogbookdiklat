@@ -24,8 +24,10 @@ class KategoriKegiatanController extends Controller
 
     public function create()
     {
+        $menu = 'kategori_kegiatan';
+        $submenu = 'kategori_kegiatan';   
         $parentCategories = KategoriKegiatan::all();
-        return view('pages.admin.kategori_kegiatans.create', compact('parentCategories'));
+        return view('pages.admin.kategori_kegiatans.create', compact('parentCategories', 'menu', 'submenu'));
     }
 
     public function store(Request $request)
@@ -36,12 +38,14 @@ class KategoriKegiatanController extends Controller
         ]);
 
         KategoriKegiatan::create($request->all());
-        return redirect()->route('kategori-kegiatan.index')->with('success', 'Kategori kegiatan created successfully.');
+        return redirect()->route('kategori_kegiatan.index')->with('success', 'Kategori kegiatan created successfully.');
     }
     public function createSubkategori($parent_id)
     {
+        $menu = 'kategori_kegiatan';
+        $submenu = 'kategori_kegiatan';
         $parentCategory = KategoriKegiatan::findOrFail($parent_id);
-        return view('pages.admin.kategori_kegiatans.create', compact('parentCategory'));
+        return view('pages.admin.kategori_kegiatans.create', compact('parentCategory', 'menu', 'submenu'));
     }
 
     public function storeSubkategori(Request $request)
@@ -52,19 +56,23 @@ class KategoriKegiatanController extends Controller
         ]);
 
         KategoriKegiatan::create($request->all());
-        return redirect()->route('kategori-kegiatan.index')->with('success', 'Subkategori kegiatan created successfully.');
+        return redirect()->route('kategori_kegiatan.index')->with('success', 'Subkategori kegiatan created successfully.');
     }
 
 
     public function show(KategoriKegiatan $kategoriKegiatan)
     {
-        return view('pages.admin.kategori_kegiatans.show', compact('kategoriKegiatan'));
+        $menu = 'kategori_kegiatan';
+        $submenu = 'kategori_kegiatan';
+        return view('pages.admin.kategori_kegiatans.show', compact('kategoriKegiatan', 'menu', 'submenu'));
     }
 
     public function edit(KategoriKegiatan $kategoriKegiatan)
     {
+        $menu = 'kategori_kegiatan';
+        $submenu = 'kategori_kegiatan';
         $parentCategories = KategoriKegiatan::all();
-        return view('pages.admin.kategori_kegiatans.edit', compact('kategoriKegiatan', 'parentCategories'));
+        return view('pages.admin.kategori_kegiatans.edit', compact('kategoriKegiatan', 'parentCategories', 'menu','submenu'));
     }
 
     public function update(Request $request, KategoriKegiatan $kategoriKegiatan)
@@ -75,13 +83,13 @@ class KategoriKegiatanController extends Controller
         ]);
 
         $kategoriKegiatan->update($request->all());
-        return redirect()->route('kategori-kegiatan.index')->with('success', 'Kategori kegiatan updated successfully.');
+        return redirect()->route('kategori_kegiatan.index')->with('success', 'Kategori kegiatan updated successfully.');
     }
 
     public function destroy(KategoriKegiatan $kategoriKegiatan)
     {
         $kategoriKegiatan->delete();
-        return redirect()->route('kategori-kegiatan.index')->with('success', 'Kategori kegiatan deleted successfully.');
+        return redirect()->route('kategori_kegiatan.index')->with('success', 'Kategori kegiatan deleted successfully.');
     }
 }
 

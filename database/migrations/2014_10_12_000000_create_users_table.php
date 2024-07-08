@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
@@ -20,10 +17,11 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('role_id')->default(2); // Default to user role
+            $table->string('profile_photo')->nullable(); // New column for profile photo
             $table->rememberToken();
             $table->timestamps();
         });
-
+    
         // Seed roles and a default admin user
         DB::table('users')->insert([
             [
@@ -38,12 +36,13 @@ return new class extends Migration
                 'name' => 'Guru',
                 'email' => 'guru@example.com',
                 'password' => Hash::make('password'),
-                'role_id' => 2, // guru role
+                'role_id' => 2, // Guru role
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
         ]);
     }
+    
 
     public function down(): void
     {
