@@ -1,28 +1,35 @@
-<div class="pagetitle">
-  <h1>Golongan</h1>
-  <nav>
-      <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Golongan</li>
-      </ol>
-  </nav>
-</div><!-- End Page Title -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="{{ asset('assets/css/diklat/index.css') }}">
+   <title>Diklat Guru</title>
+</head>
+<body>
+   @extends('components.navbar')
+    <main> 
+        <ol>
+            <li>GOLONGAN</li>
+            <li><a href="{{ route('guru.index') }}">GURU</a></li>
+        </ol>
+    </main>
 
 <section class="section dashboard">
-  <div class="row">
+  {{-- <div class="row">
       <div class="col-1">
-          <div class="row">
+          <div class="row"> --}}
               <a href="{{ route('golongan_guru.create') }}" class="btn btn-primary">Tambah</a>
-          </div>
-      </div>
+          {{-- </div>
+      </div> --}}
 
       @if(session('success'))
-          <div class="alert alert-success">
+          {{-- <div class="alert alert-success"> --}}
               {{ session('success') }}
-          </div>
+          {{-- </div> --}}
       @endif
 
-      <table class="table table-borderless datatable">
+      <table>
           <thead>
               <tr>
                   <th>Golongan</th>
@@ -51,5 +58,7 @@
               @endforelse
           </tbody>
       </table>
-  </div>
+  {{-- </div> --}}
 </section>
+</body>
+</html>
