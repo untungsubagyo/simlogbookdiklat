@@ -6,7 +6,7 @@
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Jenis Dkumen</li>
+            <li class="breadcrumb-item active">Jenis Dokumen</li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
@@ -42,6 +42,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Hapus</button>
+                            </form>
                         </td>
                     </tr>
                     @empty

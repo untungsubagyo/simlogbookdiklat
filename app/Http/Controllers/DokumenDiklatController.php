@@ -88,10 +88,11 @@ class DokumenDiklatController extends Controller
         
         return redirect()->route('admin/dokumen_diklat')->with(['success'=>'Data berhasil diubah!']);
     }
+
     function destroy(string $id)
     {
         $jdokumen= dokumen_diklat::findOrFail($id);
         $jdokumen->delete();
-        return redirect()->route('dokumen_diklat.index')->with(['success'=> 'Data berhasil di hapus.']);
+        return redirect()->route('dokumen_diklat.index')->with('success', 'Data berhasil di hapus.');
     }
 }
