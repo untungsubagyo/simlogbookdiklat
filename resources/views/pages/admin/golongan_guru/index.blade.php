@@ -10,33 +10,10 @@
             </ol>
         </nav>
     </div><!-- End Page Title -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="{{ asset('assets/css/diklat/index.css') }}">
-   <title>Diklat Guru</title>
-</head>
-<body>
-   @extends('components.navbar')
-    <main> 
-        <ol>
-            <li>GOLONGAN</li>
-            <li><a href="{{ route('golongan_guru.index') }}">GURU</a></li>
-        </ol>
-    </main>
 
     <section class="section pangkat_golongan">
         <div class="col-lg-12">
             <a href="{{ route('golongan_guru.create') }}" class="btn btn-primary">Tambah</a>
-<section class="section dashboard">
-  <div class="row">
-      <div class="col-1">
-          <div class="row">
-              <a href="{{ route('golongan_guru.create') }}" class="btn btn-primary">Tambah</a>
-          </div>
-      </div>
 
             @if (session('success'))
                 <div class="alert alert-success mt-3">
