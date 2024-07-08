@@ -18,7 +18,8 @@ class GolonganController extends Controller
 
     public function index(): View
     {
-        $menu = 'data';
+
+        $menu = 'golongan';
         $submenu = 'golongan';
         $datas = golongan::latest()->paginate(10);
         return view('pages.admin.golongan_guru.index', compact('datas', 'menu', 'submenu'));
@@ -34,8 +35,8 @@ class GolonganController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'golongan' => 'required|string|max:255',
-            'pangkat' => 'required|string|max:255',
+            'golongan' => 'required|min:3|max:5',
+            'pangkat' => 'required|min:2',
         ]);
 
         golongan::create([
@@ -56,11 +57,11 @@ class GolonganController extends Controller
 
     public function update(Request $request, string $id)
     {
+
         $request->validate([
             'golongan' => 'required|min:3|max:5',
-            'pangkat' => 'required|min:5',
+            'pangkat' => 'required|min:2',
         ]);
-
         $gol = golongan::findOrFail($id);
         $gol->update([
             'golongan' => $request->golongan,

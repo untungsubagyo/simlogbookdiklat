@@ -29,10 +29,10 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Admin Router
 Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/admin/view-diklat', [DiklatController::class, 'show'])->name('viewDiklatGuru');
-Route::resource('/admin/kategori-kegiatan', KategoriKegiatanController::class)->middleware('auth');
-Route::resource('/admin/manage-guru', ManageGuruController::class)->middleware('auth');
-Route::resource('/admin/manage-users', ManageUsersController::class)->middleware('auth');
+Route::get('/admin/view_diklat', [DiklatController::class, 'show'])->name('viewDiklatGuru');
+Route::resource('/admin/kategori_kegiatan', KategoriKegiatanController::class)->middleware('auth');
+Route::resource('/admin/manage_guru', ManageGuruController::class)->middleware('auth');
+Route::resource('/admin/manage_users', ManageUsersController::class)->middleware('auth');
 Route::resource('/admin/golongan_guru', GolonganController::class)->middleware('auth');
 Route::resource('/admin/jenis_diklat', JenisDiklatController::class);
 
