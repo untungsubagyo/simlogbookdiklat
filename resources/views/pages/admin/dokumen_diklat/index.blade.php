@@ -38,7 +38,7 @@
                         <td><img src="/storage/file_dokumen/{{$data->file}}"></td>
                         <td>{{$data->nama_dokumen}}</td>
                         <td>{{$data->keterangan}}</td>
-                        <td>{{$data->jenis_dokumen_id}}</td>
+                        <td>{{$data->name}}</td>
                         <td>{{$data->link}}</td>
                         <td>
                             <form onsubmit="return confirm('Apakah Anda yakin?')" action="{{route('dokumen_diklat.destroy', $data->id)}}" method="POST">
