@@ -51,7 +51,21 @@
             </a>
         </li><!-- End Guru Page Nav -->
 
+        <li class="nav-item">
+            <a class="nav-link  {{ $menu == 'dokumen_diklat' ? 'active' : 'collapsed' }}"
+                href="{{ route('dokumen_diklat.index') }}">
+                <i class="bi bi-card-list"></i>
+                <span>Dokumen Diklat</span>
+            </a>
+        </li><!-- End Document Diklats Page Nav -->
 
+        <li class="nav-item">
+            <a class="nav-link  {{ $menu == 'jenis_dokumen' ? 'active' : 'collapsed' }}"
+                href="{{ route('jenis_dokumen.index') }}">
+                <i class="bi bi-card-list"></i>
+                <span>Jenis Dokumen</span>
+            </a>
+        </li><!-- End Document Diklats Page Nav -->
 
 
 

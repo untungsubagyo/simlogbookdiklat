@@ -22,9 +22,9 @@ class DokumenDiklatController extends Controller
         $file->storeAs('public/dokumen_d_post', $file->hashName());
         dokumen_diklat::create([
             'file'=>$file->hashName(),
-            'name'=>$request->name,
-            'note'=>$request->note,
-            'title'=>$request->title,
+            'nama_dokumen'=>$request->nama_dokumen,
+            'keterangan'=>$request->keterangan,
+            'jenis_dokumen_id'=>$request->jenis_dokumen_id,
             'link'=>$request->link,
         ]);
         return redirect()->route('dokumen_diklat.index')->with('success', 'Data Diklat berhasil di simpan.');
