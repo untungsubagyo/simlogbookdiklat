@@ -36,9 +36,9 @@
                 @forelse ($datas as $data)
                     <tr>
                         <td>{{$data->file}}</td>
-                        <td>{{$data->name}}</td>
-                        <td>{{$data->note}}</td>
-                        <td>{{$data->title}}</td>
+                        <td>{{$data->nama_dokumen}}</td>
+                        <td>{{$data->keterangan}}</td>
+                        <td>{{$data->jenis_dokumen_id}}</td>
                         <td>{{$data->link}}</td>
                         <td>
                             <form onsubmit="return confirm('Apakah Anda yakin?')" action="{{route('dokumen_diklat.destroy', $data->id)}}" method="POST">

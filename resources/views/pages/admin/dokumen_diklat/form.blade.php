@@ -19,17 +19,17 @@
                 <div>
                 <div class="form-group">
                     <label for="name">Nama Diklat</label>
-                    <input type="text" name="name" id="name" class="form-control" required>
+                    <input type="text" name="nama_dokumen" id="nama_dokumen" class="form-control" required>
                     <div class="invalid-feedback">Please, enter the Name of Diklat Document!</div>
                 <div>
                     <div class="form-group">
                         <label for="content">Keterangan</label>
-                        <textarea name="note" id="note" cols="30" rows="6" class="form-control"></textarea>
+                        <textarea name="keterangan" id="keterangan" cols="30" rows="6" class="form-control"></textarea>
                         <div class="invalid-feedback">Please, enter the description!</div>
                     <div>
                         <div class="form-group">
                             <label for="content">Jenis Dokumen</label>
-                            <textarea name="note" id="note" cols="30" rows="6" class="form-control"></textarea>
+                            <textarea name="jenis_dokumen_id" id="jenis_dokumen_id" class="form-control"></textarea>
                             <div class="invalid-feedback">Please, choose!</div>
                         <div>
                             <div class="form-group">
