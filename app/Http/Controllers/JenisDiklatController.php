@@ -7,39 +7,38 @@ use Illuminate\Http\Request;
 
 class JenisDiklatController extends Controller
 {
-    public function index()
+      public function index()
     {
         $menu = 'data';
         $submenu = 'JenisDiklat';
-        $datas = JenisDiklat::latest()->paginate(5);
-        return view('pages.admin.jenis_diklat.index', compact('datas', 'menu', 'submenu'));
+        $datas =  JenisDiklat::latest()->paginate(5);
+        return view('pages.admin.jenis_diklat.index', compact('menu','submenu','datas'));
     }
 
     // controller create
-    public function create()
-    {
+    public function create(){
         $menu = 'data';
         $submenu = 'JenisDiklat';
-        return view('pages.admin.jenis_diklat.form', compact('menu', 'submenu'));
+        return view('pages.admin.jenis_diklat.form', compact('menu','submenu'));
     }
 
     // controller store
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $request->validate([
             'nama'=>'required|string|max:50',
             'jenis_diklat' => 'required|in:Pelatihan Profesional,Lemhanas,Diklat Prajabatan,Diklat Kepemimpinan,Academic Exchange',
         ]);
-        JenisDiklat::create($request->all());
+       JenisDiklat::create($request->all());
 
         return redirect()->route('jenis_diklat.index')->with('success', 'Jenis Diklat berhasil ditambahkan.');
     }
 
     // controller edit
-    function edit($id)
-    {
+    function edit($id){
+        $menu = 'data';
+        $submenu = 'JenisDiklat';
         $jenis_diklat = JenisDiklat::findOrFail($id);
-        return view('pages.admin.jenis_diklat.form_edit', compact('jenis_diklat'));
+        return view('pages.admin.jenis_diklat.form_edit', compact('jenis_diklat', 'menu', 'submenu'));
     }
 
     // controller update

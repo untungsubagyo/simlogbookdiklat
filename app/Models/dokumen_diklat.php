@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class dokumen_diklat extends Model
 {
     use HasFactory;
-    protected $fillable=[
+    protected $fillable = [
         'file',
         'nama_dokumen',
         'keterangan',
         'jenis_dokumen_id',
-        'link'
-
+        'link',
     ];
 }
