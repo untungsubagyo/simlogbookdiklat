@@ -19,7 +19,7 @@ class JenisDokumenController extends Controller
 
     public function index(): View
     {
-        $menu = 'data';
+        $menu = 'jenis_dokumen';
         $submenu = 'jenis_dokumen';
         $datas = jenis_dokumen::latest()->paginate(5);
         return view('pages.admin.jenis_dokumen.index', compact('datas', 'menu', 'submenu'));
