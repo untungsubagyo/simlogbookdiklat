@@ -18,7 +18,8 @@ class KategoriKegiatanController extends Controller
     {
         $kategoriKegiatans = KategoriKegiatan::with('parent')->get();
         $menu = 'kategori_kegiatan';
-        return view('pages.admin.kategori_kegiatans.index', compact('kategoriKegiatans', 'menu'));
+        $submenu = 'kategori_kegiatan';
+        return view('pages.admin.kategori_kegiatans.index', compact('kategoriKegiatans','menu','submenu'));
     }
 
     public function create()
