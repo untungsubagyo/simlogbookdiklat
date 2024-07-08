@@ -37,7 +37,7 @@
                             <select class="form-control" id="jenis_dokumen_id" name="jenis_dokumen_id" required>
                                 <option value="">Pilih Jenis Dokumen Diklat</option>
                                 @foreach($jenis_dokumen as $jdokumen)
-                                    <option value="{{ $jdokumen->id }}">{{ $dokumen_diklat->jenis_dokumen_id == $jdokumen->id ? 'selected' : '' }} {{$jdokumen->name}}</option>
+                                    <option value="{{ $jdokumen->id }}"{{ $dokumen_diklat->jenis_dokumen_id == $jdokumen->id ? 'selected' : '' }} >{{$jdokumen->name}}</option>
                                 @endforeach
                             </select>
                             <div class="form-group">
