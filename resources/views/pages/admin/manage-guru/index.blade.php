@@ -1,9 +1,9 @@
-@extends('components.navbar')
 <section class="section dashboard" style="margin-top: 8rem;">
     <div class="row">
+        {{-- dlgk,gl --}}
         <div class="col-1">
             <div class="row">
-                <a href="{{ route('manage-guru.create') }}" class="btn btn-primary">Tambah</a>
+                <a href="{{ route('manage_guru.create') }}" class="btn btn-primary">Tambah</a>
             </div>
         </div>
 
@@ -30,8 +30,8 @@
                         <td>{{ $data->user_id }}</td>
                         <td>
                             <form onsubmit="return confirm('Apakah Anda yakin?')"
-                                action="{{ route('manage-guru.destroy', $data->id) }}" method="POST">
-                                <a href="{{ route('manage-guru.edit', $data->id) }}" class="btn btn-warning">Edit</a>
+                                action="{{ route('manage_guru.destroy', $data->id) }}" method="POST">
+                                <a href="{{ route('manage_guru.edit', $data->id) }}" class="btn btn-warning">Edit</a>
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Hapus</button>

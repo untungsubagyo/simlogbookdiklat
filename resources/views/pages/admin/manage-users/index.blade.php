@@ -1,3 +1,4 @@
+@extends('layouts.root-layout')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +8,11 @@
 	<title>Kelola User</title>
 </head>
 <body>
-	@extends('components.navbar')
-	<div class="container" style="margin-top: 8rem;">
+	@section('content')
+	<div class="container" >
 		<div class="d-flex justify-content-between align-items-center mb-4">
 			<h1>Daftar User</h1>
-			<a href="{{ route('manage-users.create') }}" class="btn btn-primary">Add New Guru</a>
+			<a href="{{ route('manage_users.create') }}" class="btn btn-primary">Add New Guru</a>
 		</div>
 
 		@if(session('success'))
@@ -36,13 +37,13 @@
 						<td>{{ $user->name }}</td>
 						<td>{{ $user->email }}</td>
 						<td>
-							<a href="{{ route('manage-users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
-							<form action="{{ route('manage-users.destroy', $user->id) }}" method="POST" style="display:inline-block;">
+							<a href="{{ route('manage_users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
+							<form action="{{ route('manage_users.destroy', $user->id) }}" method="POST" style="display:inline-block;">
 								@csrf
 								@method('DELETE')
 								<button type="submit" class="btn btn-danger btn-sm">Delete</button>
 							</form>
-							<a href="{{ route('manage-users.show', $user->id) }}" class="btn btn-info btn-sm">View</a>
+							<a href="{{ route('manage_users.show', $user->id) }}" class="btn btn-info btn-sm">View</a>
 						</td>
 					</tr>
 				@endforeach
@@ -51,3 +52,4 @@
 	</div>
 </body>
 </html>
+@endsection
