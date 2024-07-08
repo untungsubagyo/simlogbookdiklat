@@ -65,19 +65,11 @@
       </a>
    </h1>
    <ul>
-<<<<<<< HEAD
       <li><a href="{{ route('golongan_guru.index') }}">Golongan Guru</a></li>
       <li><a href="{{ route('jenis_diklat.index') }}">Jenis Diklat</a></li>
       <li><a href="{{ route('manage-users.index') }}">Kelola User</a></li>
       <li><a href="{{ route('manage-guru.index') }}">Kelola Guru</a></li>
       <li><a href="{{ route('kategori-kegiatan.index') }}">Kategori Kegiatan</a></li>
-=======
-      <li><a class="text-decoration-none text-body-emphasis" href="{{ route('diklat.index') }}">Diklat</a></li>
-      <li><a class="text-decoration-none text-body-emphasis" href="{{ route('golongan_guru.index') }}">Golongan Guru</a></li>
-      <li><a class="text-decoration-none text-body-emphasis" href="{{ route('jenis_diklat.index') }}">Jenis Diklat</a></li>
-      <li><a class="text-decoration-none text-body-emphasis" href="/services">Jenis Dokumen</a></li>
-      <li><a class="text-decoration-none text-body-emphasis" href="/contact">Kategori Kegiatan</a></li>
->>>>>>> 1a2446736057cf3125ed804853aeedd2840df058
    </ul>
    <a id="logout-btn">Logout</a>
    <script>
