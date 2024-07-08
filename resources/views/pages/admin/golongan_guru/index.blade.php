@@ -24,9 +24,9 @@
       </div> --}}
 
       @if(session('success'))
-          {{-- <div class="alert alert-success"> --}}
+          <div class="alert alert-success">
               {{ session('success') }}
-          {{-- </div> --}}
+          </div>
       @endif
 
       <table>
