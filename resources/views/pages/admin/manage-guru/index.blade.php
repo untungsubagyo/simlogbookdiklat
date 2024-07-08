@@ -48,7 +48,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="3" class="text-center alert alert-danger">Data Kategori masih Kosong</td>
+                            <td colspan="4" class="text-center alert alert-danger">Data Guru masih Kosong</td>
                         </tr>
                     @endforelse
                 </tbody>
