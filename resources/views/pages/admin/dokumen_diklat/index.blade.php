@@ -46,7 +46,6 @@
                         <td>{{$data->link}}</td>
                         <td>
                             <form onsubmit="return confirm('Apakah Anda yakin?')" action="{{route('dokumen_diklat.destroy', $data->id)}}" method="POST">
-                                <a href="{{route('dokumen_diklat.show', $data->id)}}" class="btn btn-dark">Show</a>
                                 <a href="{{route('dokumen_diklat.edit', $data->id)}}" class="btn btn-warning">Edit</a>
                                 @csrf
                                 @method('DELETE')
