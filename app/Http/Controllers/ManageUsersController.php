@@ -4,18 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
-class TambahGuruController extends Controller
+class ManageUsersController extends Controller
 {
+    public function __construct() {
+        if (Auth::check()) {
+			$user = Auth::user();
+			if ($user->role_id == 2) {
+				redirect('/guru');
+			} elseif ($user->role_id != 1) {
+				redirect('/');
+			}
+        } else {
+            redirect('/');
+        }
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $gurus = User::where('role_id', 2)->get();
-        return view('pages.admin.gurus.index', compact('gurus'));
+        $usersData = User::where('role_id', 2)->get();
+        return view('pages.admin.manage-users.index', compact('usersData'));
     }
 
     /**
@@ -23,7 +36,7 @@ class TambahGuruController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.gurus.create');
+        return view('pages.admin.manage-users.create');
     }
 
     /**
@@ -44,7 +57,7 @@ class TambahGuruController extends Controller
             'role_id' => 2, // Guru role
         ]);
 
-        return redirect()->route('gurus.index')->with('success', 'Guru created succes.');
+        return redirect()->route('manage-users.index')->with('success', 'Guru created successfully.');
     }
 
     /**
@@ -52,8 +65,8 @@ class TambahGuruController extends Controller
      */
     public function show($id)
     {
-        $guru = User::findOrFail($id);
-        return view('pages.admin.gurus.show', compact('guru'));
+        $usersData = User::findOrFail($id);
+        return view('pages.admin.manage-users.show', compact('usersData'));
     }
 
     /**
@@ -61,8 +74,8 @@ class TambahGuruController extends Controller
      */
     public function edit($id)
     {
-        $guru = User::findOrFail($id);
-        return view('pages.admin.gurus.edit', compact('guru'));
+        $usersData = User::findOrFail($id);
+        return view('pages.admin.manage-users.edit', compact('usersData'));
     }
 
     /**
@@ -70,22 +83,22 @@ class TambahGuruController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $guru = User::findOrFail($id);
+        $usersData = User::findOrFail($id);
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($guru->id)],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($usersData->id)],
             'password' => 'nullable|string|min:8|confirmed',
         ]);
 
-        $guru->name = $validated['name'];
-        $guru->email = $validated['email'];
+        $usersData->name = $validated['name'];
+        $usersData->email = $validated['email'];
         if ($request->filled('password')) {
-            $guru->password = Hash::make($validated['password']);
+            $usersData->password = Hash::make($validated['password']);
         }
-        $guru->save();
+        $usersData->save();
 
-        return redirect()->route('gurus.index')->with('success', 'Guru updated .');
+        return redirect()->route('manage-users.index')->with('success', 'Guru updated successfully.');
     }
 
     /**
@@ -93,9 +106,9 @@ class TambahGuruController extends Controller
      */
     public function destroy($id)
     {
-        $guru = User::findOrFail($id);
-        $guru->delete();
+        $usersData = User::findOrFail($id);
+        $usersData->delete();
 
-        return redirect()->route('gurus.index')->with('success', 'Guru deleted succes.');
+        return redirect()->route('manage-users.index')->with('success', 'Guru deleted successfully.');
     }
 }

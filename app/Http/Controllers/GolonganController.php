@@ -11,9 +11,9 @@ class GolonganController extends Controller
 {
     public function __construct()
     {
-      if (!Auth::check()) {
-        redirect('/');
-      }
+        if (!Auth::check()) {
+            redirect('login');
+        }
     }
 
     public function index(): View

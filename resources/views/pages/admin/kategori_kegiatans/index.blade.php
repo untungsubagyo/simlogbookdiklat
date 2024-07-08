@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Kategori Kegiatan</h1>
-    <a href="{{ route('kategori_kegiatans.create') }}" class="btn btn-primary mb-3">Tambah Kategori</a>
+    <a href="{{ route('kategori-kegiatan.create') }}" class="btn btn-primary mb-3">Tambah Kategori</a>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -27,8 +27,8 @@
                     <td>{{ $kategori->name }}</td>
                     <td>{{ $kategori->parent ? $kategori->parent->name : '-' }}</td>
                     <td>
-                        <a href="{{ route('kategori_kegiatans.edit', $kategori->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('kategori_kegiatans.destroy', $kategori->id) }}" method="POST" style="display: inline;">
+                        <a href="{{ route('kategori-kegiatan.edit', $kategori->id) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('kategori-kegiatan.destroy', $kategori->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>

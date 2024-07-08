@@ -12,13 +12,12 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            $username = $user->name;
 
             if ($user->role_id == 1) {
-                return redirect('/admin')->with('username', $username);
+                return redirect('/admin');
             }
             elseif ($user->role_id == 2) {
-                return redirect('/guru')->with('username', $username);
+                return redirect('/guru');
             }
             else {
                 return view('pages.login');

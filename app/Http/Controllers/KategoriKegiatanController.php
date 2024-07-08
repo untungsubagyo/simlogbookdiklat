@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\KategoriKegiatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KategoriKegiatanController extends Controller
 {
+    public function __construct() {
+        if (!Auth::check()) {
+            redirect('/');
+        }
+    }
+
     public function index()
     {
         $kategoriKegiatans = KategoriKegiatan::with('parent')->get();
@@ -27,7 +34,7 @@ class KategoriKegiatanController extends Controller
         ]);
 
         KategoriKegiatan::create($request->all());
-        return redirect()->route('pages.admin.kategori_kegiatans.index')->with('success', 'Kategori kegiatan created successfully.');
+        return redirect()->route('kategori-kegiatan.index')->with('success', 'Kategori kegiatan created successfully.');
     }
     public function createSubkategori($parent_id)
     {
@@ -43,7 +50,7 @@ class KategoriKegiatanController extends Controller
         ]);
 
         KategoriKegiatan::create($request->all());
-        return redirect()->route('pages.admin.kategori_kegiatans.index')->with('success', 'Subkategori kegiatan created successfully.');
+        return redirect()->route('kategori-kegiatan.index')->with('success', 'Subkategori kegiatan created successfully.');
     }
 
 
@@ -66,13 +73,13 @@ class KategoriKegiatanController extends Controller
         ]);
 
         $kategoriKegiatan->update($request->all());
-        return redirect()->route('pages.admin.kategori_kegiatans.index')->with('success', 'Kategori kegiatan updated successfully.');
+        return redirect()->route('kategori-kegiatan.index')->with('success', 'Kategori kegiatan updated successfully.');
     }
 
     public function destroy(KategoriKegiatan $kategoriKegiatan)
     {
         $kategoriKegiatan->delete();
-        return redirect()->route('pages.admin.kategori_kegiatans.index')->with('success', 'Kategori kegiatan deleted successfully.');
+        return redirect()->route('kategori-kegiatan.index')->with('success', 'Kategori kegiatan deleted successfully.');
     }
 }
 

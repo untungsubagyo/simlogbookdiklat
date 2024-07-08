@@ -5,31 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
-    <title>Edit Guru</title>
+    <title>Add New Guru</title>
 </head>
 <body>
-<div class="container mt-5">
-    <h1>Edit Guru</h1>
-    <form id="guruForm" action="{{ route('gurus.update', $guru->id) }}" method="POST" onsubmit="return validatePassword()">
+    @extends('components.navbar')
+<div class="container" style="margin-top: 8rem;">
+    <h1>Add New User</h1>
+    <form id="guruForm" action="{{ route('manage-users.store') }}" method="POST" onsubmit="return validatePassword()">
         @csrf
-        @method('PUT')
         <div class="form-group">
             <label for="name">Nama</label>
-            <input type="text" name="name" id="name" class="form-control" value="{{ $guru->name }}" required>
+            <input type="text" name="name" id="name" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="form-control" value="{{ $guru->email }}" required>
+            <input type="email" name="email" id="email" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="password">Password (leave blank to keep current password)</label>
-            <input type="password" name="password" id="password" class="form-control">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="password_confirmation">Confirm Password</label>
-            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-primary">Update Guru</button>
+        <button type="submit" class="btn btn-primary">Add Guru</button>
     </form>
 </div>
 
@@ -41,7 +41,7 @@
         var password = document.getElementById("password").value;
         var password_confirmation = document.getElementById("password_confirmation").value;
 
-        if (password && password.length < 8) {
+        if (password.length < 8) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -61,7 +61,20 @@
 
         return true;
     }
-
 </script>
+
+@if(session('success'))
+<script>
+    $(document).ready(function() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '{{ session("success") }}',
+        }).then(() => {
+            window.location.href = "{{ route('gurus.index') }}";
+        });
+    });
+</script>
+@endif
 </body>
 </html>
