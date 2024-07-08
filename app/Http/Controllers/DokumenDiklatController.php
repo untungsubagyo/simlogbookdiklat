@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\dokumen_diklat;
-// use App\Models\jenis_dokumen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -19,7 +18,8 @@ class DokumenDiklatController extends Controller
     public function store(Request $request)
     {
         $file = $request->file('file');
-        $file->storeAs('public/dokumen_d_post', $file->hashName());
+        $file->storeAs('public/pages/dokumen_diklat', $file->hashName());
+
         dokumen_diklat::create([
             'file'=>$file->hashName(),
             'nama_dokumen'=>$request->nama_dokumen,
