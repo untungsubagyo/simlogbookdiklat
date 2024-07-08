@@ -1,8 +1,11 @@
+@extends('layouts.root-layout')
+
+@section('content')
 <div class="pagetitle">
     <h1>Dokumen Diklat</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
             <li class="breadcrumb-item active">Dokumen Diklat</li>
         </ol>
     </nav>
@@ -10,7 +13,7 @@
 <section class="section dashboard">
     <div class="row">
 
-        <div class="col-2">
+        <div class="col-1">
             <div class="row">
                 <a href="{{ route('dokumen_diklat.create')}}" class="btn btn-primary">Tambah</a>
             </div>
@@ -30,6 +33,7 @@
                     <th>Keterangan</th>
                     <th>Jenis Dokumen</th>
                     <th>Tautan Dokumen</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,10 +53,14 @@
                                 <button type="submit" class="btn btn-danger">Hapus</button>
                         </td>
                     </tr>
-                @empty
-                    <div class="alert alert-danger">Data Post masih kosong.</div>
+                    @empty
+                    <tr>
+                        <td colspan="6" class="text-center alert alert-danger">Data Dokumen Diklats masih
+                            Kosong</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>
     </div>
 </section>
+@endsection

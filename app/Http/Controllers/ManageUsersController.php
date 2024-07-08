@@ -28,7 +28,9 @@ class ManageUsersController extends Controller
     public function index()
     {
         $usersData = User::where('role_id', 2)->get();
-        return view('pages.admin.manage-users.index', compact('usersData'));
+        $menu = 'users';
+        $submenu = 'users';
+        return view('pages.admin.manage-users.index', compact('usersData', 'menu', 'submenu'));
     }
 
     /**
@@ -66,7 +68,9 @@ class ManageUsersController extends Controller
     public function show($id)
     {
         $usersData = User::findOrFail($id);
-        return view('pages.admin.manage-users.show', compact('usersData'));
+        $menu = 'users';
+        $submenu = 'users';
+        return view('pages.admin.manage-users.show', compact('usersData', 'menu', 'submenu'));
     }
 
     /**
@@ -75,7 +79,9 @@ class ManageUsersController extends Controller
     public function edit($id)
     {
         $usersData = User::findOrFail($id);
-        return view('pages.admin.manage-users.edit', compact('usersData'));
+        $menu = 'users';
+        $submenu = 'users';
+        return view('pages.admin.manage-users.edit', compact('usersData', 'menu', 'submenu'));
     }
 
     /**
@@ -107,6 +113,7 @@ class ManageUsersController extends Controller
     public function destroy($id)
     {
         $usersData = User::findOrFail($id);
+        
         $usersData->delete();
 
         return redirect()->route('manage-users.index')->with('success', 'Guru deleted successfully.');

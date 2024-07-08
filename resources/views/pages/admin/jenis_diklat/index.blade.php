@@ -1,5 +1,16 @@
 @extends('layouts.root-layout')
+
 @section('content')
+<div class="pagetitle">
+	<h1>Pangkat & Golongan</h1>
+	<nav>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+			<li class="breadcrumb-item active">Pangkat & Golongan</li>
+		</ol>
+	</nav>
+</div>
+<section>
 	<h1>Jenis Diklat</h1>
     <nav>
         <ol class="breadcrumb">
@@ -51,4 +62,5 @@
 		</table>
 	</div>
 </section>
+@endsection
 @endsection

@@ -1,3 +1,5 @@
+@extends('layouts.root-layouts')
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +9,8 @@
     <title>View Guru</title>
 </head>
 <body>
-    @extends('components.navbar')
-<div class="container" style="margin-top: 8rem;">
+    
+<div class="container" >
     <h1>View Guru</h1>
     <div class="card">
         <div class="card-header">
@@ -18,9 +20,10 @@
             <p><strong>Email:</strong> {{ $usersData->email }}</p>
             <p><strong>Created At:</strong> {{ $usersData->created_at }}</p>
             <p><strong>Updated At:</strong> {{ $usersData->updated_at }}</p>
-            <a href="{{ route('manage-users.index') }}" class="btn btn-primary">Back to List</a>
+            <a href="{{ route('manage_users.index') }}" class="btn btn-primary">Back to List</a>
         </div>
     </div>
 </div>
 </body>
 </html>
+@endsection

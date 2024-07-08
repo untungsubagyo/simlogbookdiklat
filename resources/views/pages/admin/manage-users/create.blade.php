@@ -1,3 +1,5 @@
+@extends('layouts.root-layout')
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,10 +10,10 @@
     <title>Add New Guru</title>
 </head>
 <body>
-    @extends('components.navbar')
-<div class="container" style="margin-top: 8rem;">
+    
+<div class="container" >
     <h1>Add New User</h1>
-    <form id="guruForm" action="{{ route('manage-users.store') }}" method="POST" onsubmit="return validatePassword()">
+    <form id="guruForm" action="{{ route('manage_users.store') }}" method="POST" onsubmit="return validatePassword()">
         @csrf
         <div class="form-group">
             <label for="name">Nama</label>
@@ -78,3 +80,4 @@
 @endif
 </body>
 </html>
+@endsection
