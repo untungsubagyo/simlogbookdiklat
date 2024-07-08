@@ -16,12 +16,12 @@
     </main>
 
 <section class="section dashboard">
-  {{-- <div class="row">
+  <div class="row">
       <div class="col-1">
-          <div class="row"> --}}
+          <div class="row">
               <a href="{{ route('golongan_guru.create') }}" class="btn btn-primary">Tambah</a>
-          {{-- </div>
-      </div> --}}
+          </div>
+      </div>
 
       @if(session('success'))
           <div class="alert alert-success">
