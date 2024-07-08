@@ -12,16 +12,16 @@
 </div>
 <section>
 	<h1>Jenis Diklat</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Jenis Diklat</li>
-        </ol>
-    </nav>
+	<nav>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+			<li class="breadcrumb-item active">Jenis Diklat</li>
+		</ol>
+	</nav>
 
 	<section class="section jenis_diklat">
 		<div class="col-lg-12">
-				<a href="{{route('jenis_diklat.create')}}" class="btn btn-primary">Tambah</a>
+			<a href="{{route('jenis_diklat.create')}}" class="btn btn-primary">Tambah</a>
 		</div>
 		@if (@session('success'))
 			<div class="alert alert-success mt-3">
@@ -54,13 +54,13 @@
 						</td>
 					</tr>
 				@empty
-                <tr>
-					<td colspan="3" class="alert alert-danger">Jenis Pangkat masih kosong</td>
-                </tr>
+					<tr>
+						<td colspan="3" class="alert alert-danger">Jenis Pangkat masih kosong</td>
+					</tr>
 				@endforelse
 			</tbody>
 		</table>
-	</div>
+		</div>
+	</section>
 </section>
-@endsection
 @endsection

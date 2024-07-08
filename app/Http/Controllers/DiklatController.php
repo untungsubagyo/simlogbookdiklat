@@ -75,7 +75,7 @@ class DiklatController extends Controller
 			$dataDiklat = Diklat::join('jenis_diklats', 'jenis_diklats.id', '<', 'diklats.id_jenis_diklat')
 				->join('kategori_kegiatans', 'kategori_kegiatans.id', '=', 'diklats.id_kategori_kegiatan_diklat')
 				->join('users', 'users.id', '=', 'diklats.id_user')
-				->get([
+			->get([
 					'diklats.*',
 					'users.name AS username',
 					'jenis_diklats.nama AS nama_jenis_diklat',
@@ -83,9 +83,10 @@ class DiklatController extends Controller
 					'kategori_kegiatans.name AS kategori_kegiatan'
 				])->where('diklats.id', '=', $request->query('id'));
 
-			if ($dataDiklat->count() <= 0) {
-				return redirect()->back();
-			}
+			return $dataDiklat;
+			// if ($dataDiklat->count() <= 0) {
+			// 	return redirect()->back();
+			// }
 
 			return view('pages.admin.view-diklat.index', compact('userdata', 'dataDiklat'));
 		} else {

@@ -10,10 +10,9 @@ class DokumenDiklatController extends Controller
 {
     public function index()
     {
-        $menu='data';
-        $submenu='dokumen_diklat';
+        $menu='dokumen_diklat';
         $datas = dokumen_diklat::latest()->paginate(5);
-        return view('pages.admin.dokumen_diklat.index', compact('datas', 'menu', 'submenu'));
+        return view('pages.admin.dokumen_diklat.index', compact('datas', 'menu'));
     }
     public function store(Request $request)
     {
