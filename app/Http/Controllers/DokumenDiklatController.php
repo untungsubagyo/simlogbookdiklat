@@ -16,9 +16,10 @@ class DokumenDiklatController extends Controller
         
         $menu='dokumen_diklat';
         $submenu='dokumen_diklat';
-        $datas = dokumen_diklat::join('jenis_dokumens', 'dokumen_diklats.jenis_dokumen_id', '=', 'jenis_dokumens.id')->select("file", "nama_dokumen", "keterangan", "jenis_dokumen_id", "link", "dokumen_diklats.id AS id")->paginate(10);
 
-        // ->select("file", "nama_dokumen", "keterangan", "jenis_dokumen_id", "link", "dokumen_diklats.id AS id")->paginate(10);
+        $datas = dokumen_diklat::join('jenis_dokumens', 'jenis_dokumen_id', '=', 'jenis_dokumens.id')->select("file", "nama_dokumen", "keterangan", "jenis_dokumen_id", "link", "dokumen_diklats.id AS id")->paginate(10);
+
+        // $datas = dokumen_diklat::join('jenis_dokumens', 'jenis_dokumen_id', '=', 'jenis_dokumens.id')->select("file", "nama_dokumen", "keterangan", "jenis_dokumen_id", "link", "dokumen_diklats.id AS id")->paginate(10);
 
         return view('pages.admin.dokumen_diklat.index', compact('datas', 'menu', 'submenu'));
     }
