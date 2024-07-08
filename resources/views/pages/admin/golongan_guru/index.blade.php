@@ -11,7 +11,7 @@
     <main> 
         <ol>
             <li>GOLONGAN</li>
-            <li><a href="{{ route('guru.index') }}">GURU</a></li>
+            <li><a href="{{ route('golongan_guru.index') }}">GURU</a></li>
         </ol>
     </main>
 
