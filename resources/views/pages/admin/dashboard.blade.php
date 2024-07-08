@@ -1,17 +1,5 @@
 @extends('layouts.root-layout')
 
-@section('username')
-{{ $userdata->name }}
-@endsection
-
-@section('user-role')
-@if ($userdata->role_id == 1)
-	Admin
-@else
-	Guru
-@endif
-@endsection
-
 @section('content')
 <div class="pagetitle">
 	<h1>Dashboard</h1>
