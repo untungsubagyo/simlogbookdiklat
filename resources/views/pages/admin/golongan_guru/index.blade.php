@@ -1,37 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('assets/css/diklat/index.css') }}">
-    <title>Diklat Guru</title>
-</head>
-<body>
-    @extends('components.navbar')
-    <main>
-        <ol>
-            <li>GOLONGAN</li>
-            <li><a href="{{ route('golongan_guru.index') }}">GURU</a></li>
-        </ol>
-    </main>
+@extends('layouts.root-layout')
 
-    <section class="section dashboard">
-        {{-- <div class="row">
-            <div class="col-1">
-                <div class="row"> --}}
-                    <a href="{{ route('golongan_guru.create') }}" class="btn btn-primary">Tambah</a>
-                    {{--
-                </div>
-            </div> --}}
+@section('content')
+    <div class="pagetitle">
+        <h1>Pangkat & Golongan</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Pangkat & Golongan</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
 
-            @if(session('success'))
-                {{-- <div class="alert alert-success"> --}}
+    <section class="section pangkat_golongan">
+        <div class="col-lg-12">
+            <a href="{{ route('golongan_guru.create') }}" class="btn btn-primary">Tambah</a>
+
+            @if (session('success'))
+                <div class="alert alert-success mt-3">
                     {{ session('success') }}
-                    {{--
-                </div> --}}
+                </div>
             @endif
+      @if(session('success'))
+          <div class="alert alert-success">
+              {{ session('success') }}
+          </div>
+      @endif
 
-            <table>
+            <table class="table datatable table-stripped">
                 <thead>
                     <tr>
                         <th>Golongan</th>
@@ -56,13 +51,12 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="3" class="text-center alert alert-danger">Data Kategori masih Kosong</td>
+                            <td colspan="3" class="text-center alert alert-danger">Data Golongan & Pangkat masih
+                                Kosong</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
-            {{--
-        </div> --}}
+        </div>
     </section>
-</body>
-</html>
+@endsection
