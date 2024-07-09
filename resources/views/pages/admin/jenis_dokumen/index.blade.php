@@ -10,14 +10,10 @@
         </ol>
     </nav>
 </div><!-- End Page Title -->
-<section class="section dashboard">
-    <div class="row">
 
-        <div class="col-1">
-            <div class="row">
-                <a href="{{ route('jenis_dokumen.create')}}" class="btn btn-primary">Tambah</a>
-            </div>
-        </div>
+<section class="section dashboard">
+    <div class="col-lg-12">
+        <a href="{{ route('jenis_dokumen.create')}}" class="btn btn-primary">Tambah</a>
 
         @if(session('success'))
         <div class="alert alert-success">
@@ -25,7 +21,7 @@
         </div>
         @endif
 
-        <table class="table-borderless datatable">
+        <table class="table datatable table-stripped">
             <thead>
                 <tr>
                     <th>Jenis Dokumen</th>
