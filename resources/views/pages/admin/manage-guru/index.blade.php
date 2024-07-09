@@ -39,7 +39,7 @@
                             <td>
                                 <form onsubmit="return confirm('Apakah Anda yakin?')"
                                     action="{{ route('manage_guru.destroy', $data->id) }}" method="POST">
-                               z     <a href="{{ route('manage_guru.edit', $data->id) }}" class="btn btn-warning">Edit</a>
+                                    <a href="{{ route('manage_guru.edit', $data->id) }}" class="btn btn-warning">Edit</a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Hapus</button>
