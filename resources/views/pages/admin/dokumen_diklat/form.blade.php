@@ -10,6 +10,7 @@
         </ol>
     </nav>
 </div><!-- End Page Title -->
+
 <section class="section dashboard">
     <div class="row">
         <form action="{{route('dokumen_diklat.store')}}" method="POST" class="row g-3 needs-validation" novalidate>
@@ -27,9 +28,23 @@
                 <div>
                     <div classz="form-group">
                         <label for="content">Keterangan</label>
-                        <textarea name="keterangan" id="keterangan" cols="30" rows="10"></textarea>
+                        <textarea name="keterangan" id="keterangan" cols="67" rows="4"></textarea>
                         <div class="invalid-feedback">Please, enter your content!</div>
                     <div>
+                        <div class="form-group">
+                            <label for="jenis_dokumen_id">Jenis Dokumen</label>
+                            <select class="form-control" id="jenis_dokumen_id" name="jenis_dokumen_id" required>
+                                <option value="">Pilih Jenis Dokumen Diklat</option>
+                                @foreach($jenis_dokumen as $jdokumen)
+                                    <option value="{{ $jdokumen->id }}">{{ $jdokumen->name }}</option>
+                                @endforeach
+                            </select>
+                            <div class="form-group">
+                                <label for="name">Tautan Dokumen</label>
+                                <input type="text" name="link" id="link" class="form-control" required>
+                                <div class="invalid-feedback">Please, enter the title!</div>
+                            <div>
+                        </div>
                     <div class="form-group mt-4">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
