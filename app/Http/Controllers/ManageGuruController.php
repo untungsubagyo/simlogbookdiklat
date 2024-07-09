@@ -26,7 +26,7 @@ class ManageGuruController extends Controller
 
     public function index(): View
     {
-        $menu = 'data';
+        $menu = 'manage_guru';
         $submenu = 'guru';
         $datas = guru::join('golongans', 'golongan_id', '=', 'golongans.id')->select("NIP", "golongan", "user_id", "gurus.id AS id")->paginate(10);
         // $us = guru::join('users', 'user_id', '=', 'users.id')->select("NIP", "golongan", "user_id", "gurus.id AS id")->paginate(10);

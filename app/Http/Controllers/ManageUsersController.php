@@ -26,6 +26,7 @@ class ManageUsersController extends Controller
 
     public function index()
     {
+      
         $usersData = User::where('role_id', 2)->get();
         $menu = 'manage_users';
         $submenu = 'manage_users';

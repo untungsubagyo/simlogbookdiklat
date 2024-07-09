@@ -21,14 +21,14 @@
                             Golongan
                         </label>
                         <input type="text" name="golongan" id="golongan" class="form-control" required>
-                        <div class="invalid-feedback">Please, enter your name!</div>
+                        <div class="invalid-feedback">Please, enter your golongan!</div>
                     </div>
                     <div class="form-group">
                         <label for="name">
                             Pangkat
                         </label>
                         <input type="text" name="pangkat" id="pangkat" class="form-control" required>
-                        <div class="invalid-feedback">Please, enter your name!</div>
+                        <div class="invalid-feedback">Please, enter your pangkat!</div>
                     </div>
                     <div class="form-group mt-4">
                         <button type="submit" class="btn btn-primary">Simpan</button>
