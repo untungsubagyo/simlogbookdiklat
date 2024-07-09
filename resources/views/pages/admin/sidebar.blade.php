@@ -13,7 +13,7 @@
         <li class="nav-item">
             <a class="nav-link  {{ $menu == 'manage_guru' ? 'active' : 'collapsed' }}"
                 href="{{ route('manage_guru.index') }}">
-                <i class="bi bi-card-list"></i>
+                <i class="bi bi-person"></i>
                 <span>Guru</span>
             </a>
         </li><!-- End Guru Page Nav -->
@@ -30,7 +30,7 @@
         <li class="nav-item">
             <a class="nav-link  {{ $menu == 'golongan' ? 'active' : 'collapsed' }}"
                 href="{{ route('golongan_guru.index') }}">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-envelope"></i>
                 <span>Pangkat & Golongan</span>
             </a>
         </li><!-- End Profile Page Nav -->
@@ -63,7 +63,7 @@
         <li class="nav-item">
             <a class="nav-link  {{ $menu == 'manage_users' ? 'active' : 'collapsed' }}"
                 href="{{ route('manage_users.index') }}">
-                <i class="bi bi-envelope"></i>
+                <i class="bi bi-person"></i>
                 <span>Pengguna</span>
             </a>
         </li><!-- End Pengguna Page Nav -->

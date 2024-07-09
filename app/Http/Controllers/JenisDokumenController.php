@@ -52,7 +52,7 @@ class JenisDokumenController extends Controller
     function update(Request $request, $id)
     {
         $this->validate($request,[
-            'name'=>'required|min:5'
+            'name'=>'required|min:2'
         ]);
         $jenis_dokumen = jenis_dokumen::findOrFail($id);
         $jenis_dokumen-> update(['name'=>$request->name]);
