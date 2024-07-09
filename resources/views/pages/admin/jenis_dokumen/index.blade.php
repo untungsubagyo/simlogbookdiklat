@@ -5,27 +5,23 @@
     <h1>Jenis Dokumen</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Jenis Dkumen</li>
+            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item active">Jenis Dokumen</li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
-<section class="section dashboard">
-    <div class="row">
 
-        <div class="col-1">
-            <div class="row">
-                <a href="{{ route('jenis_dokumen.create')}}" class="btn btn-primary">Tambah</a>
-            </div>
-        </div>
+<section class="section dashboard">
+    <div class="col-lg-12">
+        <a href="{{ route('jenis_dokumen.create')}}" class="btn btn-primary">Tambah</a>
 
         @if(session('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success mt-3">
             {{session('success')}}
         </div>
         @endif
 
-        <table class="table-borderless datatable">
+        <table class="table datatable table-stripped">
             <thead>
                 <tr>
                     <th>Jenis Dokumen</th>
@@ -42,6 +38,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Hapus</button>
+                            </form>
                         </td>
                     </tr>
                     @empty

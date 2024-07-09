@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Guru</h1>
+        <h1>Data Guru</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Guru</li>
+                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                <li class="breadcrumb-item active">Data Guru</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -34,8 +34,8 @@
                     @forelse ($datas as $data)
                         <tr>
                             <td>{{ $data->NIP }}</td>
-                            <td>{{ $data->golongan }}</td>
-                            <td>{{ $data->user_id }}</td>
+                            <td>{{ $data->golongan }} : {{ $data->pangkat }}</td>
+                            <td>{{ $data->name }}</td>
                             <td>
                                 <form onsubmit="return confirm('Apakah Anda yakin?')"
                                     action="{{ route('manage_guru.destroy', $data->id) }}" method="POST">

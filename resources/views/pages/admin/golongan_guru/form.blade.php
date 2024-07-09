@@ -20,14 +20,20 @@
                         <label for="name">
                             Golongan
                         </label>
-                        <input type="text" name="golongan" id="golongan" class="form-control" required>
+                        <input type="text" name="golongan" id="golongan" class="form-control @error('golongan') is-invalid @enderror" value="{{ old('golongan') }}" required>
+                        @error('golongan')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                         <div class="invalid-feedback">Please, enter your golongan!</div>
                     </div>
                     <div class="form-group">
                         <label for="name">
                             Pangkat
                         </label>
-                        <input type="text" name="pangkat" id="pangkat" class="form-control" required>
+                        <input type="text" name="pangkat" id="pangkat" class="form-control @error('pangkat') is-invalid @enderror" value="{{ old('pangkat') }}" required>
+                        @error('golongan')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                         <div class="invalid-feedback">Please, enter your pangkat!</div>
                     </div>
                     <div class="form-group mt-4">

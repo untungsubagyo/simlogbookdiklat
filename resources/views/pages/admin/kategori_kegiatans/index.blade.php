@@ -1,9 +1,18 @@
 @extends('layouts.root-layout')
 
 @section('content')
-<div class="container">
+<div class="pagetitle">
     <h1>Kategori Kegiatan</h1>
-    <a href="{{ route('kategori_kegiatan.create') }}" class="btn btn-primary mb-3">Tambah</a>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item active">Kategori Kegiatan</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<div class="container">
+    <a href="{{ route('kategori_kegiatan.create') }}" class="btn btn-primary mb-3">Tambah Kategori</a>
 
     @if(session('success'))
         <div class="alert alert-success">
