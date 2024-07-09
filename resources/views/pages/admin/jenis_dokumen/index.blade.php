@@ -16,7 +16,7 @@
         <a href="{{ route('jenis_dokumen.create')}}" class="btn btn-primary">Tambah</a>
 
         @if(session('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success mt-3">
             {{session('success')}}
         </div>
         @endif
