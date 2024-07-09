@@ -35,7 +35,7 @@
                         <tr>
                             <td>{{ $data->NIP }}</td>
                             <td>{{ $data->golongan }}</td>
-                            <td>{{ $data->user_id }}</td>
+                            <td>{{ $data->name }}</td>
                             <td>
                                 <form onsubmit="return confirm('Apakah Anda yakin?')"
                                     action="{{ route('manage_guru.destroy', $data->id) }}" method="POST">
