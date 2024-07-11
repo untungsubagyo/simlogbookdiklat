@@ -1,25 +1,24 @@
 @extends('layouts.root-layout')
 
+@section('sidebar')
+@extends('pages.guru.sidebar')
+@endsection
+
 @section('content')
 <div class="pagetitle">
    <h1>Detail Diklat</h1>
    <nav>
-         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-            <li class="breadcrumb-item active">Detail Diklat</li>
-         </ol>
+      <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="{{ route('homePageGuru') }}">Beranda</a></li>
+         <li class="breadcrumb-item active">Detail Diklat</li>
+      </ol>
    </nav>
 </div>
-
 <div class="card">
    @if ($dataDiklat->count() > 0)
-      <form class="card-header" style="display: flex; align-items: center" method="post" action="{{ route('diklat.destroy', $dataDiklat[0]->id) }}" id="request_delete">
-         @csrf
-         @method('delete')
+      <div class="card-header">
          <h3>Informasi Diklat <strong>{{ $dataDiklat[0]->nama_diklat }}</strong></h3>
-         <a class="btn btn-primary" style="margin-left: auto; margin-right: 1rem;" href="{{ route('dashboard') }}">Kembali</a>
-         <button type="submit" class="btn btn-danger">Hapus</button>
-      </form>
+      </div>
       <div class="card-body">
          <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.1)">
             <div class="col-sm-4"><strong>Nama Diklat</strong></div>
@@ -107,19 +106,8 @@
             </div>
          </div>
       </div>
-      <script>
-         document.getElementById('request_delete').onsubmit = e => {
-            if (!confirm('Hapus Data Diklat Ini?')) {
-               e.preventDefault()     
-            } 
-         }
-      </script>
    @else
-      @if (Session('success'))
-         <div class="alert alert-success">{{ Session('success') }}</div>
-      @else
-         <h5 class="text-center p-4">Data Diklat Tidak Di Temukan</h5>
-      @endif
+      <h5 class="text-center p-4">Data Diklat Tidak Di Temukan</h5>
    @endif
 </div>
 @endsection

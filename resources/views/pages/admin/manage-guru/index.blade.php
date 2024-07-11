@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Guru</h1>
+        <h1>Kelola Guru</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Guru</li>
+                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                <li class="breadcrumb-item active">Kelola Guru</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -26,7 +26,7 @@
                     <tr>
                         <th>NIP</th>
                         <th>Golongan</th>
-                        <th>User Id</th>
+                        <th>username</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -35,7 +35,7 @@
                         <tr>
                             <td>{{ $data->NIP }}</td>
                             <td>{{ $data->golongan }}</td>
-                            <td>{{ $data->user_id }}</td>
+                            <td>{{ $data->username }}</td>
                             <td>
                                 <form onsubmit="return confirm('Apakah Anda yakin?')"
                                     action="{{ route('manage_guru.destroy', $data->id) }}" method="POST">

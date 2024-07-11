@@ -2,13 +2,15 @@
 
 @section('content')
 <section>
-	<h1>Jenis Diklat</h1>
-	<nav>
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-			<li class="breadcrumb-item active">Jenis Diklat</li>
-		</ol>
-	</nav>
+	<div class="pagetitle">
+		<h1>Jenis Diklat</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+				<li class="breadcrumb-item active">Jenis Diklat</li>
+			</ol>
+		</nav>
+	</div>
 
 	<section class="section jenis_diklat">
 		<div class="col-lg-12">

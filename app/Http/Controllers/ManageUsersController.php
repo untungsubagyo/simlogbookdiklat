@@ -28,7 +28,7 @@ class ManageUsersController extends Controller
     public function index()
     {
         $menu = 'manage_users';
-        $usersData = User::where('role_id', 2)->get();
+        $usersData = User::get();
         return view('pages.admin.manage-users.index', compact('usersData', 'menu'));
     }
 

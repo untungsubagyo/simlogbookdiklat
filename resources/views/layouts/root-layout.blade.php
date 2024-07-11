@@ -37,7 +37,7 @@
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    ======================================================== -->
 </head>
 
 <body>
@@ -86,15 +86,12 @@
                 </li><!-- End Profile Nav -->
             </ul>
         </nav><!-- End Icons Navigation -->
-
     </header><!-- End Header -->
 
-    @include('pages.admin.sidebar')
+    @yield('sidebar', View::make('pages.admin.sidebar'))
 
     <main id="main" class="main">
-
         @yield('content')
-
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
