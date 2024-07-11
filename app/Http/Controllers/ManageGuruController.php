@@ -28,11 +28,13 @@ class ManageGuruController extends Controller
     {
         $menu = 'manage_guru';
         $submenu = 'guru';
-        $datas = guru::join('golongans', 'golongan_id', '=', 'golongans.id')
-            ->join('users', 'users.id', '=', 'gurus.user_id')
-            ->select("NIP", "golongan", "users.name AS username", "gurus.id AS id")
-            ->paginate(10);
-        // $us = guru::join('users', 'user_id', '=', 'users.id')->select("NIP", "golongan", "user_id", "gurus.id AS id")->paginate(10);
+        // ketika satu tabel yg join
+        // $datas = guru::join('golongans', 'golongan_id', '=', 'golongans.id')->select("NIP", "golongan", "user_id", "gurus.id AS id")->paginate(10);
+        // ketika lebih dari 1
+        $datas = Guru::join('golongans', 'gurus.golongan_id', '=', 'golongans.id')
+        ->join('users', 'gurus.user_id', '=', 'users.id')
+        ->select('gurus.NIP', 'golongans.golongan','golongans.pangkat','users.name', 'gurus.id AS id')
+        ->paginate(10);
         return view('pages.admin.manage-guru.index', compact('datas', 'menu', 'submenu'));
     }
 

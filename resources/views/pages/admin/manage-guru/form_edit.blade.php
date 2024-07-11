@@ -26,7 +26,9 @@
 						<select class="form-control" id="golongan_id" name="golongan_id" required>
 							<option value="">Pilih Golongan</option>
 							@foreach($golongan as $gol)
-								<option value="{{ $gol->id }}" {{ $guru->golongan_id == $gol->id ? 'selected' : '' }}>{{ $gol->golongan }} -
+								<option value="{{ 
+								$gol->id }}" {{ 
+									$guru->golongan_id == $gol->id ? 'selected' : '' }}>{{ $gol->golongan }} -
 									{{ $gol->pangkat }}
 								</option>
 							@endforeach

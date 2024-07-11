@@ -12,6 +12,13 @@
     <!-- Favicons -->
     <link href="/assets/themes/nice/assets/img/favicon.png" rel="icon">
     <link href="/assets/themes/nice/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <head>
+    <!-- SweetAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
