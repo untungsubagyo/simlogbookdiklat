@@ -10,6 +10,7 @@ use App\Http\Controllers\JenisDokumenController;
 use App\Http\Controllers\KategoriKegiatanController;
 use App\Http\Controllers\ManageGuruController;
 use App\Http\Controllers\ManageUsersController;
+use App\Http\Controllers\MyProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('postLogin');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('my_profile', [MyProfileController::class, 'index'])->name('my-profile');
+Route::put('my_profile/update', [MyProfileController::class, 'update'])->name('my_profile.update');
 
 // Admin Router
 Route::get('admin', [AdminController::class, 'index'])->name('dashboard');
