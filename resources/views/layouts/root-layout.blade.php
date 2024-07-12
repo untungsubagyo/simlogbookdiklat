@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -12,20 +11,15 @@
     <!-- Favicons -->
     <link href="/assets/themes/nice/assets/img/favicon.png" rel="icon">
     <link href="/assets/themes/nice/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-    <head>
     <!-- SweetAlert CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- SweetAlert JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
-
-
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
-
+    
     <!-- Vendor CSS Files -->
     <link href="/assets/themes/nice/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/themes/nice/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -34,21 +28,20 @@
     <link href="/assets/themes/nice/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="/assets/themes/nice/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="/assets/themes/nice/assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
+    
     <!-- Template Main CSS File -->
     <link href="/assets/themes/nice/assets/css/style.css" rel="stylesheet">
-
+    
     <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Updated: Mar 09 2023 with Bootstrap v5.2.3
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
+    * Template Name: NiceAdmin
+    * Updated: Mar 09 2023 with Bootstrap v5.2.3
+    * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
     ======================================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-
 <body>
-
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -64,7 +57,11 @@
             <ul class="d-flex align-items-center">
                 <li class="nav-item dropdown pe-3">
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="/assets/themes/nice/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                        @if (isset(Auth::user()->profile_photo))
+                            <img src="{{ Storage::url(Auth::user()->profile_photo) }}" alt="Profile" style="object-fit: cover;" class="rounded-circle">
+                        @else
+                            <div style="border-radius: 50%; width: 2.5rem; height: 2.5rem; background-color: gray; text-align: center; line-height: 2.5rem; color: white">{{ substr(Auth::user()->name, 0, 2) }}</div>
+                        @endif
                         <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
                     </a><!-- End Profile Iamge Icon -->
 
@@ -78,7 +75,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('my-profile') }}">
                                 <i class="bi bi-person"></i>
                                 <span>My Profile</span>
                             </a>

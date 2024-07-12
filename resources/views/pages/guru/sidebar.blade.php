@@ -8,7 +8,7 @@
       </li>
 
       <li class="nav-item">
-         <a class="nav-link  {{ (Route::getCurrentRoute()->getName() != 'homePageGuru' && Route::getCurrentRoute()->getName() != 'diklat.show' && Route::getCurrentRoute()->getName() != 'diklat.edit') ? 'active' : 'collapsed' }}" href="{{ route('diklat.create') }}">
+         <a class="nav-link  {{ Route::getCurrentRoute()->getName() == 'diklat.create' ? 'active' : 'collapsed' }}" href="{{ route('diklat.create') }}">
             <i class="bi bi-person"></i>
             <span>Tambah Diklat</span>
          </a>
