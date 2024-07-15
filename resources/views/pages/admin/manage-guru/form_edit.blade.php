@@ -39,7 +39,7 @@
 						<select class="form-control" id="user_id" name="user_id" required>
 							<option value="">Pilih User_ID</option>
 							@foreach($user as $user_item)
-								<option value="{{ $user_item->id }}" {{ $guru->user_id == $user_item->id ? 'selected' : '' }}>{{ $user_item->name }}</option>
+								<option value="{{ $user_item->id }}" {{ $guru->user_id == $user_item->id ? 'selected' : '' }}>{{ $user_item->email }}</option>
 							@endforeach
 						</select>
 					</div>
