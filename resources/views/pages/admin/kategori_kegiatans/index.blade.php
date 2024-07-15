@@ -12,7 +12,7 @@
 </div><!-- End Page Title -->
 
 <div class="container">
-    <a href="{{ route('kategori_kegiatan.create') }}" class="btn btn-primary mb-3">Tambah Kategori</a>
+    <a href="{{ route('kategori_kegiatan.create') }}" class="btn btn-primary mb-3">Tambah</a>
 
     @if(session('success'))
         <div class="alert alert-success">
