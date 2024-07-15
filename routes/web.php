@@ -43,3 +43,7 @@ Route:: resource('admin/jenis_dokumen', JenisDokumenController::class);
 // Guru Router
 Route::get('/guru', [HomeGuru::class, 'index'])->name('homePageGuru');
 Route::resource('/guru/diklat', DiklatController::class)->middleware('auth');
+
+//photo profile
+Route::get('/profile', 'ProfileController@show')->name('profile.show');
+Route::post('/profile/update-photo', 'ProfileController@updatePhoto')->name('profile.update.photo');
