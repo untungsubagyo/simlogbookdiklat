@@ -15,7 +15,7 @@ return new class extends Migration {
          $table->timestamps();
          $table->string('nama_diklat', 50);
          $table->string('penyelenggara', 21);
-         $table->enum('tingkatan_diklat', ["Lokal", "Negional", "Nasional", "Internasional"]);
+         $table->enum('tingkatan_diklat', ["Lokal", "Regional", "Nasional", "Internasional"]);
          $table->integer('jumlah_jam');
          $table->string('no_sertifikat', 50);
          $table->date('tanggal_sertifikat');
@@ -25,13 +25,13 @@ return new class extends Migration {
          $table->date('tanggal_selesai');
          $table->string('no_sk_penugasan', 21);
          $table->date('tanggal_sk_penugasan');
-         
+
          $table->string('file_dokumen', 500);
          $table->string('nama_dokumen', 100);
-         $table->string('link_dokumen', 500);
+         $table->string('link_dokumen', 500)->nullable();
          $table->text('keterangan_dokumen');
 
-         $table->bigInteger('id_user')->unsigned()->index()->unique();
+         $table->bigInteger('id_user')->unsigned()->index();
          $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
 
          $table->bigInteger('id_jenis_diklat')->unsigned()->index();

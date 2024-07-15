@@ -24,11 +24,13 @@ class ManageGuruController extends Controller
         }
     }
 
-    public function index(): View
+    public function index()
     {
         $menu = 'manage_guru';
         $submenu = 'guru';
+        // ketika satu tabel yg join
         // $datas = guru::join('golongans', 'golongan_id', '=', 'golongans.id')->select("NIP", "golongan", "user_id", "gurus.id AS id")->paginate(10);
+        // ketika lebih dari 1
         $datas = Guru::join('golongans', 'gurus.golongan_id', '=', 'golongans.id')
         ->join('users', 'gurus.user_id', '=', 'users.id')
         ->select('gurus.NIP', 'golongans.golongan','golongans.pangkat','users.name', 'gurus.id AS id')

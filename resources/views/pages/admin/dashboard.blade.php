@@ -75,17 +75,21 @@
 	<h3 class="mt-3 mb-4">Daftar Diklat Guru</h3>
 
 	<div class="col">
-		@forelse ($dataDiklat as $diklat)
+		@forelse ($dataDiklat as $index => $diklat)
 			<div lass="w-100">
-				<div class="card">
+				<div class="card p-2">
 					<div class="card-body">
 						<h5 style="line-height: .3rem" class="card-title">
-							Data Diklat : {{ $diklat->name }}
+							Data Diklat 
+							<strong>
+								{{ $diklat->nama_diklat }}
+							</strong>
 						</h5>
-						<p style="line-height: .3rem" class="mb-4 text-black-50">NIP {{ $diklat->NIP }}</p>
-						<div style="display: flex; justify-content: space-between; align-items: center">
-							<a href="{{ route('viewDiklatGuru', $diklat->id) }}" class="btn btn-primary">Lihat</a>
-							<p class="text-black-50">
+						<p style="line-height: .3rem" class="mb-4 text-black-50">Pemilik <strong>{{ $diklat->username }}</strong></p>
+						<p style="line-height: .3rem" class="mb-4 text-black-50">NIP <strong>{{ $diklat->NIP }}</strong></p>
+						<div style="display: flex; justify-content: space-between; align-items: flex-end">
+							<a href="{{ route('diklat.show', $diklat->id) }}" class="btn btn-primary">Lihat</a>
+							<p class="text-black-50 mb-0">
 								Terakhir Diubah
 								<span> | {{ $diklat->updated_at }}</span>
 							</p>

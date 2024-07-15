@@ -26,8 +26,7 @@ class ManageUsersController extends Controller
 
     public function index()
     {
-      
-        $usersData = User::where('role_id', 2)->get();
+        $usersData = User::get();
         $menu = 'manage_users';
         $submenu = 'manage_users';
         return view('pages.admin.manage_users.index', compact('usersData', 'menu', 'submenu'));
@@ -72,7 +71,7 @@ class ManageUsersController extends Controller
             'password' => 'nullable|string|min:8|confirmed',
             'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-    
+
         if ($request->hasFile('profile_photo')) {
             // Delete old profile photo if exists
             if ($usersData->profile_photo) {
@@ -81,14 +80,15 @@ class ManageUsersController extends Controller
             $profilePhotoPath = $request->file('profile_photo')->store('profile_photos', 'public');
             $usersData->profile_photo = $profilePhotoPath;
         }
-    
+
         $usersData->name = $validated['name'];
         $usersData->email = $validated['email'];
+
         if ($request->filled('password')) {
             $usersData->password = Hash::make($validated['password']);
         }
         $usersData->save();
-    
+
         return redirect()->route('manage_users.index')->with('success', 'Guru updated successfully.');
     }
     

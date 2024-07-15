@@ -21,7 +21,18 @@ class DiklatController extends Controller
 	 */
 	public function index()
 	{
+		$userdata = Auth::user();
+		$dataDiklat = Diklat::join('jenis_diklats', 'jenis_diklats.id', '=', 'diklats.id_jenis_diklat')
+			->join('kategori_kegiatans', 'kategori_kegiatans.id', '=', 'diklats.id_kategori_kegiatan_diklat')
+			->where('diklats.id_user', '=', $userdata->id)
+			->get([
+				'diklats.*', 
+				'jenis_diklats.nama AS nama_jenis_diklat', 
+				'jenis_diklats.jenis_diklat AS jenis_diklat', 
+				'kategori_kegiatans.name AS kategori_kegiatan', 
+			]);
 
+		return view('pages.guru.home', compact('userdata', 'dataDiklat'));
 	}
 
 	/**
@@ -63,35 +74,42 @@ class DiklatController extends Controller
 	/**
 	 * Display the specified resource.
 	 */
-	public function show(Request $request)
+	public function show ( $id )
 	{
-		if (Auth::check()) {
-			$userdata = Auth::user();
-			if ($userdata->role_id == 2) {
-				return redirect('/guru');
-			} elseif ($userdata->role_id != 1) {
-				return redirect('/');
-			}
-			$dataDiklat = Diklat::join('jenis_diklats', 'jenis_diklats.id', '<', 'diklats.id_jenis_diklat')
+		$userdata = Auth::user();
+
+		if ($userdata->role_id == 1) {
+			$dataDiklat = Diklat::join('jenis_diklats', 'jenis_diklats.id', '=', 'diklats.id_jenis_diklat')
 				->join('kategori_kegiatans', 'kategori_kegiatans.id', '=', 'diklats.id_kategori_kegiatan_diklat')
 				->join('users', 'users.id', '=', 'diklats.id_user')
-			->get([
-					'diklats.*',
-					'users.name AS username',
-					'jenis_diklats.nama AS nama_jenis_diklat',
-					'jenis_diklats.jenis_diklat AS jenis_diklat',
-					'kategori_kegiatans.name AS kategori_kegiatan'
-				])->where('diklats.id', '=', $request->query('id'));
-
-			return $dataDiklat;
-			// if ($dataDiklat->count() <= 0) {
-			// 	return redirect()->back();
-			// }
-
-			return view('pages.admin.view-diklat.index', compact('userdata', 'dataDiklat'));
+				->where('diklats.id', '=', $id)
+				->get([
+						'diklats.*',
+						'users.name AS username',
+						'jenis_diklats.nama AS nama_jenis_diklat',
+						'jenis_diklats.jenis_diklat AS jenis_diklat',
+						'kategori_kegiatans.name AS kategori_kegiatan'
+				]);
 		} else {
-			return redirect('/');
+			$dataDiklat = Diklat::join('jenis_diklats', 'jenis_diklats.id', '=', 'diklats.id_jenis_diklat')
+				->join('kategori_kegiatans', 'kategori_kegiatans.id', '=', 'diklats.id_kategori_kegiatan_diklat')
+				->join('users', 'users.id', '=', 'diklats.id_user')
+				->where('diklats.id', '=', $id)
+				->where('diklats.id_user', '=', $userdata->id)
+				->get([
+						'diklats.*',
+						'users.name AS username',
+						'jenis_diklats.nama AS nama_jenis_diklat',
+						'jenis_diklats.jenis_diklat AS jenis_diklat',
+						'kategori_kegiatans.name AS kategori_kegiatan'
+				]);
 		}
+
+		// return $dataDiklat;
+		if ($userdata->role_id == 2) {
+			return view('pages.guru.manage-diklat.view', compact('dataDiklat'));
+		}
+		return view('pages.admin.view-diklat.index', compact('dataDiklat'));
 	}
 
 	/**
@@ -99,12 +117,11 @@ class DiklatController extends Controller
 	 */
 	public function edit($id)
 	{
-		$data = Diklat::get()->where('id_user', '=', $id);
+		$diklat = Diklat::where('id', '=', $id)->get();
 		$data_jenisDiklat = JenisDiklat::get();
 		$categories = KategoriKegiatan::get();
-		// with('children')->whereNull('parent_id')->get();
 
-		return view('pages.guru.manage-diklat.form-edit', compact('data', 'data_jenisDiklat', 'categories'));
+		return view('pages.guru.manage-diklat.form-edit', compact('diklat', 'data_jenisDiklat', 'categories'));
 	}
 
 	/**
@@ -148,9 +165,7 @@ class DiklatController extends Controller
 	 */
 	public function destroy($id)
 	{
-		$diklat = Diklat::findOrFail($id);
-		$diklat->delete();
-
-		return redirect()->back()->with('success', 'Diklat deleted successfully.');
+		Diklat::findOrFail($id)->delete();
+		return redirect()->back()->with('success', 'Diklat berhasil di hapus.');
 	}
 }

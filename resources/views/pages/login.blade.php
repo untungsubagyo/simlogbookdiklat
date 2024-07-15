@@ -64,7 +64,7 @@
 
                                     <div class="pt-4 pb-2">
                                         <h5 class="card-title text-center pb-0 fs-4">Login ke Akun Anda</h5>
-                                        <p class="text-center small">Masukan username & password Anda untuk login</p>
+                                        <p class="text-center small">Masukan email & password Anda untuk login</p>
                                     </div>
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
@@ -75,7 +75,7 @@
                                         class="row g-3 needs-validation" novalidate>
                                         @csrf
                                         <div class="col-12">
-                                            <label for="yourUsername" class="form-label">Username</label>
+                                            <label for="yourUsername" class="form-label">Email</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
                                                 <input type="text" name="email" class="form-control"

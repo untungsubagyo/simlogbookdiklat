@@ -19,13 +19,13 @@ class AdminController extends Controller
 			}
 			$dataDiklat = Diklat::join('users', 'users.id', '=', 'diklats.id_user')
 				->join('gurus', 'gurus.user_id', '=', 'users.id')
-				->get(['diklats.id AS id', 'users.name AS name', 'gurus.NIP AS NIP', 'diklats.updated_at AS updated_at', 'diklats.created_at AS created_at']);
+				->get(['diklats.id AS id', 'diklats.nama_diklat AS nama_diklat', 'users.name AS username', 'gurus.NIP AS NIP', 'diklats.updated_at AS updated_at', 'diklats.created_at AS created_at']);
 
 			$menu = 'dashboard';
 			$guruCounts = guru::get()->count();
-			
+
 			if ($guruCounts != 0 && $dataDiklat->count() != 0) {
-				$averageDiklatCount = round($guruCounts / $dataDiklat->count());
+				$averageDiklatCount = round($dataDiklat->count() / $guruCounts);
 			} else {
 				$averageDiklatCount = 0;
 			}
