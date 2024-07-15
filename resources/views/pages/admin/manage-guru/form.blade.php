@@ -24,6 +24,13 @@
                         <div class="invalid-feedback">Please, enter your name!</div>
                     </div>
                     <div class="form-group">
+                        <label for="name">
+                            Nama
+                        </label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+                        <div class="invalid-feedback">Please, enter your name!</div>
+                    </div>
+                    <div class="form-group">
                         <label for="golongan_id">Golongan</label>
                         <select class="form-control" id="golongan_id" name="golongan_id" required>
                             <option value="">Pilih Golongan</option>
@@ -32,19 +39,25 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="user_id">User_ID</label>
                         <select class="form-control" id="user_id" name="user_id" required>
                             <option value="">Pilih User_ID</option>
                             @foreach($user as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                <option value="{{ $user->id }}">{{ $user->email }}</option>
                             @endforeach
                         </select>
-                    </div>
-                    {{-- <div class="form-group">
-                        <label for="user_id">User ID</label>
-                        <input type="text" class="form-control" id="user_id" name="user_id" value="{{ old('user_id') }}" required>
                     </div> --}}
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                        <div class="invalid-feedback">Please, enter your email!</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        <div class="invalid-feedback">Please, enter your password!</div>
+                    </div>
                     <div class="form-group mt-4">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>  

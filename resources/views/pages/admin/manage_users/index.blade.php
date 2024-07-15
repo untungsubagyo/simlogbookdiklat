@@ -14,7 +14,14 @@
 <body>
     @section('content')
     <div class="container">
-        <h1>Daftar Pengguna</h1>
+            <h1>Daftar Pengguna</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Daftar Pengguna</li>
+                </ol>
+            </nav>
+        </div>
         <a href="{{ route('manage_users.create') }}" class="btn btn-primary mb-5">Tambah</a>
     </div>
 

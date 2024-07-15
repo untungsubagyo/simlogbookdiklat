@@ -19,17 +19,17 @@
                 <div class="form-group">
                     <label for="name">File</label>
                     <input type="file" name="file" id="file" class="form-control" required>
-                    <div class="invalid-feedback">Please, enter File!</div>
+                    <div class="invalid-feedback">Tolong, kirim File Dokumen!</div>
                 <div>
                 <div class="form-group">
                     <label for="name">Nama Dokumen</label>
                     <input type="text" name="nama_dokumen" id="nama_dokumen" class="form-control" required>
-                    <div class="invalid-feedback">Please, enter the title!</div>
+                    <div class="invalid-feedback">Tolong, masukkan Nama Dokumen Diklat!</div>
                 <div>
                     <div classz="form-group">
                         <label for="keterangan">Keterangan</label>
                         <textarea name="keterangan" id="keterangan" cols="67" rows="4"></textarea>
-                        <div class="invalid-feedback">Please, enter your content!</div>
+                        <div class="invalid-feedback">Tolong, isi Keterangan Dokumen</div>
                     <div>
                         <div class="form-group">
                             <label for="jenis_dokumen_id">Jenis Dokumen</label>
@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <label for="name">Tautan Dokumen</label>
                                 <input type="text" name="link" id="link" class="form-control" required>
-                                <div class="invalid-feedback">Please, enter the title!</div>
+                                <div class="invalid-feedback">Tolong, isi Link Dokumen!</div>
                             <div>
                         </div>
                     <div class="form-group mt-4">

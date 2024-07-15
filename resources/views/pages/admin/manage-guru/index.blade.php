@@ -25,8 +25,9 @@
                 <thead>
                     <tr>
                         <th>NIP</th>
+                        <th>Nama</th>
                         <th>Golongan</th>
-                        <th>username</th>
+                        <th>Email</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -34,8 +35,9 @@
                     @forelse ($datas as $data)
                         <tr>
                             <td>{{ $data->NIP }}</td>
+                            <td>{{ $data->name_guru }}</td>
                             <td>{{ $data->golongan }} : {{ $data->pangkat }}</td>
-                            <td>{{ $data->name }}</td>
+                            <td>{{ $data->email }}</td>
                             <td>
                                 <form onsubmit="return confirm('Apakah Anda yakin?')"
                                     action="{{ route('manage_guru.destroy', $data->id) }}" method="POST">
