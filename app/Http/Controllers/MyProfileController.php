@@ -47,6 +47,7 @@ class MyProfileController extends Controller
 			'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 			'request-del-profile' => 'required'
 		]);
+
 		$usersData->name = $validated_data_user['name'];
 		$usersData->email = $validated_data_user['email'];
 		if ($request->filled('password')) {

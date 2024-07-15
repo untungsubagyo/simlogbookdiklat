@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Diklat;
+use App\Models\jenis_dokumen;
 use App\Models\JenisDiklat;
 use App\Models\KategoriKegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class DiklatController extends Controller
 {
@@ -26,10 +28,10 @@ class DiklatController extends Controller
 			->join('kategori_kegiatans', 'kategori_kegiatans.id', '=', 'diklats.id_kategori_kegiatan_diklat')
 			->where('diklats.id_user', '=', $userdata->id)
 			->get([
-				'diklats.*', 
-				'jenis_diklats.nama AS nama_jenis_diklat', 
-				'jenis_diklats.jenis_diklat AS jenis_diklat', 
-				'kategori_kegiatans.name AS kategori_kegiatan', 
+				'diklats.*',
+				'jenis_diklats.nama AS nama_jenis_diklat',
+				'jenis_diklats.jenis_diklat AS jenis_diklat',
+				'kategori_kegiatans.name AS kategori_kegiatan',
 			]);
 
 		return view('pages.guru.home', compact('userdata', 'dataDiklat'));
@@ -42,8 +44,9 @@ class DiklatController extends Controller
 	{
 		$data_jenisDiklat = JenisDiklat::get();
 		$categories = KategoriKegiatan::get();
+		$jenis_dokunmen = jenis_dokumen::get();
 
-		return view('pages.guru.manage-diklat.form-add', compact('data_jenisDiklat', 'categories'));
+		return view('pages.guru.manage-diklat.form-add', compact('jenis_dokunmen', 'data_jenisDiklat', 'categories'));
 	}
 
 	/**
@@ -52,9 +55,39 @@ class DiklatController extends Controller
 	public function store(Request $request)
 	{
 		$id_user = Auth::user()->id;
-		$data = $request->all();
-		$data['id_user'] = $id_user;
+		$raw_data_jenisDiklat = JenisDiklat::get(['id'])->toArray();
+		$raw_categories = KategoriKegiatan::get(['id'])->toArray();
+		$raw_jenis_dokumen = jenis_dokumen::get(['id'])->toArray();
 
+		$categories = array_map(function ($item) {return $item['id'];}, $raw_categories);
+		$data_jenisDiklat = array_map(function ($item) {return $item['id'];}, $raw_data_jenisDiklat);
+		$jenis_dokumen = array_map(function ($item) {return $item['id'];}, $raw_jenis_dokumen);
+
+
+		// return $categories;
+		// return $request->all();
+		$data = $request->validate([
+			"nama_diklat" => ["required", "min:5", "max:50"],
+			"penyelenggara" => ["required", "max:21"],
+			"tingkatan_diklat" => ["required", Rule::in('Local', 'Regional', 'Nasional', 'Internasional')],
+			"jumlah_jam" => ["required", "max:11"],
+			"no_sertifikat" => ["required", "max:50"],
+			"tanggal_sertifikat" => ["required"],
+			"tahun_penyelenggara" => ["required", "max:5"],
+			"tempat" => ["required"],
+			"tanggal_mulai" => ["required"],
+			"tanggal_selesai" => ["required"],
+			"no_sk_penugasan" => ["required", "max:21"],
+			"tanggal_sk_penugasan" => ["required"],
+			"id_jenis_diklat" => ["required", Rule::in($data_jenisDiklat)],
+			"id_kategori_kegiatan_diklat" => ["required", Rule::in($categories)],
+			"file_dokumen" => ["required", "file", "max:20000000"],
+			"nama_dokumen" => ["required", "max:100"],
+			"link_dokumen" => ["nullable", "max:500"],
+			"id_jenis_dokumen" => ["required", Rule::in($jenis_dokumen)],
+			"keterangan_dokumen" => ["nullable"],
+		]);
+		$data['id_user'] = $id_user;
 
 		// Store the file
 		$file = $request->file('file_dokumen');
@@ -74,7 +107,7 @@ class DiklatController extends Controller
 	/**
 	 * Display the specified resource.
 	 */
-	public function show ( $id )
+	public function show($id)
 	{
 		$userdata = Auth::user();
 
@@ -84,11 +117,11 @@ class DiklatController extends Controller
 				->join('users', 'users.id', '=', 'diklats.id_user')
 				->where('diklats.id', '=', $id)
 				->get([
-						'diklats.*',
-						'users.name AS username',
-						'jenis_diklats.nama AS nama_jenis_diklat',
-						'jenis_diklats.jenis_diklat AS jenis_diklat',
-						'kategori_kegiatans.name AS kategori_kegiatan'
+					'diklats.*',
+					'users.name AS username',
+					'jenis_diklats.nama AS nama_jenis_diklat',
+					'jenis_diklats.jenis_diklat AS jenis_diklat',
+					'kategori_kegiatans.name AS kategori_kegiatan'
 				]);
 		} else {
 			$dataDiklat = Diklat::join('jenis_diklats', 'jenis_diklats.id', '=', 'diklats.id_jenis_diklat')
@@ -97,11 +130,11 @@ class DiklatController extends Controller
 				->where('diklats.id', '=', $id)
 				->where('diklats.id_user', '=', $userdata->id)
 				->get([
-						'diklats.*',
-						'users.name AS username',
-						'jenis_diklats.nama AS nama_jenis_diklat',
-						'jenis_diklats.jenis_diklat AS jenis_diklat',
-						'kategori_kegiatans.name AS kategori_kegiatan'
+					'diklats.*',
+					'users.name AS username',
+					'jenis_diklats.nama AS nama_jenis_diklat',
+					'jenis_diklats.jenis_diklat AS jenis_diklat',
+					'kategori_kegiatans.name AS kategori_kegiatan'
 				]);
 		}
 
@@ -119,9 +152,10 @@ class DiklatController extends Controller
 	{
 		$diklat = Diklat::where('id', '=', $id)->get();
 		$data_jenisDiklat = JenisDiklat::get();
+		$jenis_dokumen = jenis_dokumen::get();
 		$categories = KategoriKegiatan::get();
 
-		return view('pages.guru.manage-diklat.form-edit', compact('diklat', 'data_jenisDiklat', 'categories'));
+		return view('pages.guru.manage-diklat.form-edit', compact('diklat', 'data_jenisDiklat', 'categories', 'jenis_dokumen'));
 	}
 
 	/**
@@ -129,7 +163,40 @@ class DiklatController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		$data = $request->all();
+		$id_user = Auth::user()->id;
+		$raw_data_jenisDiklat = JenisDiklat::get(['id'])->toArray();
+		$raw_categories = KategoriKegiatan::get(['id'])->toArray();
+		$raw_jenis_dokumen = jenis_dokumen::get(['id'])->toArray();
+
+		$categories = array_map(function ($item) {return $item['id'];}, $raw_categories);
+		$data_jenisDiklat = array_map(function ($item) {return $item['id'];}, $raw_data_jenisDiklat);
+		$jenis_dokumen = array_map(function ($item) {return $item['id'];}, $raw_jenis_dokumen);
+
+
+		// return $categories;
+		// return $request->all();
+		$data = $request->validate([
+			"nama_diklat" => ["required", "min:5", "max:50"],
+			"penyelenggara" => ["required", "max:21"],
+			"tingkatan_diklat" => ["required", Rule::in('Local', 'Regional', 'Nasional', 'Internasional')],
+			"jumlah_jam" => ["required", "max:11"],
+			"no_sertifikat" => ["required", "max:50"],
+			"tanggal_sertifikat" => ["required"],
+			"tahun_penyelenggara" => ["required", "max:5"],
+			"tempat" => ["required"],
+			"tanggal_mulai" => ["required"],
+			"tanggal_selesai" => ["required"],
+			"no_sk_penugasan" => ["required", "max:21"],
+			"tanggal_sk_penugasan" => ["required"],
+			"id_jenis_diklat" => ["required", Rule::in($data_jenisDiklat)],
+			"id_kategori_kegiatan_diklat" => ["required", Rule::in($categories)],
+			"file_dokumen" => ["required", "file", "max:20000000"],
+			"nama_dokumen" => ["required", "max:100"],
+			"link_dokumen" => ["nullable", "max:500"],
+			"id_jenis_dokumen" => ["required", Rule::in($jenis_dokumen)],
+			"keterangan_dokumen" => ["nullable"],
+		]);
+		$data['id_user'] = $id_user;
 
 		// Check if a new file is uploaded
 		if ($request->hasFile('file_dokumen')) {
