@@ -10,43 +10,10 @@
             </a>
         </li><!-- End Dashboard Nav -->
 
-
-        <li class="nav-item">
-            <a class="nav-link  {{ str_contains(Route::getCurrentRoute()->uri, 'admin/golongan_guru') ? 'active' : 'collapsed' }}"
-                href="{{ route('golongan_guru.index') }}">
-                <i class="bi bi-person"></i>
-                <span>Pangkat & Golongan</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link  {{ str_contains(Route::getCurrentRoute()->uri, 'admin/jenis_diklat') ? 'active' : 'collapsed' }}"
-                href="{{ route('jenis_diklat.index') }}">
-                <i class="bi bi-question-circle"></i>
-                <span>Jenis Diklat</span>
-            </a>
-        </li><!-- End Jenis Diklat Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link  {{ str_contains(Route::getCurrentRoute()->uri, 'admin/kategori_kegiatan') ? 'active' : 'collapsed' }}"
-                href="{{ route('kategori_kegiatan.index') }}">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Kategori Kegiatan</span>
-            </a>
-        </li><!-- End Kategori Kegiatan Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link  {{ str_contains(Route::getCurrentRoute()->uri, 'admin/manage_users') ? 'active' : 'collapsed' }}"
-                href="{{ route('manage_users.index') }}">
-                <i class="bi bi-envelope"></i>
-                <span>Pengguna</span>
-            </a>
-        </li><!-- End Pengguna Page Nav -->
-
         <li class="nav-item">
             <a class="nav-link  {{ str_contains(Route::getCurrentRoute()->uri, 'admin/manage_guru') ? 'active' : 'collapsed' }}"
                 href="{{ route('manage_guru.index') }}">
-                <i class="bi bi-card-list"></i>
+                <i class="bi-people"></i>
                 <span>Guru</span>
             </a>
         </li><!-- End Guru Page Nav -->
@@ -54,7 +21,7 @@
         <li class="nav-item">
             <a class="nav-link  {{ str_contains(Route::getCurrentRoute()->uri, 'admin/dokumen_diklat') ? 'active' : 'collapsed' }}"
                 href="{{ route('dokumen_diklat.index') }}">
-                <i class="bi bi-card-list"></i>
+                <i class="bi-folder"></i>
                 <span>Dokumen Diklat</span>
             </a>
         </li><!-- End Document Diklats Page Nav -->
@@ -62,10 +29,45 @@
         <li class="nav-item">
             <a class="nav-link  {{ str_contains(Route::getCurrentRoute()->uri, 'admin/jenis_dokumen') ? 'active' : 'collapsed' }}"
                 href="{{ route('jenis_dokumen.index') }}">
-                <i class="bi bi-card-list"></i>
+                <i class="bi-file-earmark-text"></i>
                 <span>Jenis Dokumen</span>
             </a>
-        </li><!-- End Document Diklats Page Nav -->
+        </li><!-- End Document jenis Page Nav -->
+
+        
+        <li class="nav-item">
+            <a class="nav-link  {{ str_contains(Route::getCurrentRoute()->uri, 'admin/jenis_diklat') ? 'active' : 'collapsed' }}"
+                href="{{ route('jenis_diklat.index') }}">
+                <i class="bi-files"></i>    
+                <span>Jenis Diklat</span>
+            </a>
+        </li><!-- End Jenis Diklat Page Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link  {{ str_contains(Route::getCurrentRoute()->uri, 'admin/golongan_guru') ? 'active' : 'collapsed' }}"
+                href="{{ route('golongan_guru.index') }}">
+                <i class="bi-view-stacked"></i>
+                <span>Pangkat & Golongan</span>
+            </a>
+        </li><!-- End Pangkat Gol Page Nav -->
+
+
+        <li class="nav-item">
+            <a class="nav-link  {{ str_contains(Route::getCurrentRoute()->uri, 'admin/kategori_kegiatan') ? 'active' : 'collapsed' }}"
+                href="{{ route('kategori_kegiatan.index') }}">
+                <i class="bi-tags"></i>
+                <span>Kategori Kegiatan</span>
+            </a>
+        </li><!-- End Kategori Kegiatan Page Nav -->
+
+
+        <li class="nav-item">
+            <a class="nav-link  {{ str_contains(Route::getCurrentRoute()->uri, 'admin/manage_users') ? 'active' : 'collapsed' }}"
+                href="{{ route('manage_users.index') }}">
+                <i class="bi-person"></i>
+                <span>Pengguna</span>
+            </a>
+        </li><!-- End Pengguna Page Nav -->
     </ul>
 
 </aside><!-- End Sidebar-->
