@@ -14,7 +14,7 @@
 <body>
     @section('content')
     <div class="container">
-        <h1>Daftar User</h1>
+        <h1>Daftar Pengguna</h1>
         <a href="{{ route('manage_users.create') }}" class="btn btn-primary mb-5">Tambah</a>
     </div>
 

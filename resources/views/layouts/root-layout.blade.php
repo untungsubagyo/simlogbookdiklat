@@ -131,7 +131,7 @@
     <script>
         document.getElementById('logout-btn').onclick = () => {
             if (confirm('Anda Yakin Akan Logout?')) {
-                return window.location.href = '{{ route('logout') }}'
+                return window.location.href = '{{ route("logout") }}'
             }
         }
     </script>
