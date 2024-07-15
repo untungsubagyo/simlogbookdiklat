@@ -56,7 +56,7 @@
          </div>
          <div class="col-md-6">
             <div class="form-floating">
-               <input required type="text" class="form-control" id="floatingJumlahJam" name="jumlah_jam" placeholder="Jumlah Jam">
+               <input required type="number" class="form-control" id="floatingJumlahJam" name="jumlah_jam" placeholder="Jumlah Jam">
                <label for="floatingJumlahJam">Jumlah Jam <span style="color: red;">*</span></label>
             </div>
          </div>
@@ -74,7 +74,7 @@
          </div>
          <div class="col-md-6">
             <div class="form-floating">
-               <input required type="text" class="form-control" id="floatingTahunPenyelenggara" name="tahun_penyelenggara" placeholder="Tahun Penyelenggara">
+               <input required type="number" class="form-control" id="floatingTahunPenyelenggara" name="tahun_penyelenggara" placeholder="Tahun Penyelenggara">
                <label for="floatingTahunPenyelenggara">Tahun Penyelenggara <span style="color: red;">*</span></label>
             </div>
          </div>
@@ -138,8 +138,8 @@
          <legend>Dokumen</legend>
          <div class="col-md-6">
             <div class="form-floating">
-               <input required type="file" class="form-control" id="floatingNoSk" name="file_dokumen" id="file_dokumen">
-               <label for="floatingNoSk">File <span style="color: red;">*</span></label>
+               <input required type="file" class="form-control" name="file_dokumen" id="file-dokumen">
+               <label for="file-dokumen">File <span style="color: red;">*</span></label>
             </div>
          </div>
          <div class="col-md-6">
@@ -178,5 +178,24 @@
          <button type="submit" class="btn btn-primary">Simpan</button>
       </div>
    </form>
+
+   <script>
+      window.onload = () => {
+         const fileInput = document.getElementById('file-dokumen');
+         fileInput.addEventListener('change', function() {
+            const fileSize = fileInput.files[0].size;
+            const fileType = fileInput.files[0].type;
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'text/html', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.oasis.opendocument.text', 'text/plain', 'application/rtf', 'application/epub+zip', 'application/vnd.ms-powerpoint'];
+   
+            if (fileSize > 20 * 1024 * 1024) {
+               alert('File size must be less than 20MB');
+               fileInput.value = '';
+            } else if (!allowedTypes.includes(fileType)) {
+               alert('Invalid file type. Allowed file types are: jpg, png, jpeg, webp, pdf, doc, xlxs, html, docx, odt, txt, rtf, epub, ppt');
+               fileInput.value = '';
+            }
+         });
+      }
+   </script>
 </main>
 @endsection

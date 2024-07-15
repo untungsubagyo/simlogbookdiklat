@@ -224,7 +224,7 @@ class DiklatController extends Controller
 		$diklat = Diklat::findOrFail($id);
 		$diklat->update($data);
 
-		return redirect('/guru')->with('success', 'Diklat updated successfully.');
+		return redirect('/guru')->with('message', 'Data Diklat Berhasil Di Perbarui');
 	}
 
 	/**
