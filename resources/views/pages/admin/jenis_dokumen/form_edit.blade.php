@@ -20,7 +20,7 @@
                 <div class="form-group">
                     <label for="name">Jenis Dokumen</label>
                     <input type="text" name="name" id="name" class="form-control" value="{{$jenis_dokumen->name}}" required>
-                    <div class="invalid-feedback">Please, enter Document Type!</div>
+                    <div class="invalid-feedback">Tolong, isi Jenis Dokumen!</div>
                 <div>
                     <div class="form-group mt-4">
                         <button type="submit" class="btn btn-primary">Simpan</button>
