@@ -13,7 +13,7 @@
 <body>
 
 <div class="container">
-    <h1>Edit Guru</h1>
+    <h1>Edit Pengguna</h1>
     <form id="guruForm" action="{{ route('manage_users.update', $usersData->id) }}" method="POST" enctype="multipart/form-data" onsubmit="return validatePassword()">
         @csrf
         @method('PUT')

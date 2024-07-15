@@ -12,7 +12,7 @@
 <body>
 
 <div class="container">
-    <h1>Detail Guru</h1>
+    <h1>Detail Pengguna</h1>
     <div class="card">
         <div class="card-header">
             <h3>{{ $usersData->name }}</h3>

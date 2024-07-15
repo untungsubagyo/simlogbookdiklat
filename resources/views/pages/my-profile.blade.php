@@ -1,10 +1,10 @@
 @extends('layouts.root-layout')
 
-@section('sidebar')
 @if (Auth::user()->role_id == 2)
-   @extends('pages.guru.sidebar')
+   @section('sidebar')
+      @extends('pages.guru.sidebar')
+   @endsection
 @endif
-@endsection
 
 @section('content')
 <div class="pagetitle">
