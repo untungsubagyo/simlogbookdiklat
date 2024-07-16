@@ -16,6 +16,14 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
+        
+        DB::table('jenis_dokumens')->insert([
+            [
+                'name' => 'pdf',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ]);
     }
 
     /**

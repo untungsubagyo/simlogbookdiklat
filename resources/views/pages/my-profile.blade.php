@@ -15,6 +15,15 @@
       </ol>
    </nav>
 </div>
+
+@if ($errors->any())
+   <ul class="alert alert-danger" style="padding-left: 2rem;">
+      @foreach ($errors->all() as $error)
+         <li>{{ $error }}</li>
+      @endforeach
+   </ul>
+@endif
+
 <div class="row">
    @if (Session('message'))
       <div class="alert alert-success">{{ Session('message') }}</div>
@@ -51,7 +60,7 @@
                </li>
             </ul>
             <div class="tab-content pt-2">
-               <div class="tab-pane fade show active profile-overview" id="profile-overview">
+               <div class="tab-pane fade profile-overview {{ $errors->any() ? '' : 'show active' }}" id="profile-overview">
                   <h5 class="card-title">Detail Profil</h5>
 
                   <div class="row mb-2">
@@ -85,7 +94,7 @@
                   @endif
                </div>
 
-               <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+               <div class="tab-pane fade profile-edit pt-3 {{ $errors->any() ? 'show active' : '' }}" id="profile-edit">
                   <form action="{{ route('my_profile.update') }}" method="post" enctype="multipart/form-data">
                      @csrf
                      @method('put')
@@ -115,7 +124,7 @@
                      <div class="row mb-3">
                         <label for="name" class="col-md-4 col-lg-3 col-form-label">Name</label>
                         <div class="col-md-8 col-lg-9">
-                           <input name="name" type="text" class="form-control" id="nama"
+                           <input required name="name" type="text" class="form-control" id="nama"
                               value="{{ $dataProfile->name }}">
                         </div>
                      </div>
@@ -123,18 +132,18 @@
                      <div class="row mb-3">
                         <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                         <div class="col-md-8 col-lg-9">
-                           <input name="email" type="email" class="form-control" id="email"
+                           <input required name="email" type="email" class="form-control" id="email"
                               value="{{ $dataProfile->email }}">
                         </div>
                      </div>
 
                      <div class="row mb-3">
-                        <label for="password" class="col-md-4 col-lg-3 col-form-label">
+                        <label for="password-input" class="col-md-4 col-lg-3 col-form-label">
                            Password <br> 
                            <span style="font-size: 0.8rem">kosongkan jika tidak ingin mengubah</span> 
                         </label>
                         <div class="col-md-8 col-lg-9">
-                           <input type="password" name="password" id="password" class="form-control">
+                           <input type="password" name="password" id="password-input" class="form-control">
                         </div>
                      </div>
 
@@ -185,7 +194,8 @@
       const reqDelInp = document.getElementById('request-del-profile')
       const fallbackText = document.getElementById('fallback-text')
       const imgPreview = document.getElementById('img-preview')
-
+      const confirmPass = document.getElementById('password_confirmation')
+      
       reqDelInp.value = 'false'
 
       // const dataT = new DataTransfer()
@@ -195,6 +205,15 @@
       //       dataT.items.add(new File([img], '{{-- Storage::url($dataProfile->profile_photo) --}}'.replace('/storage/profile_photos/', ''), { type: img.type }))
       //       inputImage.files = dataT.files
       //    })
+
+      confirmPass.disabled = true
+      document.getElementById('password-input').addEventListener('input', ev => {
+         if (ev.target.value.length > 0) {
+            confirmPass.disabled = false
+         } else {
+            confirmPass.disabled = true
+         }
+      })
 
       document.querySelectorAll('#trigger-input-img').forEach(el => {
          el.addEventListener('click', () => {

@@ -25,8 +25,8 @@
                 <thead>
                     <tr>
                         <th>NIP</th>
+                        <th>Nama</th>
                         <th>Golongan</th>
-                        <th>Username</th>
                         <th>Email</th>
                         <th>Aksi</th>
                     </tr>
@@ -35,8 +35,8 @@
                     @forelse ($datas as $data)
                         <tr>
                             <td>{{ $data->NIP }}</td>
-                            <td>{{ $data->golongan }} : {{ $data->pangkat }}</td>
                             <td>{{ $data->name_guru }}</td>
+                            <td>{{ $data->golongan }} : {{ $data->pangkat }}</td>
                             <td>{{ $data->email }}</td>
                             <td>
                                 <form onsubmit="return confirm('Apakah Anda yakin?')"

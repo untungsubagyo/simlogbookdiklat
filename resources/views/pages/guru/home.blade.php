@@ -13,6 +13,11 @@
 			</ol>
 		</nav>
 	</div>
+
+   @if (Session('message'))
+      <div class="alert alert-success">{{ Session('message') }}</div>
+   @endif
+
    <main class="py-6 mt-32 w-full flex justify-center">
       <h1 class="text-3xl font-semibold px-6">
          Selamat Datang 

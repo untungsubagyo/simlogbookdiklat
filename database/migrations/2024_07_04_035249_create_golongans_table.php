@@ -17,6 +17,15 @@ return new class extends Migration
             $table->string('pangkat');
             $table->timestamps();
         });
+
+        DB::table('golongans')->insert([
+            [
+                "golongan" => "A-2",
+                "pangkat" => "22",
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ]);
     }
 
     /**

@@ -31,6 +31,9 @@ return new class extends Migration {
          $table->string('link_dokumen', 500)->nullable();
          $table->text('keterangan_dokumen');
 
+         $table->bigInteger('id_jenis_dokumen')->unsigned()->index();
+         $table->foreign('id_jenis_dokumen')->references('id')->on('jenis_dokumens')->onDelete('cascade');
+
          $table->bigInteger('id_user')->unsigned()->index();
          $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
 

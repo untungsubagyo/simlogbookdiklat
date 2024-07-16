@@ -17,6 +17,15 @@ return new class extends Migration
             $table->enum('jenis_diklat', ['Pelatihan Profesional', 'Lemhanas', 'Diklat Prajabatan', 'Diklat Kepemimpinan', 'Academic Exchange']);
             $table->timestamps();
         });
+
+        DB::table('jenis_diklats')->insert([
+            [
+                "nama" => "something", 
+                "jenis_diklat" => "Pelatihan Profesional", 
+                "created_at" => "2024-07-14 21:47:30", 
+                "updated_at" => "2024-07-14 21:47:30",
+            ]
+        ]);
     }
 
     /**
