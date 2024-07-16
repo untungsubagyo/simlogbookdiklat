@@ -28,8 +28,8 @@
                 <div>
                     <div classz="form-group">
                         <label for="keterangan">Keterangan</label>
-                        <textarea name="keterangan" id="keterangan" cols="67" rows="4"></textarea>
-                        <div class="invalid-feedback">Tolong, isi Keterangan Dokumen</div>
+                        <textarea name="keterangan" id="keterangan" cols="67" rows="4" required></textarea>
+                        <div class="invalid-feedback">Tolong, isi Keterangan Dokumen!</div>
                     <div>
                         <div class="form-group">
                             <label for="jenis_dokumen_id">Jenis Dokumen</label>

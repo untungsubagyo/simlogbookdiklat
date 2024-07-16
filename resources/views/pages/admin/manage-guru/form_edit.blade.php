@@ -22,6 +22,10 @@
 						<input type="text" class="form-control" id="NIP" name="NIP" value="{{ $guru->NIP }}" required>
 					</div>
 					<div class="form-group">
+						<label for="name_guru">Nama</label>
+						<input type="text" class="form-control" id="name_guru" name="name_guru" value="{{ $guru->name_guru }}" required>
+					</div>
+					<div class="form-group">
 						<label for="golongan_id">Golongan</label>
 						<select class="form-control" id="golongan_id" name="golongan_id" required>
 							<option value="">Pilih Golongan</option>

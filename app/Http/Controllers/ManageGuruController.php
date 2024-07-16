@@ -101,6 +101,7 @@ class ManageGuruController extends Controller
     {
         $request->validate([
             'NIP' => 'required|min:2',
+            'name_guru' => 'required|min:2',
             'golongan_id' => 'required',
             'user_id' => 'required',
         ]);

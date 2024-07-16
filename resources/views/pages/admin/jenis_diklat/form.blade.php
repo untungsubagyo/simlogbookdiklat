@@ -19,7 +19,7 @@
                             Nama
                         </label>
                         <input type="text" name="nama" id="name" class="form-control" required>
-                        <div class="invalid-feedback">Please, enter your name!</div>
+                        <div class="invalid-feedback">Please, enter your name</div>
                     </div>    
                     <div class="form-group">
                             
