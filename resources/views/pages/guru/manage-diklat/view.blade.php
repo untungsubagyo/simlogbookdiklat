@@ -101,7 +101,12 @@
                      <li>: -</li>
                   @endif
                   <li>: {{ $dataDiklat[0]->nama_dokumen }}</li>
-                  <li>: {{ $dataDiklat[0]->keterangan_dokumen }}</li>
+                  
+                  @if (isset($dataDiklat[0]->keterangan_dokumen))
+                     <li>: {{ $dataDiklat[0]->keterangan_dokumen }}</li>
+                  @else
+                     <li>: -</li>
+                  @endif
                </ul>
             </div>
          </div>

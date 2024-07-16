@@ -44,14 +44,14 @@
          </div>
          <div class="col-md-6">
             <div class="form-floating mb-3">
-               <select required class="form-select" name="tingkatan_diklat" id="floatingSelect" aria-label="Jenis Diklat">
+               <select required class="form-select" name="tingkatan_diklat" id="floatingSelect" aria-label="Tingkatan Diklat">
                   <option selected value="">-- Pilih Tingkatan --</option>
-                  <option value="Local">Local</option>
+                  <option value="Lokal">Lokal</option>
                   <option value="Regional">Regional</option>
                   <option value="Nasional">Nasional</option>
-                  <option value="Internasiona">Internasiona</option>
+                  <option value="Internasional">Internasional</option>
                </select>
-               <label for="floatingSelect">Jenis Diklat <span style="color: red;">*</span></label>
+               <label for="floatingSelect">Tingkatan Diklat <span style="color: red;">*</span></label>
             </div>
          </div>
          <div class="col-md-6">
@@ -113,7 +113,7 @@
          <div class="col-md-6">
             <div class="form-floating mb-3">
                <select required class="form-select" name="id_jenis_diklat" id="floatingSelect" aria-label="Jenis Diklat">
-                  <option>-- Pilih Jenis --</option>
+                  <option value="">-- Pilih Jenis --</option>
                   @foreach ($data_jenisDiklat as $jenisDiklat)
                      <option value="{{ $jenisDiklat->id }}">{{ $jenisDiklat->nama }}</option>
                   @endforeach
@@ -124,7 +124,7 @@
          <div class="col-md-6">
             <div class="form-floating mb-3">
                <select required class="form-select" name="id_kategori_kegiatan_diklat" id="floatingSelect" aria-label="Jenis Kegiatan Diklat">
-                  <option>-- Pilih Jenis Kegiatan --</option>
+                  <option value="">-- Pilih Jenis Kegiatan --</option>
                   @foreach ($categories as $category)
                      <option value="{{ $category->id }}">{{ $category->name }}</option>
                   @endforeach
@@ -151,7 +151,7 @@
          <div class="col-md-6">
             <div class="form-floating mb-3">
                <select required class="form-select" name="id_jenis_dokumen" id="floatingSelect" aria-label="Jenis Kegiatan Diklat">
-                  <option>-- Pilih Jenis Dokumen --</option>
+                  <option value="">-- Pilih Jenis Dokumen --</option>
                   @foreach ($jenis_dokunmen as $jenis)
                      <option value="{{ $jenis->id }}">{{ $jenis->name }}</option>
                   @endforeach

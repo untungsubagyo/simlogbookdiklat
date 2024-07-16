@@ -5,7 +5,7 @@
 		<h1>Edot Data Guru</h1>
 		<nav>
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+				<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
 				<li class="breadcrumb-item active">Guru</li>
 			</ol>
 		</nav>
