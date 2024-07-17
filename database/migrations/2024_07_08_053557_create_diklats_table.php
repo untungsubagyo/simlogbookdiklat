@@ -29,7 +29,7 @@ return new class extends Migration {
          $table->string('file_dokumen', 500);
          $table->string('nama_dokumen', 100);
          $table->string('link_dokumen', 500)->nullable();
-         $table->text('keterangan_dokumen');
+         $table->text('keterangan_dokumen')->nullable();
 
          $table->bigInteger('id_jenis_dokumen')->unsigned()->index();
          $table->foreign('id_jenis_dokumen')->references('id')->on('jenis_dokumens')->onDelete('cascade');

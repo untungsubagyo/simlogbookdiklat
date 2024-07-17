@@ -4,7 +4,7 @@
 	<h1>Jenis Diklat</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Jenis Diklat</li>
         </ol>
     </nav>
@@ -19,7 +19,7 @@
                             Nama
                         </label>
                         <input type="text" name="nama" id="name" class="form-control" required>
-                        <div class="invalid-feedback">Please, enter your name!</div>
+                        <div class="invalid-feedback">Please, enter your name</div>
                     </div>    
                     <div class="form-group">
                             

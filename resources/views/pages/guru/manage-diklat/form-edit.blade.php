@@ -45,9 +45,14 @@
                </div>
             </div>
             <div class="col-md-6">
-               <div class="form-floating">
-                  <input required value="{{ $diklat[0]->tingkatan_diklat }}" type="text" class="form-control" id="floatingPassword" name="tingkatan_diklat" placeholder="Password">
-                  <label for="floatingPassword">Tingkatan Diklat <span style="color: red;">*</span></label>
+               <div class="form-floating mb-3">
+                  <select required class="form-select" name="tingkatan_diklat" id="floatingSelect" aria-label="Tingkatan Diklat">
+                     <option {{ $diklat[0]->tingkatan_diklat == 'Local' ? 'selected' : ''}} value="Lokal">Lokal</option>
+                     <option {{ $diklat[0]->tingkatan_diklat == 'Regional' ? 'selected' : ''}} value="Regional">Regional</option>
+                     <option {{ $diklat[0]->tingkatan_diklat == 'Nasional' ? 'selected' : ''}} value="Nasional">Nasional</option>
+                     <option {{ $diklat[0]->tingkatan_diklat == 'Internasional' ? 'selected' : ''}} value="Internasional">Internasional</option>
+                  </select>
+                  <label for="floatingSelect">Tingkatan Diklat <span style="color: red;">*</span></label>
                </div>
             </div>
             <div class="col-md-6">
@@ -146,7 +151,6 @@
             <div class="col-md-6">
                <div class="form-floating mb-3">
                   <select required class="form-select" name="id_jenis_dokumen" id="floatingSelect" aria-label="Jenis Kegiatan Diklat">
-                     <option>-- Pilih Jenis Dokumen --</option>
                      @foreach ($jenis_dokumen as $jenis)
                         <option value="{{ $jenis->id }}" {{ $jenis->id == $diklat[0]->id_jenis_dokumen ? 'selected' : '' }}>{{ $jenis->name }}</option>
                      @endforeach

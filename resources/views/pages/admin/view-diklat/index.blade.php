@@ -5,7 +5,7 @@
    <h1>Detail Diklat</h1>
    <nav>
          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Detail Diklat</li>
          </ol>
    </nav>
@@ -102,7 +102,11 @@
                      <li>: -</li>
                   @endif
                   <li>: {{ $dataDiklat[0]->nama_dokumen }}</li>
-                  <li>: {{ $dataDiklat[0]->keterangan_dokumen }}</li>
+                  @if (isset($dataDiklat[0]->keterangan_dokumen))
+                     <li>: {{ $dataDiklat[0]->keterangan_dokumen }}</li>
+                  @else
+                     <li>: -</li>
+                  @endif
                </ul>
             </div>
          </div>

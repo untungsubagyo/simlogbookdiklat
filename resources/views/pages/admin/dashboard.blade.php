@@ -5,7 +5,6 @@
 	<h1>Dashboard</h1>
 	<nav>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="index.html">Home</a></li>
 			<li class="breadcrumb-item active">Dashboard</li>
 		</ol>
 	</nav>
@@ -72,15 +71,20 @@
 		</div>
 	</div>
 
-	<h3 class="mt-3 mb-4">Daftar Diklat Guru</h3>
+	<div class="mb-5 mt-3" style="display: flex; align-items: center; justify-content: space-between">
+		<h3 class="w-75" >Daftar Diklat Guru</h3>
+		@if ($dataDiklat->count() > 0)
+			<input type="text" name="search" id="search-diklat" placeholder="Cari nama diklat atau pemilik diklat" class="form-control">
+		@endif
+	</div>
 
-	<div class="col">
+	<div class="col" id="data-diklat-container">
 		@forelse ($dataDiklat as $index => $diklat)
-			<div lass="w-100">
+			<div class="w-100" id="data-diklat" data-pemilik="{{ $diklat->username }}" data-namaDiklat="{{ $diklat->nama_diklat }}">
 				<div class="card p-2">
 					<div class="card-body">
 						<h5 style="line-height: .3rem" class="card-title">
-							Data Diklat 
+							Data Diklat
 							<strong>
 								{{ $diklat->nama_diklat }}
 							</strong>
@@ -104,4 +108,41 @@
 		@endforelse
 	</div>
 </section>
+
+<script>
+	window.onload = () => {
+		const dataDiklatContainer = document.getElementById('data-diklat-container')
+		const listDataDiklat = []
+		document.querySelectorAll('#data-diklat').forEach(el => {
+			listDataDiklat.push({
+				pemilik: el.getAttribute('data-pemilik'),
+				namaDikalt: el.getAttribute('data-namaDiklat'),
+				element: el 
+			})
+		})
+		
+		document.getElementById('search-diklat').addEventListener('input', ev => {
+			if (ev.target.value == '') {
+				dataDiklatContainer.innerHTML = '';
+				listDataDiklat.forEach(val => {
+					dataDiklatContainer.appendChild(val.element);
+				})
+			} else {
+				dataDiklatContainer.innerHTML = '';
+				const result = listDataDiklat.filter(data => {
+					return data.pemilik.includes(ev.target.value) || data.namaDikalt.includes(ev.target.value)
+				})
+
+				if (result.length > 0) {
+					result.forEach(val => {
+						dataDiklatContainer.appendChild(val.element);
+					})
+				} else {
+					dataDiklatContainer.innerHTML = '<p>data diklat tidak di temukan</p>'
+				}
+
+			}
+		})
+	}
+</script>
 @endsection
