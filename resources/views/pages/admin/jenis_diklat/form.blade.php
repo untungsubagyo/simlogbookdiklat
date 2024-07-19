@@ -27,10 +27,13 @@
                         <select class="form-control" id="jenis_diklat" name="jenis_diklat" required>
                             <option value="">Pilih Jenis Diklat</option>
                             <option value="Pelatihan Profesional">Pelatihan Profesional</option>
-                            <option value="Lemhanas">Lemhanas</option>
                             <option value="Diklat Prajabatan">Diklat Prajabatan</option>
                             <option value="Diklat Kepemimpinan">Diklat Kepemimpinan</option>
                             <option value="Academic Exchange">Academic Exchange</option>
+                            <option value="Academic Exchange">Fungsional</option>
+                            <option value="Academic Exchange">Manajerial</option>
+                            <option value="Academic Exchange">Lainnya</option>
+
                          </select>
                     </div>
                     <div class="form-group mt-4">
