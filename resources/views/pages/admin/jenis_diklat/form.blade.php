@@ -30,9 +30,9 @@
                             <option value="Diklat Prajabatan">Diklat Prajabatan</option>
                             <option value="Diklat Kepemimpinan">Diklat Kepemimpinan</option>
                             <option value="Academic Exchange">Academic Exchange</option>
-                            <option value="Academic Exchange">Fungsional</option>
-                            <option value="Academic Exchange">Manajerial</option>
-                            <option value="Academic Exchange">Lainnya</option>
+                            <option value="Fungsional">Fungsional</option>
+                            <option value="Manajerial">Manajerial</option>
+                            <option value="Lainnya">Lainnya</option>
 
                          </select>
                     </div>
