@@ -94,7 +94,11 @@
                   </li>
                </ul>
                <ul style="list-style-type: none; padding: 0;">
-                  <li>: <a target="_blank" href="{{ $dataDiklat[0]->file_dokumen }}">lihat</a></li>
+                  @if (isset($dataDiklat[0]->file_dokumen))
+                     <li>: <a target="_blank" href="{{ $dataDiklat[0]->file_dokumen }}">lihat</a></li>
+                  @else
+                     <li>: -</li>
+                  @endif
                   @if (isset($dataDiklat[0]->link_dokumen))
                      <li>: <a target="_blank" href="{{ $dataDiklat[0]->link_dokumen }}">{{ $dataDiklat[0]->link_dokumen }}</a></li>
                   @else

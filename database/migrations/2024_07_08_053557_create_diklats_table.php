@@ -26,7 +26,7 @@ return new class extends Migration {
          $table->string('no_sk_penugasan', 21);
          $table->date('tanggal_sk_penugasan');
 
-         $table->string('file_dokumen', 500);
+         $table->string('file_dokumen', 500)->nullable();
          $table->string('nama_dokumen', 100);
          $table->string('link_dokumen', 500)->nullable();
          $table->text('keterangan_dokumen')->nullable();

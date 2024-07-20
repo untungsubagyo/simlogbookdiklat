@@ -34,6 +34,7 @@ Route::put('my_profile/update', [MyProfileController::class, 'update'])->name('m
 
 // Admin Router
 Route::get('admin', [AdminController::class, 'index'])->name('dashboard');
+// Route::get('admin', [AdminController::class, 'search_diklat'])->name('search-diklat');
 Route::resource('admin/kategori_kegiatan', KategoriKegiatanController::class)->middleware('auth');
 Route::resource('admin/manage_guru', ManageGuruController::class)->middleware('auth');
 Route::resource('admin/manage_users', ManageUsersController::class)->middleware('auth');
@@ -47,5 +48,5 @@ Route::get('guru', [DiklatController::class, 'index'])->name('homePageGuru');
 Route::resource('guru/diklat', DiklatController::class)->middleware('auth');
 
 //photo profile
-Route::get('/profile', 'ProfileController@show')->name('profile.show');
-Route::post('/profile/update-photo', 'ProfileController@updatePhoto')->name('profile.update.photo');
+// Route::get('/profile', 'ProfileController@show')->name('profile.show');
+// Route::post('/profile/update-photo', 'ProfileController@updatePhoto')->name('profile.update.photo');

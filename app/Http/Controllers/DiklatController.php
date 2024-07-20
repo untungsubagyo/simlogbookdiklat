@@ -9,20 +9,19 @@ use App\Models\KategoriKegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
-class DiklatController extends Controller
-{
-	public function __construct()
-	{
+class DiklatController extends Controller {
+	public function __construct() {
 		if (!Auth::check()) {
 			redirect('/');
 		}
 	}
+
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function index()
-	{
+	public function index() {
 		$userdata = Auth::user();
 		$dataDiklat = Diklat::join('jenis_diklats', 'jenis_diklats.id', '=', 'diklats.id_jenis_diklat')
 			->join('kategori_kegiatans', 'kategori_kegiatans.id', '=', 'diklats.id_kategori_kegiatan_diklat')
@@ -63,9 +62,18 @@ class DiklatController extends Controller
 		$data_jenisDiklat = array_map(function ($item) {return $item['id'];}, $raw_data_jenisDiklat);
 		$jenis_dokumen = array_map(function ($item) {return $item['id'];}, $raw_jenis_dokumen);
 
+		$documentErrorMessage = ValidationException::withMessages([
+			'file' => ['tolong inputkan file dokumen atau tautkan link dokumen'],
+		]);
+		if (!$request->has('file_dokumen') && $request->has('link_dokumen')) {
+			if (!$request['link_dokumen']) {
+				throw $documentErrorMessage;
+			}
+			$request['file_dokumen'] = null;
+		} else if (!$request->has('file_dokumen') && !$request->has('link_dokumen')) {
+			throw $documentErrorMessage;	
+		}
 
-		// return $categories;
-		// return $request->all();
 		$data = $request->validate([
 			"nama_diklat" => ["required", "min:5", "max:50"],
 			"penyelenggara" => ["required", "max:21"],
@@ -81,7 +89,7 @@ class DiklatController extends Controller
 			"tanggal_sk_penugasan" => ["required"],
 			"id_jenis_diklat" => ["required", Rule::in($data_jenisDiklat)],
 			"id_kategori_kegiatan_diklat" => ["required", Rule::in($categories)],
-			"file_dokumen" => ["required", "file", "max:20000000"],
+			"file_dokumen" => ["nullable", "file", "max:20000000"],
 			"nama_dokumen" => ["required", "max:100"],
 			"link_dokumen" => ["nullable", "max:500"],
 			"id_jenis_dokumen" => ["required", Rule::in($jenis_dokumen)],
@@ -89,14 +97,16 @@ class DiklatController extends Controller
 		]);
 		$data['id_user'] = $id_user;
 
-		// Store the file
-		$file = $request->file('file_dokumen');
-		$extension = $file->getClientOriginalExtension();
-		$fileName = bin2hex(random_bytes(10)) . '.' . $extension;
-		$file->move('dokumen_diklat', $fileName);
-
-		// Set the file URL
-		$data['file_dokumen'] = url('dokumen_diklat/' . $fileName);
+		if ($data['file_dokumen']) {
+			// Store the file
+			$file = $request->file('file_dokumen');
+			$extension = $file->getClientOriginalExtension();
+			$fileName = bin2hex(random_bytes(10)) . '.' . $extension;
+			$file->move('dokumen_diklat', $fileName);
+	
+			// Set the file URL
+			$data['file_dokumen'] = url('dokumen_diklat/' . $fileName);
+		}
 
 		// Create the record
 		$diklat = Diklat::create($data);

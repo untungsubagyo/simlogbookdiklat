@@ -60,6 +60,7 @@ class ManageGuruController extends Controller
         // Guru::create($request->all());
 
         // Validasi input
+        return ["status" => "request sended"];
         $request->validate([
             'NIP' => 'required|string|max:255',
             'name' => 'required|string|max:255',

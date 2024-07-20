@@ -27,26 +27,13 @@
     <link href="assets/themes/nice/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="assets/themes/nice/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="assets/themes/nice/assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
     <link href="assets/themes/nice/assets/css/style.css" rel="stylesheet">
-
-    <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Updated: Mar 09 2023 with Bootstrap v5.2.3
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
-<body style="background-image:url('{{ asset('assets/images/background.jpg') }}');">
-
-    <main>
+<body style="background-image:url('{{ asset('assets/images/login-bg.png') }}'); background-size: cover;"></body>
+    <main style="background-color: rgba(0, 0, 0, .5)">
         <div class="container">
-
-            <section
-                class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+            <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
@@ -60,9 +47,9 @@
 
                             <div class="card mb-3">
 
-                                <div class="card-body">
+                                <div class="card-body bg-transparent" style="--bs-card-bg: transparent">
 
-                                    <div class="pt-4 pb-2">
+                                    <div class="pt-4 pb-2 text-white"">
                                         <h5 class="card-title text-center pb-0 fs-4">Login ke Akun Anda</h5>
                                         <p class="text-center small">Masukan email & password Anda untuk login</p>
                                     </div>
@@ -109,15 +96,6 @@
 
                                 </div>
                             </div>
-
-                            <div class="credits">
-                                <!-- All the links in the footer should remain intact. -->
-                                <!-- You can delete the links only if you purchased the pro version. -->
-                                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                            </div>
-
                         </div>
                     </div>
                 </div>
