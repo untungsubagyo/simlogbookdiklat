@@ -29,10 +29,12 @@
                             <select class="form-control" id="jenis_diklat" name="jenis_diklat" required>
                                 <option value="null">Pilih Jenis Diklat</option>
                                 <option {{ $jenis_diklat->jenis_diklat == 'Pelatihan Profesional' ? 'selected' : '' }} value="Pelatihan Profesional">Pelatihan Profesional</option>
-                                <option {{ $jenis_diklat->jenis_diklat == 'Lemhanas' ? 'selected' : '' }} value="Lemhanas">Lemhanas</option>
                                 <option {{ $jenis_diklat->jenis_diklat == 'Diklat Prajabatan' ? 'selected' : '' }} value="Diklat Prajabatan">Diklat Prajabatan</option>
                                 <option {{ $jenis_diklat->jenis_diklat == 'Diklat Kepemimpinan' ? 'selected' : '' }} value="Diklat Kepemimpinan">Diklat Kepemimpinan</option>
                                 <option {{ $jenis_diklat->jenis_diklat == 'Academic Exchange' ? 'selected' : '' }} value="Academic Exchange">Academic Exchange</option>
+                                <option {{ $jenis_diklat->jenis_diklat == 'Fungsional' ? 'selected' : '' }} value="Fungsional">Fungsional</option>
+                                <option {{ $jenis_diklat->jenis_diklat == 'Manajerial' ? 'selected' : '' }} value="Manajerial">Manajerial</option>
+                                <option {{ $jenis_diklat->jenis_diklat == 'Lainnya' ? 'selected' : '' }} value="Lainnya">Lainnya</option>
                             </select>
                         </div>
                         <div class="form-group mt-4">
