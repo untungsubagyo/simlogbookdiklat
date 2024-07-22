@@ -36,7 +36,8 @@
                     @forelse ($datas as $index => $data)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $data->NIP }}</td>
+                            {{-- <td>{{ $data->NIP }}</td> --}}
+                            <td>{{ $data->NIP ? $data->NIP : '-' }}</td>
                             <td>{{ $data->name_guru }}</td>
                             <td>{{ $data->golongan }} : {{ $data->pangkat }}</td>
                             <td>{{ $data->email }}</td>
