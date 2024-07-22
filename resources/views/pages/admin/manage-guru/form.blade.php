@@ -20,7 +20,7 @@
                         <label for="NIP">
                             NIP
                         </label>
-                        <input type="text" class="form-control" id="NIP" name="NIP" value="{{ old('NIP') }}" required>
+                        <input type="text" class="form-control" id="NIP" name="NIP" value="{{ old('NIP') }}">
                         {{-- <div class="invalid-feedback">Please, enter your name!</div> --}}
                     </div>
                     <div class="form-group">
