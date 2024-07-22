@@ -35,7 +35,7 @@ class ManageGuruController extends Controller
         $datas = Guru::join('golongans', 'gurus.golongan_id', '=', 'golongans.id')
         ->join('users', 'gurus.user_id', '=', 'users.id')
         ->select('gurus.NIP', 'golongans.golongan','golongans.pangkat','gurus.name_guru','users.email', 'gurus.id AS id')
-        ->paginate(10);
+        ->get();
         return view('pages.admin.manage-guru.index', compact('datas', 'menu', 'submenu'));
     }
 
@@ -61,7 +61,7 @@ class ManageGuruController extends Controller
 
         // Validasi input
         $request->validate([
-            'NIP' => 'nullable|string|max:255',
+            'NIP' => 'nullable|string|max:255|unique:gurus,NIP',
             'name' => 'required|string|max:255',
             'golongan_id' => 'required|exists:golongans,id',
             'email' => 'required|string|email|max:255|unique:users,email',
@@ -82,7 +82,6 @@ class ManageGuruController extends Controller
             'user_id' => $user->id,
             'golongan_id' => $request->golongan_id,
         ]);
-
         return redirect()->route('manage_guru.index')->with('success', 'Data Guru berhasil disimpan');
     }
 

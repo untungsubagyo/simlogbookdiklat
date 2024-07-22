@@ -58,11 +58,17 @@
                }
             </script>
          @empty
-            <p class="text-center">
-               Belum Ada Data Yang Tercatat silahkan 
-               <a href="{{ route('diklat.create') }}" style="text-decoration: underline">tambah</a>
-               data diklat <br> anda terlebih dahulu
-            </p>
+            @if ($isActivateUser)
+               <p class="text-center">
+                  Belum Ada Data Yang Tercatat silahkan 
+                  <a href="{{ route('diklat.create') }}" style="text-decoration: underline">tambah</a>
+                  data diklat <br> anda terlebih dahulu
+               </p>
+            @else
+               <p class="text-center">
+                  Anda <strong>tidak dapat melihat atau menambahkan data diklat</strong>, karena akun anda belum teraktivasi
+               </p>
+            @endif
          @endforelse
       </div>
    </main>

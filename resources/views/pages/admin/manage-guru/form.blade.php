@@ -11,6 +11,14 @@
         </nav>
     </div><!-- End Page Title -->
 
+    @if ($errors->any())
+        <ul class="alert alert-danger" style="padding-left: 2rem;">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
     <section class="section guru">
         <div class="col-lg-12">
             <form action="{{ route('manage_guru.store') }}" method="POST" class="row g-3 needs-validation" novalidate>

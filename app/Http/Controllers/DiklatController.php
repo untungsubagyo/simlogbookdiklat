@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Diklat;
+use App\Models\guru;
 use App\Models\jenis_dokumen;
 use App\Models\JenisDiklat;
 use App\Models\KategoriKegiatan;
@@ -33,7 +34,8 @@ class DiklatController extends Controller {
 				'kategori_kegiatans.name AS kategori_kegiatan',
 			]);
 
-		return view('pages.guru.home', compact('userdata', 'dataDiklat'));
+		$isActivateUser = guru::where('user_id', '=', $userdata->id)->get('id')->count() > 0;
+		return view('pages.guru.home', compact('userdata', 'dataDiklat', 'isActivateUser'));
 	}
 
 	/**
@@ -41,6 +43,11 @@ class DiklatController extends Controller {
 	 */
 	public function create()
 	{
+		$isActivateUser = guru::where('user_id', '=', Auth::user()->id)->get('id')->count() > 0;
+		if (!$isActivateUser) {
+			return abort(404);
+		}
+
 		$data_jenisDiklat = JenisDiklat::get();
 		$categories = KategoriKegiatan::get();
 		$jenis_dokunmen = jenis_dokumen::get();
@@ -54,9 +61,16 @@ class DiklatController extends Controller {
 	public function store(Request $request)
 	{
 		$id_user = Auth::user()->id;
+		$isActivateUser = guru::where('user_id', '=', $id_user)->get('id')->count() > 0;
+		if (!$isActivateUser) {
+			return abort(403);
+		}
+
+
 		$raw_data_jenisDiklat = JenisDiklat::get(['id'])->toArray();
 		$raw_categories = KategoriKegiatan::get(['id'])->toArray();
 		$raw_jenis_dokumen = jenis_dokumen::get(['id'])->toArray();
+
 
 		$categories = array_map(function ($item) {return $item['id'];}, $raw_categories);
 		$data_jenisDiklat = array_map(function ($item) {return $item['id'];}, $raw_data_jenisDiklat);
@@ -120,6 +134,10 @@ class DiklatController extends Controller {
 	public function show($id)
 	{
 		$userdata = Auth::user();
+		$isActivateUser = guru::where('user_id', '=', $userdata->id)->get('id')->count() > 0;
+		if (!$isActivateUser) {
+			return abort(404);
+		}
 
 		if ($userdata->role_id == 1) {
 			$dataDiklat = Diklat::join('jenis_diklats', 'jenis_diklats.id', '=', 'diklats.id_jenis_diklat')
@@ -160,6 +178,11 @@ class DiklatController extends Controller {
 	 */
 	public function edit($id)
 	{
+		$isActivateUser = guru::where('user_id', '=', Auth::user()->id)->get('id')->count() > 0;
+		if (!$isActivateUser) {
+			return abort(404);
+		}
+
 		$diklat = Diklat::where('id', '=', $id)->get();
 		$data_jenisDiklat = JenisDiklat::get();
 		$jenis_dokumen = jenis_dokumen::get();
@@ -174,6 +197,11 @@ class DiklatController extends Controller {
 	public function update(Request $request, $id)
 	{
 		$id_user = Auth::user()->id;
+		$isActivateUser = guru::where('user_id', '=', $id_user)->get('id')->count() > 0;
+		if (!$isActivateUser) {
+			return abort(403);
+		}
+
 		$raw_data_jenisDiklat = JenisDiklat::get(['id'])->toArray();
 		$raw_categories = KategoriKegiatan::get(['id'])->toArray();
 		$raw_jenis_dokumen = jenis_dokumen::get(['id'])->toArray();
@@ -185,6 +213,18 @@ class DiklatController extends Controller {
 
 		// return $categories;
 		// return $request->all();
+		$documentErrorMessage = ValidationException::withMessages([
+			'file' => ['tolong inputkan file dokumen atau tautkan link dokumen'],
+		]);
+		if (!$request->has('file_dokumen') && $request->has('link_dokumen')) {
+			if (!$request['link_dokumen']) {
+				throw $documentErrorMessage;
+			}
+			$request['file_dokumen'] = null;
+		} else if (!$request->has('file_dokumen') && !$request->has('link_dokumen')) {
+			throw $documentErrorMessage;	
+		}
+
 		$data = $request->validate([
 			"nama_diklat" => ["required", "min:5", "max:50"],
 			"penyelenggara" => ["required", "max:21"],
@@ -242,6 +282,11 @@ class DiklatController extends Controller {
 	 */
 	public function destroy($id)
 	{
+		$isActivateUser = guru::where('user_id', '=', Auth::user()->id)->get('id')->count() > 0;
+		if (!$isActivateUser) {
+			return abort(403);
+		}
+
 		Diklat::findOrFail($id)->delete();
 		return redirect()->back()->with('success', 'Diklat berhasil di hapus.');
 	}

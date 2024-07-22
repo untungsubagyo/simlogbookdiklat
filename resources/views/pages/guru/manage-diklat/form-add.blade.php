@@ -77,8 +77,8 @@
          </div>
          <div class="col-md-6">
             <div class="form-floating">
-               <input required type="number" class="form-control" id="floatingTahunPenyelenggara" name="tahun_penyelenggara" placeholder="Tahun Penyelenggara">
-               <label for="floatingTahunPenyelenggara">Tahun Penyelenggara <span style="color: red;">*</span></label>
+               <input required type="number" class="form-control" id="floatingTahunPenyelenggara" name="tahun_penyelenggara" placeholder="Tahun Penyelenggaraan">
+               <label for="floatingTahunPenyelenggara">Tahun Penyelenggaraan <span style="color: red;">*</span></label>
             </div>
          </div>
          <div class="col-12">
