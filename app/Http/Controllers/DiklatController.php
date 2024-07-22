@@ -52,7 +52,7 @@ class DiklatController extends Controller {
 		$categories = KategoriKegiatan::get();
 		$jenis_dokunmen = jenis_dokumen::get();
 
-		return view('pages.guru.manage-diklat.form-add', compact('jenis_dokunmen', 'data_jenisDiklat', 'categories'));
+		return view('pages.guru.manage-diklat.form-add', compact('jenis_dokunmen', 'data_jenisDiklat', 'categories', 'isActivateUser'));
 	}
 
 	/**
@@ -135,9 +135,6 @@ class DiklatController extends Controller {
 	{
 		$userdata = Auth::user();
 		$isActivateUser = guru::where('user_id', '=', $userdata->id)->get('id')->count() > 0;
-		if (!$isActivateUser) {
-			return abort(404);
-		}
 
 		if ($userdata->role_id == 1) {
 			$dataDiklat = Diklat::join('jenis_diklats', 'jenis_diklats.id', '=', 'diklats.id_jenis_diklat')
@@ -152,6 +149,9 @@ class DiklatController extends Controller {
 					'kategori_kegiatans.name AS kategori_kegiatan'
 				]);
 		} else {
+			if (!$isActivateUser) {
+				return abort(404);
+			}
 			$dataDiklat = Diklat::join('jenis_diklats', 'jenis_diklats.id', '=', 'diklats.id_jenis_diklat')
 				->join('kategori_kegiatans', 'kategori_kegiatans.id', '=', 'diklats.id_kategori_kegiatan_diklat')
 				->join('users', 'users.id', '=', 'diklats.id_user')
@@ -168,9 +168,9 @@ class DiklatController extends Controller {
 
 		// return $dataDiklat;
 		if ($userdata->role_id == 2) {
-			return view('pages.guru.manage-diklat.view', compact('dataDiklat'));
+			return view('pages.guru.manage-diklat.view', compact('dataDiklat', 'isActivateUser'));
 		}
-		return view('pages.admin.view-diklat.index', compact('dataDiklat'));
+		return view('pages.admin.view-diklat.index', compact('dataDiklat', 'isActivateUser'));
 	}
 
 	/**
@@ -188,7 +188,7 @@ class DiklatController extends Controller {
 		$jenis_dokumen = jenis_dokumen::get();
 		$categories = KategoriKegiatan::get();
 
-		return view('pages.guru.manage-diklat.form-edit', compact('diklat', 'data_jenisDiklat', 'categories', 'jenis_dokumen'));
+		return view('pages.guru.manage-diklat.form-edit', compact('diklat', 'data_jenisDiklat', 'categories', 'jenis_dokumen', 'isActivateUser'));
 	}
 
 	/**

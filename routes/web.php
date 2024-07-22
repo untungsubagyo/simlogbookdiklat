@@ -40,7 +40,6 @@ Route::resource('admin/manage_guru', ManageGuruController::class)->middleware('a
 Route::resource('admin/manage_users', ManageUsersController::class)->middleware('auth');
 Route::resource('admin/golongan_guru', GolonganController::class)->middleware('auth');
 Route::resource('admin/jenis_diklat', JenisDiklatController::class);
-Route::resource('admin/dokumen_diklat', DokumenDiklatController::class);
 Route::resource('admin/jenis_dokumen', JenisDokumenController::class);
 
 // Guru Router

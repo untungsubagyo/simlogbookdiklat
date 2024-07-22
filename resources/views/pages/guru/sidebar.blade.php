@@ -8,7 +8,11 @@
       </li>
 
       <li class="nav-item">
-         <a class="nav-link {{ Route::getCurrentRoute()->getName() == 'diklat.create' ? 'active' : 'collapsed' }}" style="pointer-events: {{ $isActivateUser ? 'all' : 'none'}} !important; color: {{ $isActivateUser ? '' : '#b3b3b3bf'}}" href="{{ route('diklat.create') }}">
+         <a 
+            class="nav-link {{ Route::getCurrentRoute()->getName() == 'diklat.create' ? 'active' : 'collapsed' }}" 
+            style="pointer-events: {{ (Auth::user()->role_id == 2) ? ($isActivateUser ? 'all' : 'none') : ''}} !important; color: {{ (Auth::user()->role_id == 2) ? ($isActivateUser ? '' : '#b3b3b3bf') : '' }}" 
+            href="{{ route('diklat.create') }}"
+         >
             <i class="bi bi-person"></i>
             <span>Tambah Diklat</span>
          </a>

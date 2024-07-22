@@ -144,6 +144,12 @@
             </div>
             <div class="col-md-6">
                <div class="form-floating">
+                  <input value="{{ $diklat[0]->link_dokumen }}" type="text" class="form-control" id="floatingNoSk" name="link_dokumen" placeholder="No. SK Penugasan">
+                  <label for="floatingNoSk">Link Dokumen ( Optional )</label>
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="form-floating">
                   <input required value="{{ $diklat[0]->nama_dokumen }}" type="text" class="form-control" id="floatingNoSk" name="nama_dokumen" placeholder="No. SK Penugasan">
                   <label for="floatingNoSk">Nama Dokumen <span style="color: red;">*</span></label>
                </div>
@@ -156,12 +162,6 @@
                      @endforeach
                   </select>
                   <label for="floatingSelect">Jenis Dokumen <span style="color: red;">*</span></label>
-               </div>
-            </div>
-            <div class="col-md-6">
-               <div class="form-floating">
-                  <input value="{{ $diklat[0]->link_dokumen }}" type="text" class="form-control" id="floatingNoSk" name="link_dokumen" placeholder="No. SK Penugasan">
-                  <label for="floatingNoSk">Link Dokumen ( Optional )</label>
                </div>
             </div>
             <div class="col-12">
