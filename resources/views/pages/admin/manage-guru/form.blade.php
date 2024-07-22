@@ -21,7 +21,7 @@
                             NIP
                         </label>
                         <input type="text" class="form-control" id="NIP" name="NIP" value="{{ old('NIP') }}" required>
-                        <div class="invalid-feedback">Please, enter your name!</div>
+                        {{-- <div class="invalid-feedback">Please, enter your name!</div> --}}
                     </div>
                     <div class="form-group">
                         <label for="name">

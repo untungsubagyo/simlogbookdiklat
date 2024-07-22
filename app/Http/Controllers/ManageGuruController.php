@@ -61,7 +61,7 @@ class ManageGuruController extends Controller
 
         // Validasi input
         $request->validate([
-            'NIP' => 'required|string|max:255',
+            'NIP' => 'nullable|string|max:255',
             'name' => 'required|string|max:255',
             'golongan_id' => 'required|exists:golongans,id',
             'email' => 'required|string|email|max:255|unique:users,email',
@@ -100,7 +100,7 @@ class ManageGuruController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'NIP' => 'required|min:2',
+            'NIP' => 'nullable',
             'name_guru' => 'required|min:2',
             'golongan_id' => 'required',
             'user_id' => 'required',
