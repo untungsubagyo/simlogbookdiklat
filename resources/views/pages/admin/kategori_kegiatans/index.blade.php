@@ -11,7 +11,8 @@
     </nav>
 </div><!-- End Page Title -->
 
-<div class="container">
+  <section class="section guru">
+<div class="col-lg-12">
     <a href="{{ route('kategori_kegiatan.create') }}" class="btn btn-primary mb-3">Tambah</a>
 
     @if(session('success'))
@@ -20,7 +21,7 @@
         </div>
     @endif
 
-    <table class="table table-bordered">
+    <table class="table datatable table-stripped">
         <thead>
             <tr>
                 <th>No</th>
@@ -67,4 +68,5 @@
         });
     }
 </script>
+  </section>
 @endsection

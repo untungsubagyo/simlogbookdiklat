@@ -13,7 +13,7 @@
 </head>
 <body>
     @section('content')
-    <div class="container">
+    <div class="pagetitle">
             <h1>Daftar Pengguna</h1>
             <nav>
                 <ol class="breadcrumb">
@@ -22,16 +22,19 @@
                 </ol>
             </nav>
         </div>
-        <a href="{{ route('manage_users.create') }}" class="btn btn-primary mb-5">Tambah</a>
+
+        <section class="section guru">
+            <div class="col-lg-12">
+        <a href="{{ route('manage_users.create') }}" class="btn btn-primary">Tambah</a>
     </div>
 
     @if(session('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success mt-3">
             {{ session('success') }}
         </div>
     @endif
 
-    <table class="table table-bordered">
+    <table class="table datatable table-stripped">
         <thead>
             <tr>
                 <th>No</th>
@@ -87,6 +90,7 @@
             });
         }
     </script>
+        </section>
     @endsection
 </body>
 </html>
