@@ -10,7 +10,7 @@
       <li class="nav-item">
          <a 
             class="nav-link {{ Route::getCurrentRoute()->getName() == 'diklat.create' ? 'active' : 'collapsed' }}" 
-            style="pointer-events: {{ (Auth::user()->role_id == 2) ? ($isActivateUser ? 'all' : 'none') : ''}} !important; color: {{ (Auth::user()->role_id == 2) ? ($isActivateUser ? '' : '#b3b3b3bf') : '' }}" 
+            style="pointer-events: {{ isset($isActivateUser) ? ($isActivateUser ? 'all' : 'none') : ''}} !important; color: {{ isset($isActivateUser) ? ($isActivateUser ? '' : '#b3b3b3bf') : '' }}" 
             href="{{ route('diklat.create') }}"
          >
             <i class="bi bi-person"></i>

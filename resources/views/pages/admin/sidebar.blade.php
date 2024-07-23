@@ -6,7 +6,7 @@
         <li class="nav-item">
             <a class="nav-link {{ Route::getCurrentRoute()->uri == 'admin' ? 'active' : 'collapsed' }}" href="/">
                 <i class="bi bi-grid"></i>
-                <span> Dashboard</span>
+                <span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
