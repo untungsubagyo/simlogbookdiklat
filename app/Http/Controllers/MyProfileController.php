@@ -24,16 +24,17 @@ class MyProfileController extends Controller
 	{
 		$dataProfile = Auth::user();
 		$dataGolongan = golongan::all();
+		$isActivateUser = guru::where('user_id', '=', $dataProfile->id)->get('id')->count() > 0;
 		$dataGuru = [];
 
 
-		if ($dataProfile->role_id == 2) {
+		if (($dataProfile->role_id == 2) && $isActivateUser) {
 			$dataGuru = guru::join('golongans', 'golongans.id', '=', 'gurus.golongan_id')
 				->where('user_id', '=', $dataProfile->id)
 				->get(['NIP', 'gurus.golongan_id AS gol_id', 'gurus.id AS id_guru', 'golongans.golongan AS golongan', 'golongans.pangkat AS pangkat']);
-		}
-
-		return view('pages.my-profile', compact('dataProfile', 'dataGuru', 'dataGolongan'));
+			}
+			
+		return view('pages.my-profile', compact('dataProfile', 'dataGuru', 'dataGolongan', 'isActivateUser'));
 	}
 
 	public function update(Request $request)

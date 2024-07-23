@@ -78,7 +78,7 @@
                      <div class="col-lg-9 col-md-8">{{ $dataProfile->role_id == 1 ? 'Admin' : 'Guru' }}</div>
                   </div>
 
-                  @if ($dataProfile->role_id == 2)
+                  @if (($dataProfile->role_id == 2) && $isActivateUser)
                      <div class="row mb-2">
                         <div class="col-lg-3 col-md-4 label fw-bold">NIP</div>
                         <div class="col-lg-9 col-md-8">{{ $dataGuru[0]->NIP }}</div>
@@ -154,7 +154,7 @@
                         </div>
                      </div>
 
-                     @if ($dataProfile->role_id == 2)
+                     @if (($dataProfile->role_id == 2) && $isActivateUser)
                         <!-- id_guru -->
                         <input type="text" hidden name="idg" value="{{ $dataGuru[0]->id_guru }}">
                         
