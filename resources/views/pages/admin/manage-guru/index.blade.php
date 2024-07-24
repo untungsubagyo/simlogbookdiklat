@@ -24,7 +24,7 @@
             <table class="table datatable table-stripped">
                 <thead>
                     <tr>
-                        <th>No</th>
+                        <th>No.</th>
                         <th>NIP</th>
                         <th>Nama</th>
                         <th>Golongan</th>
