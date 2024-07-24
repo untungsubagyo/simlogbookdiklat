@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('kategori_kegiatans', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('parent_id')->nullable();
             $table->timestamps();
         
             $table->foreign('parent_id')->references('id')->on('kategori_kegiatans')->onDelete('set null');
@@ -24,13 +23,11 @@ return new class extends Migration
         DB::table('kategori_kegiatans')->insert([
             [
                 'name' => 'Pendidikan',
-                'parent_id' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'name' => 'Pelaksanaan Pendidikan',
-                'parent_id' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

@@ -16,7 +16,7 @@ class KategoriKegiatanController extends Controller
 
     public function index()
     {
-        $kategoriKegiatans = KategoriKegiatan::with('parent')->get();
+        $kategoriKegiatans = KategoriKegiatan::get();
         $menu = 'kategori_kegiatan';
         $submenu = 'kategori_kegiatan';
         return view('pages.admin.kategori_kegiatans.index', compact('kategoriKegiatans','menu','submenu'));
@@ -26,33 +26,30 @@ class KategoriKegiatanController extends Controller
     {
         $menu = 'kategori_kegiatan';
         $submenu = 'kategori_kegiatan';   
-        $parentCategories = KategoriKegiatan::all();
-        return view('pages.admin.kategori_kegiatans.create', compact('parentCategories', 'menu', 'submenu'));
+        return view('pages.admin.kategori_kegiatans.create', compact('menu', 'submenu'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'parent_id' => 'nullable|exists:kategori_kegiatans,id',
+            'name' => 'required'
         ]);
 
         KategoriKegiatan::create($request->all());
         return redirect()->route('kategori_kegiatan.index')->with('success', 'Kategori kegiatan created successfully.');
     }
-    public function createSubkategori($parent_id)
-    {
-        $menu = 'kategori_kegiatan';
-        $submenu = 'kategori_kegiatan';
-        $parentCategory = KategoriKegiatan::findOrFail($parent_id);
-        return view('pages.admin.kategori_kegiatans.create', compact('parentCategory', 'menu', 'submenu'));
-    }
+    // public function createSubkategori($parent_id)
+    // {
+    //     $menu = 'kategori_kegiatan';
+    //     $submenu = 'kategori_kegiatan';
+    //     $parentCategory = KategoriKegiatan::findOrFail($parent_id);
+    //     return view('pages.admin.kategori_kegiatans.create', compact('parentCategory', 'menu', 'submenu'));
+    // }
 
     public function storeSubkategori(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'parent_id' => 'nullable|exists:kategori_kegiatans,id',
+            'name' => 'required'
         ]);
 
         KategoriKegiatan::create($request->all());
@@ -71,15 +68,13 @@ class KategoriKegiatanController extends Controller
     {
         $menu = 'kategori_kegiatan';
         $submenu = 'kategori_kegiatan';
-        $parentCategories = KategoriKegiatan::all();
-        return view('pages.admin.kategori_kegiatans.edit', compact('kategoriKegiatan', 'parentCategories', 'menu','submenu'));
+        return view('pages.admin.kategori_kegiatans.edit', compact('kategoriKegiatan', 'menu','submenu'));
     }
 
     public function update(Request $request, KategoriKegiatan $kategoriKegiatan)
     {
         $request->validate([
-            'name' => 'required',
-            'parent_id' => 'nullable|exists:kategori_kegiatans,id',
+            'name' => 'required'
         ]);
 
         $kategoriKegiatan->update($request->all());
