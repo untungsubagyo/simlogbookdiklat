@@ -13,10 +13,10 @@
 
 <section class="section guru">
 <div class="col-lg-12">
-    <a href="{{ route('kategori_kegiatan.create') }}" class="btn btn-primary mb-3">Tambah</a>
+    <a href="{{ route('kategori_kegiatan.create') }}" class="btn btn-primary">Tambah</a>
 
     @if(session('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success mt-3">
             {{ session('success') }}
         </div>
     @endif

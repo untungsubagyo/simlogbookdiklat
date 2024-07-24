@@ -1,5 +1,5 @@
 @extends('layouts.root-layout')
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Kelola User</title>
 </head>
-<body>
+<body> --}}
     @section('content')
     <div class="pagetitle">
             <h1>Daftar Pengguna</h1>
@@ -25,8 +25,8 @@
 
         <section class="section guru">
             <div class="col-lg-12">
-        <a href="{{ route('manage_users.create') }}" class="btn btn-primary">Tambah</a>
-    </div>
+                <a href="{{ route('manage_users.create') }}" class="btn btn-primary">Tambah</a>
+            </div>
 
     @if(session('success'))
         <div class="alert alert-success mt-3">
@@ -92,5 +92,5 @@
     </script>
         </section>
     @endsection
-</body>
-</html>
+{{-- </body>
+</html> --}}
