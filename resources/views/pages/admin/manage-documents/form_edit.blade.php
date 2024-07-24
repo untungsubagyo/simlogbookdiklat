@@ -4,7 +4,8 @@
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Jenis Dokumen</li>
+            <li class="breadcrumb-item">Jenis Dokumen</li>
+            <li class="breadcrumb-item active">Edit</li>
         </ol>
     </nav>
 </div><!-- End Page Title -->

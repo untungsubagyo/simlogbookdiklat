@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="pagetitle">
-    <h1>Jenis Dokumen</h1>
+    <h1>Tambah Jenis Dokumen</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
@@ -11,8 +11,7 @@
     </nav>
 </div><!-- End Page Title -->
 <section class="section dashboard">
-    <div class="row">
-
+    <div class="col-lg-12">
         <form action="{{route('jenis_dokumen.store')}}" method="POST" class="row g-3 needs-validation" novalidate>
             @csrf
             <div class="col-6">

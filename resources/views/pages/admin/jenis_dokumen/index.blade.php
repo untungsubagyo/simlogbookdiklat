@@ -29,16 +29,22 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($datas as $data)
+                @forelse ($datas as $index => $data)
                     <tr>
                         <td>{{$data->name}}</td>
                         <td>
-                            <form onsubmit="return confirm('Apakah Anda yakin?')" action="{{route('jenis_dokumen.destroy', $data->id)}}" method="POST">
+                            {{-- <form onsubmit="return confirm('Apakah Anda yakin?')" action="{{route('jenis_dokumen.destroy', $data->id)}}" method="POST">
                                 <a href="{{route('jenis_dokumen.edit', $data->id)}}" class="btn btn-warning">Edit</a>
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Hapus</button>
-                            </form>
+                            </form> --}}
+                            <a href="{{ route('jenis_dokumen.edit', $data->id) }}" class="btn btn-warning">Edit</a>
+                                <button class="btn btn-danger" onclick="confirmDelete('{{ $data->id }}')">Delete</button>
+                                <form id="delete-form-{{ $data->id }}" action="{{ route('jenis_dokumen.destroy', $data->id) }}" method="POST" style="display: none;">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
                         </td>
                     </tr>
                     @empty
@@ -50,5 +56,23 @@
             </tbody>
         </table>
     </div>
+    <script>
+            function confirmDelete(id) {
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: "Anda tidak akan dapat mengembalikan ini!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('delete-form-' + id).submit();
+                    }
+                });
+            }
+        </script>
 </section>
 @endsection

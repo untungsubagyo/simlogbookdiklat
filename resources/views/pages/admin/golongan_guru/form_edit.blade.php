@@ -2,11 +2,12 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Edot Pangkat & Golongan</h1>
+        <h1>Edit Pangkat & Golongan</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Pangkat & Golongan</li>
+                <li class="breadcrumb-item"><a href="{{ route('golongan_guru.index') }}">Pangkat & Golongan</a></li>
+                <li class="breadcrumb-item active">Edit</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->

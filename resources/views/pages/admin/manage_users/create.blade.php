@@ -1,48 +1,46 @@
 @extends('layouts.root-layout')
 @section('content')
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.1.9/sweetalert2.min.css">
-    <title>Tambah Guru</title>
-</head>
-<body>
-
-<div class="container">
+<div class="pagetitle">
     <h1>Tambah Pengguna</h1>
-    <form action="{{ route('manage_users.store') }}" method="POST" enctype="multipart/form-data" onsubmit="return validatePassword()">
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+            <li class="breadcrumb-item active">Pengguna</li>
+        </ol>
+    </nav>
+</div>
+    
+    <section class="section pengguna">
+        <div class= "col-lg-12">
+    <form action="{{ route('manage_users.store') }}" method="POST" enctype="multipart/form-data" onsubmit="return validatePassword()" class="row g-3 needs-validation">
         @csrf
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="form-control" required>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password_confirmation">Confirm Password</label>
+                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="profile_photo">Profile Photo</label>
+                <input type="file" name="profile_photo" id="profile_photo" class="form-control">
+            </div>
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="password_confirmation">Confirm Password</label>
-            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="profile_photo">Profile Photo</label>
-            <input type="file" name="profile_photo" id="profile_photo" class="form-control">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Tambah Guru</button>
     </form>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     function validatePassword() {
@@ -70,6 +68,6 @@
         return true;
     }
 </script>
-</body>
-</html>
+</div>
+</section>
 @endsection

@@ -1,14 +1,15 @@
 @extends('layouts.root-layout')
 
 @section('content')
-	<h1>Jenis Diklat</h1>
+<div class="pagetitle">
+	<h1>Tambah Jenis Diklat</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Jenis Diklat</li>
         </ol>
     </nav>
-
+</div>
     <section class="section jenis_diklat">
         <div class="col-lg-12">
             <form action="{{route('jenis_diklat.store')}}" method="post" class="row g-3 needs-validation" novalidate>

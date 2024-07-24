@@ -1,13 +1,16 @@
 @extends('layouts.root-layout')
 
 @section('content')
-	<h1>Jenis Diklat</h1>
+<div class="pagetitle">
+	<h1>Edit Jenis Diklat</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Jenis Diklat</li>
+            <li class="breadcrumb-item"><a href="{{ route('jenis_diklat.index') }}">Jenis Diklat</a></li>
+            <li class="breadcrumb-item active">Edit</li>
         </ol>
     </nav>
+</div>
 
 	<section class="section jenis_diklat">
 		<div class="col-lg-12">
