@@ -11,7 +11,7 @@
     </nav>
 </div><!-- End Page Title -->
 
-  <section class="section guru">
+<section class="section guru">
 <div class="col-lg-12">
     <a href="{{ route('kategori_kegiatan.create') }}" class="btn btn-primary mb-3">Tambah</a>
 
@@ -26,7 +26,6 @@
             <tr>
                 <th>No</th>
                 <th>Nama</th>
-                <th>Parent</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -35,7 +34,6 @@
             <tr>
                 <td>{{ $index + 1 }}</td>
                 <td>{{ $kategori->name }}</td>
-                <td>{{ $kategori->parent ? $kategori->parent->name : '-' }}</td>
                 <td>
                     <a href="{{ route('kategori_kegiatan.edit', $kategori->id) }}" class="btn btn-warning">Edit</a>
                     <button class="btn btn-danger" onclick="confirmDelete('{{ $kategori->id }}')">Delete</button>
@@ -68,5 +66,5 @@
         });
     }
 </script>
-  </section>
+</section>
 @endsection
