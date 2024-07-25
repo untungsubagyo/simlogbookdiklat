@@ -5,7 +5,8 @@
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Pengguna</li>
+            <li class="breadcrumb-item"><a href="{{ route('manage_users.index') }}">Daftar Pengguna</a></li>
+            <li class="breadcrumb-item active">Tambah</li>
         </ol>
     </nav>
 </div>

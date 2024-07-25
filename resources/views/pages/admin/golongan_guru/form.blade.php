@@ -6,7 +6,8 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Pangkat & Golongan</li>
+                <li class="breadcrumb-item"><a href="{{ route('golongan_guru.index') }}">Pangkat & Golongan</a></li>
+                <li class="breadcrumb-item active">Tambah</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->

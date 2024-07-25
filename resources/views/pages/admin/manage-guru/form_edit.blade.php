@@ -6,7 +6,7 @@
 		<nav>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-				<li class="breadcrumb-item"><a href="{{ route('manage_guru.index') }}">Guru</a></li>
+				<li class="breadcrumb-item"><a href="{{ route('manage_guru.index') }}">Kelola Guru</a></li>
 				<li class="breadcrumb-item active">Edit</li>
 			</ol>
 		</nav>
