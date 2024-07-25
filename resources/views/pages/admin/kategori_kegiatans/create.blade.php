@@ -20,15 +20,6 @@
                         <label for="name" class="form-label">Nama Kategori</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
-                    <div class="form-group">
-                        <label for="parent_id" class="form-label">Parent Kategori</label>
-                        <select class="form-control" id="parent_id" name="parent_id">
-                            <option value="">None</option>
-                            @foreach($parentCategories as $parent)
-                                <option value="{{ $parent->id }}">{{ $parent->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
                     <div class="form-group mt-4">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
