@@ -13,15 +13,17 @@
 
 <div class="card">
    @if ($dataDiklat->count() > 0)
-      <form class="card-header" style="display: flex; align-items: center" method="post" action="{{ route('diklat.destroy', $dataDiklat[0]->id) }}" id="request_delete">
-         @csrf
-         @method('delete')
+      <div class="card-header" style="display: flex; align-items: center">
          <h3>Informasi Diklat <strong>{{ $dataDiklat[0]->nama_diklat }}</strong></h3>
          <a class="btn btn-primary" style="margin-left: auto; margin-right: 1rem;" href="{{ route('dashboard') }}">Kembali</a>
-         <button type="submit" class="btn btn-danger">Hapus</button>
+         <button type="submit" class="btn btn-danger" onclick="confirmDelete()">Hapus</button>
+      </div>
+      <form method="post" action="{{ route('diklat.destroy', $dataDiklat[0]->id) }}" id="request_delete">
+         @csrf
+         @method('delete')
       </form>
       <div class="card-body">
-         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.1)">
+         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.05)">
             <div class="col-sm-4"><strong>Nama Diklat</strong></div>
             <div class="col-sm-8">: {{ $dataDiklat[0]->nama_diklat }}</div>
          </div>
@@ -29,7 +31,7 @@
             <div class="col-sm-4"><strong>Penyelenggara</strong></div>
             <div class="col-sm-8">: {{ $dataDiklat[0]->penyelenggara }}</div>
          </div>
-         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.1)">
+         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.05)">
             <div class="col-sm-4"><strong>Tingkatan Diklat</strong></div>
             <div class="col-sm-8">: {{ $dataDiklat[0]->tingkatan_diklat }}</div>
          </div>
@@ -37,7 +39,7 @@
             <div class="col-sm-4"><strong>Jumlah Jam</strong></div>
             <div class="col-sm-8">: {{ $dataDiklat[0]->jumlah_jam }}</div>
          </div>
-         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.1)">
+         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.05)">
             <div class="col-sm-4"><strong>No Sertifikat</strong></div>
             <div class="col-sm-8">: {{ $dataDiklat[0]->no_sertifikat }}</div>
          </div>
@@ -45,7 +47,7 @@
             <div class="col-sm-4"><strong>Tanggal Sertifikat</strong></div>
             <div class="col-sm-8">: {{ $dataDiklat[0]->tanggal_sertifikat }}</div>
          </div>
-         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.1)">
+         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.05)">
             <div class="col-sm-4"><strong>Tahun Penyelenggara</strong></div>
             <div class="col-sm-8">: {{ $dataDiklat[0]->tahun_penyelenggara }}</div>
          </div>
@@ -53,7 +55,7 @@
             <div class="col-sm-4"><strong>Tempat</strong></div>
             <div class="col-sm-8">: {{ $dataDiklat[0]->tempat }} </div>
          </div>
-         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.1)">
+         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.05)">
             <div class="col-sm-4"><strong>Tanggal Mulai</strong></div>
             <div class="col-sm-8">: {{ $dataDiklat[0]->tanggal_mulai }}</div>
          </div>
@@ -61,7 +63,7 @@
             <div class="col-sm-4"><strong>Tanggal Selesai</strong></div>
             <div class="col-sm-8">: {{ $dataDiklat[0]->tanggal_selesai }}</div>
          </div>
-         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.1)">
+         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.05)">
             <div class="col-sm-4"><strong>No SK Penugasan</strong></div>
             <div class="col-sm-8">: {{ $dataDiklat[0]->no_sk_penugasan }}</div>
          </div>
@@ -69,7 +71,7 @@
             <div class="col-sm-4"><strong>Tanggal SK Penugasan</strong></div>
             <div class="col-sm-8">: {{ $dataDiklat[0]->tanggal_sk_penugasan }}</div>
          </div>
-         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.1)">
+         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.05)">
             <div class="col-sm-4"><strong>Jenis Diklat ( {{ $dataDiklat[0]->jenis_diklat }} )</strong></div>
             <div class="col-sm-8">: {{ $dataDiklat[0]->nama_jenis_diklat }}</div>
          </div>
@@ -77,7 +79,7 @@
             <div class="col-sm-4"><strong>Kategori Kegiatan</strong></div>
             <div class="col-sm-8">: {{ $dataDiklat[0]->kategori_kegiatan }}</div>
          </div>
-         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.1)">
+         <div class="row p-2" style="background-color: rgba(0, 0, 0, 0.05)">
             <div class="col-sm-4"><strong>Document</strong></div>
             <div class="col-sm-8" style="display: flex; gap: 1rem;">
                <ul style="list-style-type: none; padding: 0;">
@@ -116,11 +118,22 @@
          </div>
       </div>
       <script>
-         document.getElementById('request_delete').onsubmit = e => {
-            if (!confirm('Hapus Data Diklat Ini?')) {
-               e.preventDefault()     
-            } 
-         }
+         function confirmDelete() {
+            Swal.fire({
+               title: 'Apakah Anda yakin?',
+               text: "Anda tidak akan dapat mengembalikan ini!",
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Ya, hapus!',
+               cancelButtonText: 'Batal'
+            }).then((result) => {
+               if (result.isConfirmed) {
+                  document.getElementById('request_delete').submit();
+               }
+            });
+         };
       </script>
    @else
       @if (Session('success'))

@@ -228,7 +228,7 @@ class DiklatController extends Controller {
 		$data = $request->validate([
 			"nama_diklat" => ["required", "min:5", "max:50"],
 			"penyelenggara" => ["required", "max:21"],
-			"tingkatan_diklat" => ["required", Rule::in('Local', 'Regional', 'Nasional', 'Internasional')],
+			"tingkatan_diklat" => ["required", Rule::in('Lokal', 'Regional', 'Nasional', 'Internasional')],
 			"jumlah_jam" => ["required", "max:11"],
 			"no_sertifikat" => ["required", "max:50"],
 			"tanggal_sertifikat" => ["required"],
@@ -282,8 +282,9 @@ class DiklatController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$isActivateUser = guru::where('user_id', '=', Auth::user()->id)->get('id')->count() > 0;
-		if (!$isActivateUser) {
+		$datauser = Auth::user();
+		$isActivateUser = guru::where('user_id', '=', $datauser->id)->get('id')->count() > 0;
+		if (!$isActivateUser && $datauser->role_id != 1) {
 			return abort(403);
 		}
 

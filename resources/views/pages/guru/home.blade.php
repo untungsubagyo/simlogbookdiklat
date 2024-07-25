@@ -35,13 +35,15 @@
                      </h5>
                      <p style="line-height: .3rem" class="mb-4 text-black-50">nomor sertifikat : {{ $diklat->no_sertifikat }}</p>
                      <div style="display: flex; justify-content: space-between; align-items: flex-end">
-                        <form method="post" action="{{ route('diklat.destroy', $diklat->id) }}" id="request_delete">
-                           @csrf
-                           @method('delete')
+                        <div>
                            <a href="{{ route('diklat.show', $diklat->id) }}" class="btn btn-primary">Lihat</a>
                            <a href="{{ route('diklat.edit', $diklat->id) }}" class="btn btn-warning">Edit</a>
-                           <button type="submit" class="btn btn-danger">Hapus</button>
-                        </form>
+                           <button onclick="confirmDelete('{{ $diklat->id }}')" class="btn btn-danger">Hapus</button>
+                           <form method="post" action="{{ route('diklat.destroy', $diklat->id) }}" id="delete-form-{{ $diklat->id }}">
+                              @csrf
+                              @method('delete')
+                           </form>
+                        </div>
                         <p class="text-black-50">
                            Terakhir Diubah
                            <span> | {{ $diklat->updated_at }}</span>
@@ -51,11 +53,22 @@
                </div>
             </div>
             <script>
-               document.getElementById('request_delete').onsubmit = e => {
-                  if (!confirm('Hapus Data Diklat Ini?')) {
-                     e.preventDefault()     
-                  } 
-               }
+               function confirmDelete(id) {
+                  Swal.fire({
+                     title: 'Apakah Anda yakin?',
+                     text: "Anda tidak akan dapat mengembalikan ini!",
+                     icon: 'warning',
+                     showCancelButton: true,
+                     confirmButtonColor: '#3085d6',
+                     cancelButtonColor: '#d33',
+                     confirmButtonText: 'Ya, hapus!',
+                     cancelButtonText: 'Batal'
+                  }).then((result) => {
+                     if (result.isConfirmed) {
+                        document.getElementById('delete-form-' + id).submit();
+                     }
+                  });
+               };
             </script>
          @empty
             @if ($isActivateUser)

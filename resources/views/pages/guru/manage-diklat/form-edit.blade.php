@@ -47,7 +47,7 @@
             <div class="col-md-6">
                <div class="form-floating mb-3">
                   <select required class="form-select" name="tingkatan_diklat" id="floatingSelect" aria-label="Tingkatan Diklat">
-                     <option {{ $diklat[0]->tingkatan_diklat == 'Local' ? 'selected' : ''}} value="Lokal">Lokal</option>
+                     <option {{ $diklat[0]->tingkatan_diklat == 'Lokal' ? 'selected' : ''}} value="Lokal">Lokal</option>
                      <option {{ $diklat[0]->tingkatan_diklat == 'Regional' ? 'selected' : ''}} value="Regional">Regional</option>
                      <option {{ $diklat[0]->tingkatan_diklat == 'Nasional' ? 'selected' : ''}} value="Nasional">Nasional</option>
                      <option {{ $diklat[0]->tingkatan_diklat == 'Internasional' ? 'selected' : ''}} value="Internasional">Internasional</option>
