@@ -6,7 +6,8 @@
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Kategori Kegiatan</li>
+            <li class="breadcrumb-item"><a href="{{ route('kategori_kegiatan.index') }}">Kategori Kegiatan</a></li>
+            <li class="breadcrumb-item active">Tambah</li>
         </ol>
     </nav>
 </div>
