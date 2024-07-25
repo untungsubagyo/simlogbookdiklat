@@ -45,7 +45,7 @@
                                     <button type="submit" class="btn btn-danger">Hapus</button>
                                 </form> --}}
                                 <a href="{{ route('golongan_guru.edit', $data->id) }}" class="btn btn-warning">Edit</a>
-                                <button class="btn btn-danger" onclick="confirmDelete('{{ $data->id }}')">Delete</button>
+                                <button class="btn btn-danger" onclick="confirmDelete('{{ $data->id }}')">Hapus</button>
                                 <form id="delete-form-{{ $data->id }}" action="{{ route('golongan_guru.destroy', $data->id) }}" method="POST" style="display: none;">
                                     @csrf
                                     @method('DELETE')

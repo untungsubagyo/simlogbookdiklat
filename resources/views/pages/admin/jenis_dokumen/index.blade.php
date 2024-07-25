@@ -24,6 +24,7 @@
         <table class="table datatable table-stripped">
             <thead>
                 <tr>
+                    <th>No.</th>
                     <th>Jenis Dokumen</th>
                     <th>Aksi</th>
                 </tr>
@@ -31,6 +32,7 @@
             <tbody>
                 @forelse ($datas as $index => $data)
                     <tr>
+                        <td>{{ $index + 1 }}</td>
                         <td>{{$data->name}}</td>
                         <td>
                             {{-- <form onsubmit="return confirm('Apakah Anda yakin?')" action="{{route('jenis_dokumen.destroy', $data->id)}}" method="POST">
@@ -40,7 +42,7 @@
                                 <button type="submit" class="btn btn-danger">Hapus</button>
                             </form> --}}
                             <a href="{{ route('jenis_dokumen.edit', $data->id) }}" class="btn btn-warning">Edit</a>
-                                <button class="btn btn-danger" onclick="confirmDelete('{{ $data->id }}')">Delete</button>
+                                <button class="btn btn-danger" onclick="confirmDelete('{{ $data->id }}')">Hapus</button>
                                 <form id="delete-form-{{ $data->id }}" action="{{ route('jenis_dokumen.destroy', $data->id) }}" method="POST" style="display: none;">
                                     @csrf
                                     @method('DELETE')

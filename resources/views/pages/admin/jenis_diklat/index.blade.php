@@ -25,6 +25,7 @@
 		<table class="table datatable table-stripped">
 			<thead>
 				<tr>
+					<th>No.</th>
 					<th>Nama</th>
 					<th>Jenis Diklat</th>
 					<th>Aksi</th>
@@ -33,6 +34,7 @@
 			<tbody>
 				@forelse ($datas as $index => $data)
 					<tr>
+						<td>{{ $index + 1 }}</td>
 						<td>{{ $data->nama }}</td>
 						<td>{{ $data->jenis_diklat }}</td>
 
@@ -45,7 +47,7 @@
 								@method('DELETE')
 							</form> --}}
 							<a href="{{ route('jenis_diklat.edit', $data->id) }}" class="btn btn-warning">Edit</a>
-                                <button class="btn btn-danger" onclick="confirmDelete('{{ $data->id }}')">Delete</button>
+                                <button class="btn btn-danger" onclick="confirmDelete('{{ $data->id }}')">Hapus</button>
                                 <form id="delete-form-{{ $data->id }}" action="{{ route('jenis_diklat.destroy', $data->id) }}" method="POST" style="display: none;">
                                     @csrf
                                     @method('DELETE')

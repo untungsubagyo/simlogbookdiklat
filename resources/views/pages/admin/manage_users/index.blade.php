@@ -64,7 +64,7 @@
                             @csrf
                             @method('DELETE')
                         </form>
-                        <a href="{{ route('manage_users.show', $user->id) }}" class="btn btn-info btn-sm">View</a>
+                        <a href="{{ route('manage_users.show', $user->id) }}" class="btn btn-info btn-sm">Lihat</a>
                     </td>
                 </tr>
             @endforeach

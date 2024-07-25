@@ -36,7 +36,7 @@
                 <td>{{ $kategori->name }}</td>
                 <td>
                     <a href="{{ route('kategori_kegiatan.edit', $kategori->id) }}" class="btn btn-warning">Edit</a>
-                    <button class="btn btn-danger" onclick="confirmDelete('{{ $kategori->id }}')">Delete</button>
+                    <button class="btn btn-danger" onclick="confirmDelete('{{ $kategori->id }}')">Hapus</button>
                     <form id="delete-form-{{ $kategori->id }}" action="{{ route('kategori_kegiatan.destroy', $kategori->id) }}" method="POST" style="display: none;">
                         @csrf
                         @method('DELETE')
