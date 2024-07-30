@@ -10,6 +10,7 @@ use App\Http\Controllers\KategoriKegiatanController;
 use App\Http\Controllers\ManageGuruController;
 use App\Http\Controllers\ManageUsersController;
 use App\Http\Controllers\MyProfileController;
+use App\Http\Middleware\ProtectedRoute;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,12 +34,12 @@ Route::put('my_profile/update', [MyProfileController::class, 'update'])->name('m
 
 // Admin Router
 Route::get('admin', [AdminController::class, 'index'])->name('dashboard');
-Route::resource('admin/kategori_kegiatan', KategoriKegiatanController::class)->middleware('auth');
-Route::resource('admin/manage_guru', ManageGuruController::class)->middleware('auth');
-Route::resource('admin/manage_users', ManageUsersController::class)->middleware('auth');
-Route::resource('admin/golongan_guru', GolonganController::class)->middleware('auth');
-Route::resource('admin/jenis_diklat', JenisDiklatController::class);
-Route::resource('admin/jenis_dokumen', JenisDokumenController::class);
+Route::resource('admin/kategori_kegiatan', KategoriKegiatanController::class)->middleware(ProtectedRoute::class);
+Route::resource('admin/manage_guru', ManageGuruController::class)->middleware(ProtectedRoute::class);
+Route::resource('admin/manage_users', ManageUsersController::class)->middleware(ProtectedRoute::class);
+Route::resource('admin/golongan_guru', GolonganController::class)->middleware(ProtectedRoute::class);
+Route::resource('admin/jenis_diklat', JenisDiklatController::class)->middleware(ProtectedRoute::class);
+Route::resource('admin/jenis_dokumen', JenisDokumenController::class)->middleware(ProtectedRoute::class);
 
 // Guru Router
 Route::get('guru', [DiklatController::class, 'index'])->name('homePageGuru');

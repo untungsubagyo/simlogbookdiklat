@@ -4,9 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\JenisDiklat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JenisDiklatController extends Controller
 {
+    public function __construct() {
+        if (Auth::check()) {
+			$user = Auth::user();
+			if ($user->role_id == 2) {
+				redirect('/guru');
+			} elseif ($user->role_id != 1) {
+				redirect('/');
+			}
+        } else {
+            redirect('/');
+        }
+    }
     public function index()
     {
         $menu = 'jenis_diklat';
@@ -28,7 +41,7 @@ class JenisDiklatController extends Controller
             'nama'=>'required|string|max:50',
             'jenis_diklat' => 'required|in:Pelatihan Profesional,Diklat Prajabatan,Diklat Kepemimpinan,Academic Exchange,Fungsional,Manajerial,Lainnya',
         ]);
-       JenisDiklat::create($request->all());
+        JenisDiklat::create($request->all());
 
         return redirect()->route('jenis_diklat.index')->with('success', 'Jenis Diklat berhasil ditambahkan.');
     }

@@ -35,11 +35,11 @@
                 <tbody>
                     @forelse ($datas as $index => $data)
                         <tr>
-                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $data->id }}</td>
                             {{-- <td>{{ $data->NIP }}</td> --}}
                             <td>{{ $data->NIP ? $data->NIP : '-' }}</td>
                             <td>{{ $data->name_guru }}</td>
-                            <td>{{ $data->golongan }} : {{ $data->pangkat }}</td>
+                            <td>{{ $data->golongan ? ($data->golongan . ':' . $data->pangkat) : '-' }}</td>
                             <td>{{ $data->email }}</td>
                             <td>
                                 {{-- <form onsubmit="return confirm('Apakah Anda yakin?')"

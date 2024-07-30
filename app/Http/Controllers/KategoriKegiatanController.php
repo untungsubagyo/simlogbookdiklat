@@ -9,7 +9,14 @@ use Illuminate\Support\Facades\Auth;
 class KategoriKegiatanController extends Controller
 {
     public function __construct() {
-        if (!Auth::check()) {
+        if (Auth::check()) {
+            $user = Auth::user();
+			if ($user->role_id == 2) {
+                redirect('/guru');
+			} elseif ($user->role_id != 1) {
+                redirect('/');
+			}
+        } else {
             redirect('/');
         }
     }

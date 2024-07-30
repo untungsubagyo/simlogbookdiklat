@@ -199,8 +199,8 @@
                const fileType = fileInput.files[0].type;
                const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'text/html', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.oasis.opendocument.text', 'text/plain', 'application/rtf', 'application/epub+zip', 'application/vnd.ms-powerpoint'];
       
-               if (fileSize > 20 * 1024 * 1024) {
-                  alert('File size must be less than 20MB');
+               if (fileSize > 1 * 1024 * 1024) { //* 1 MB
+                  alert('Masukan File Dengan Ukuran MAksimal 1MB');
                   fileInput.files = dataTr.files;
                } else if (!allowedTypes.includes(fileType)) {
                   alert('Invalid file type. Allowed file types are: jpg, png, jpeg, webp, pdf, doc, xlxs, html, docx, odt, txt, rtf, epub, ppt');

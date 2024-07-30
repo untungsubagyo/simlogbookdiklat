@@ -240,7 +240,7 @@ class DiklatController extends Controller {
 			"tanggal_sk_penugasan" => ["required"],
 			"id_jenis_diklat" => ["required", Rule::in($data_jenisDiklat)],
 			"id_kategori_kegiatan_diklat" => ["required", Rule::in($categories)],
-			"file_dokumen" => ["required", "file", "max:20000000"],
+			"file_dokumen" => ["required", "file", "max:1000000"], //* 1MB
 			"nama_dokumen" => ["required", "max:100"],
 			"link_dokumen" => ["nullable", "max:500"],
 			"id_jenis_dokumen" => ["required", Rule::in($jenis_dokumen)],

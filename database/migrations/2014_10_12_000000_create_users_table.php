@@ -13,11 +13,12 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('username', 25)->unique(); //* this is actualy "NIP"
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('role_id')->default(2); // Default to user role
-            $table->string('profile_photo')->nullable(); // New column for profile photo
+            $table->string('profile_photo')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -26,6 +27,7 @@ return new class extends Migration
         DB::table('users')->insert([
             [
                 'name' => 'Admin',
+                'username' => 'test-nik-1000',
                 'email' => 'admin@example.com',
                 'password' => Hash::make('password'),
                 'role_id' => 1, // Admin role
@@ -34,6 +36,7 @@ return new class extends Migration
             ],
             [
                 'name' => 'Guru',
+                'username' => 'test-nik-2000',
                 'email' => 'guru@example.com',
                 'password' => Hash::make('password'),
                 'role_id' => 2, // Guru role

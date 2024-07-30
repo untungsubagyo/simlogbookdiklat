@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\guru;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -41,24 +42,26 @@ class ManageUsersController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
+            'username' => 'required|string|max:25|unique:users', //* this is actualy "NIP"
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-    
+
         $profilePhotoPath = $request->file('profile_photo') ? $request->file('profile_photo')->store('profile_photos', 'public') : null;
-    
+
         User::create([
             'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role_id' => 2, // Guru role
             'profile_photo' => $profilePhotoPath,
         ]);
     
-        return redirect()->route('manage_users.index')->with('success', 'Guru created successfully.');
+        return redirect()->route('manage_users.index')->with('success', 'User successfully created.');
     }
     
     public function update(Request $request, $id)
@@ -67,6 +70,7 @@ class ManageUsersController extends Controller
     
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'username' => ['required', 'string', 'max:25', Rule::unique('users')->ignore($usersData->id)],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($usersData->id)],
             'password' => 'nullable|string|min:8|confirmed',
             'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -82,6 +86,7 @@ class ManageUsersController extends Controller
         }
 
         $usersData->name = $validated['name'];
+        $usersData->username = $validated['username'];
         $usersData->email = $validated['email'];
 
         if ($request->filled('password')) {
@@ -116,6 +121,11 @@ class ManageUsersController extends Controller
         if ($usersData->profile_photo) {
             Storage::delete('public/' . $usersData->profile_photo);
         }
+        $guru = guru::where('user_id', '=', $id)->limit(1);
+        if ($guru->count() == 1) {
+            $guru->delete();
+        }
+        
         $usersData->delete();
 
         return redirect()->route('manage_users.index')->with('success', 'Guru deleted successfully.');

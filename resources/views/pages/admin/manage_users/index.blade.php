@@ -26,7 +26,8 @@
             <tr>
                 <th>No</th>
                 <th>Foto Profil</th>
-                <th>Username</th>
+                <th>Nama Lengkap</th>
+                <th>Username/NIP</th>
                 <th>Email</th>
                 <th>Aksi</th>
             </tr>
@@ -43,6 +44,7 @@
                         @endif
                     </td>
                     <td>{{ $user->name }}</td>
+                    <td>{{ $user->username }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
                         <a href="{{ route('manage_users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>

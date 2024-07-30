@@ -69,6 +69,11 @@
                   </div>
 
                   <div class="row mb-2">
+                     <div class="col-lg-3 col-md-4 label fw-bold">Username/NIP</div>
+                     <div class="col-lg-9 col-md-8">{{ $dataProfile->username }}</div>
+                  </div>
+
+                  <div class="row mb-2">
                      <div class="col-lg-3 col-md-4 label fw-bold">Email</div>
                      <div class="col-lg-9 col-md-8">{{ $dataProfile->email }}</div>
                   </div>
@@ -79,10 +84,6 @@
                   </div>
 
                   @if (($dataProfile->role_id == 2) && $isActivateUser)
-                     <div class="row mb-2">
-                        <div class="col-lg-3 col-md-4 label fw-bold">NIP</div>
-                        <div class="col-lg-9 col-md-8">{{ $dataGuru[0]->NIP }}</div>
-                     </div>
                      <div class="row mb-2">
                         <div class="col-lg-3 col-md-4 label fw-bold">Golongan</div>
                         <div class="col-lg-9 col-md-8">{{ $dataGuru[0]->golongan }}</div>
@@ -130,6 +131,14 @@
                      </div>
 
                      <div class="row mb-3">
+                        <label for="username" class="col-md-4 col-lg-3 col-form-label">Name</label>
+                        <div class="col-md-8 col-lg-9">
+                           <input required name="username" type="text" class="form-control" id="username"
+                              value="{{ $dataProfile->username }}">
+                        </div>
+                     </div>
+
+                     <div class="row mb-3">
                         <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                         <div class="col-md-8 col-lg-9">
                            <input required name="email" type="email" class="form-control" id="email"
@@ -157,13 +166,6 @@
                      @if (($dataProfile->role_id == 2) && $isActivateUser)
                         <!-- id_guru -->
                         <input type="text" hidden name="idg" value="{{ $dataGuru[0]->id_guru }}">
-                        
-                        <div class="row mb-3">
-                           <label for="NIP" class="col-md-4 col-lg-3 col-form-label">NIP</label>
-                           <div class="col-md-8 col-lg-9">
-                              <input name="NIP" type="text" class="form-control" id="NIP" value="{{ $dataGuru[0]->NIP }}">
-                           </div>
-                        </div>
 
                         <div class="row mb-3">
                            <label for="golongan" class="col-md-4 col-lg-3 col-form-label">Golongan</label>

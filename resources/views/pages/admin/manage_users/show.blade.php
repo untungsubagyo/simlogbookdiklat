@@ -29,6 +29,10 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="username">username/NIP</label>
+                <p>{{ $usersData->username }}</p>
+            </div>
+            <div class="form-group">
                 <label for="email">Email</label>
                 <p>{{ $usersData->email }}</p>
             </div>

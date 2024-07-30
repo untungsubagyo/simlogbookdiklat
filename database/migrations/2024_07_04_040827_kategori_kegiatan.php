@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->timestamps();
-        
-            $table->foreign('parent_id')->references('id')->on('kategori_kegiatans')->onDelete('set null');
         });
                 
         // Insert default categories
