@@ -9,6 +9,7 @@ use App\Models\JenisDiklat;
 use App\Models\KategoriKegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 
@@ -113,17 +114,11 @@ class DiklatController extends Controller {
 
 		if ($data['file_dokumen']) {
 			// Store the file
-			$file = $request->file('file_dokumen');
-			$extension = $file->getClientOriginalExtension();
-			$fileName = bin2hex(random_bytes(10)) . '.' . $extension;
-			$file->move('dokumen_diklat', $fileName);
-	
-			// Set the file URL
-			$data['file_dokumen'] = url('dokumen_diklat/' . $fileName);
+			$data['file_dokumen'] = $request->file('file_dokumen')->store('dokumen_diklat', 'public');
 		}
 
 		// Create the record
-		$diklat = Diklat::create($data);
+		Diklat::create($data);
 
 		return redirect('/guru')->with('success', 'Diklat created successfully.');
 	}
@@ -252,22 +247,12 @@ class DiklatController extends Controller {
 		if ($request->hasFile('file_dokumen')) {
 			// Delete the old file
 			$diklat = Diklat::findOrFail($id);
-			$oldFile = $diklat->file_dokumen;
-			if ($oldFile) {
-				$oldFilePath = public_path($oldFile);
-				if (file_exists($oldFilePath)) {
-					unlink($oldFilePath);
-				}
+			if ($diklat->file_dokumen) {
+				Storage::disk('public')->delete($diklat->file_dokumen);
 			}
 
 			// Store the new file
-			$file = $request->file('file_dokumen');
-			$extension = $file->getClientOriginalExtension();
-			$fileName = bin2hex(random_bytes(10)) . '.' . $extension;
-			$file->move('dokumen_diklat', $fileName);
-
-			// Set the file URL
-			$data['file_dokumen'] = url('dokumen_diklat/' . $fileName);
+			$data['file_dokumen'] = $request->file('file_dokumen')->store('dokumen_diklat', 'public');
 		}
 
 		// Update the record
@@ -288,7 +273,11 @@ class DiklatController extends Controller {
 			return abort(403);
 		}
 
-		Diklat::findOrFail($id)->delete();
+		$dataDiklat = Diklat::findOrFail($id);
+		if ($dataDiklat->file_dokumen) {
+			Storage::disk('public')->delete($dataDiklat->file_dokumen);
+		}
+		$dataDiklat->delete();
 		return redirect()->back()->with('success', 'Diklat berhasil di hapus.');
 	}
 }

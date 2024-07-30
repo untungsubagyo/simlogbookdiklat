@@ -95,7 +95,7 @@
                </ul>
                <ul style="list-style-type: none; padding: 0;">
                   @if (isset($dataDiklat[0]->file_dokumen))
-                     <li>: <a target="_blank" href="{{ $dataDiklat[0]->file_dokumen }}">lihat</a></li>
+                     <li>: <a target="_blank" href="{{ Storage::url($dataDiklat[0]->file_dokumen) }}">lihat</a></li>
                   @else
                      <li>: -</li>
                   @endif
