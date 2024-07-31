@@ -51,7 +51,7 @@
 
                                     <div class="pt-4 pb-2 text-white">
                                         <h5 class="card-title text-center pb-0 fs-4">Login ke Akun Anda</h5>
-                                        <p class="text-center text-black small">Masukan email & password Anda untuk login</p>
+                                        <p class="text-center text-black small">Masukan Username & password Anda untuk login</p>
                                     </div>
                                     @if ($errors->any())
                                         <div class="alert alert-danger">

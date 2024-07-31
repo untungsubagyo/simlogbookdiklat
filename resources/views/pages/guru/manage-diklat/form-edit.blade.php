@@ -110,18 +110,6 @@
                   <label for="floatingTanggalSkPenugasan">Tanggal Sk Penugasan <span style="color: red;">*</span></label>
                </div>
             </div>
-
-            <div class="col-md-6">
-               <div class="form-floating mb-3">
-                  <select required class="form-select" name="id_jenis_diklat" id="floatingSelect" aria-label="Jenis Diklat">
-                     @foreach ($data_jenisDiklat as $jenisDiklat)
-                        <option value="{{ $jenisDiklat->id }}" {{ $jenisDiklat->id == $diklat[0]->id_jenis_diklat ? 'selected' : '' }}>{{ $jenisDiklat->nama }}</option>
-                     @endforeach
-                  </select>
-                  <label for="floatingSelect">Jenis Diklat <span style="color: red;">*</span></label>
-               </div>
-            </div>
-      
             <div class="col-md-6">
                <div class="form-floating mb-3">
                   <select required class="form-select" name="id_kategori_kegiatan_diklat" id="floatingSelect" aria-label="Jenis Kegiatan Diklat">
@@ -132,36 +120,51 @@
                   <label for="floatingSelect">Jenis Kegiatan Diklat <span style="color: red;">*</span></label>
                </div>
             </div>
+
+            <fieldset class="row g-3">
+               <legend>Jenis Diklat</legend>
+               <div class="col-md-6">
+                  <div class="form-floating">
+                     <input required type="text" value="{{ $diklat[0]->nama_jenis_diklat }}" class="form-control" id="floatingNamaJenisDiklat" name="nama_jenis_diklat" placeholder="Nama Jenis Diklat">
+                     <label for="floatingNamaJenisDiklat">Nama Jenis Diklat <span style="color: red;">*</span></label>
+                  </div>
+               </div>
+
+               <div class="col-md-6">
+                  <div class="form-floating mb-3">
+                     <select class="form-control" id="jenis_diklat" name="jenis_diklat" required>
+                        <option {{ $diklat[0]->jenis_diklat == 'Pelatihan Profesional' ? 'selected' : '' }} value="Pelatihan Profesional">Pelatihan Profesional</option>
+                        <option {{ $diklat[0]->jenis_diklat == 'Diklat Prajabatan' ? 'selected' : '' }} value="Diklat Prajabatan">Diklat Prajabatan</option>
+                        <option {{ $diklat[0]->jenis_diklat == 'Diklat Kepemimpinan' ? 'selected' : '' }} value="Diklat Kepemimpinan">Diklat Kepemimpinan</option>
+                        <option {{ $diklat[0]->jenis_diklat == 'Academic Exchange' ? 'selected' : '' }} value="Academic Exchange">Academic Exchange</option>
+                        <option {{ $diklat[0]->jenis_diklat == 'Fungsional' ? 'selected' : '' }} value="Fungsional">Fungsional</option>
+                        <option {{ $diklat[0]->jenis_diklat == 'Manajerial' ? 'selected' : '' }} value="Manajerial">Manajerial</option>
+                        <option {{ $diklat[0]->jenis_diklat == 'Lainnya' ? 'selected' : '' }} value="Lainnya">Lainnya</option>
+                     </select>
+                     <label for="floatingSelect">Jenis Diklat <span style="color: red;">*</span></label>
+                  </div>
+               </div>
+            </fieldset>
          </fieldset>
 
          <fieldset class="row g-3">
             <legend>Dokumen</legend>
             <div class="col-md-6">
                <div class="form-floating">
-                  <input required type="file" class="form-control" id="file-dokumen" name="file_dokumen" placeholder="No. SK Penugasan">
-                  <label for="file-dokumen">File</label>
+                  <input type="file" accept="application/pdf" class="form-control" id="file-dokumen" name="file_dokumen" placeholder="No. SK Penugasan">
+                  <label for="file-dokumen">File (PDF)</label>
                </div>
             </div>
             <div class="col-md-6">
                <div class="form-floating">
                   <input value="{{ $diklat[0]->link_dokumen }}" type="text" class="form-control" id="floatingNoSk" name="link_dokumen" placeholder="No. SK Penugasan">
-                  <label for="floatingNoSk">Link Dokumen ( Optional )</label>
+                  <label for="floatingNoSk">Link Dokumen</label>
                </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                <div class="form-floating">
                   <input required value="{{ $diklat[0]->nama_dokumen }}" type="text" class="form-control" id="floatingNoSk" name="nama_dokumen" placeholder="No. SK Penugasan">
                   <label for="floatingNoSk">Nama Dokumen <span style="color: red;">*</span></label>
-               </div>
-            </div>
-            <div class="col-md-6">
-               <div class="form-floating mb-3">
-                  <select required class="form-select" name="id_jenis_dokumen" id="floatingSelect" aria-label="Jenis Kegiatan Diklat">
-                     @foreach ($jenis_dokumen as $jenis)
-                        <option value="{{ $jenis->id }}" {{ $jenis->id == $diklat[0]->id_jenis_dokumen ? 'selected' : '' }}>{{ $jenis->name }}</option>
-                     @endforeach
-                  </select>
-                  <label for="floatingSelect">Jenis Dokumen <span style="color: red;">*</span></label>
                </div>
             </div>
             <div class="col-12">
@@ -197,13 +200,13 @@
             fileInput.addEventListener('change', function() {
                const fileSize = fileInput.files[0].size;
                const fileType = fileInput.files[0].type;
-               const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'text/html', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.oasis.opendocument.text', 'text/plain', 'application/rtf', 'application/epub+zip', 'application/vnd.ms-powerpoint'];
+               const allowedTypes = ['application/pdf'];
       
                if (fileSize > 1 * 1024 * 1024) { //* 1 MB
                   alert('Masukan File Dengan Ukuran MAksimal 1MB');
                   fileInput.files = dataTr.files;
                } else if (!allowedTypes.includes(fileType)) {
-                  alert('Invalid file type. Allowed file types are: jpg, png, jpeg, webp, pdf, doc, xlxs, html, docx, odt, txt, rtf, epub, ppt');
+                  alert('Tipe File yang di Perbolehkan Hanya PDF');
                   fileInput.files = dataTr.files;
                }
             });

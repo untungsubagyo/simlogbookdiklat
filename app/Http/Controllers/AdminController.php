@@ -26,7 +26,7 @@ class AdminController extends Controller
 					->join('gurus', 'gurus.user_id', '=', 'users.id')
 					->where('diklats.nama_diklat', 'like', '%' . $request['search'] . '%')
 					->orWhere('users.name', 'like', '%' . $request['search'] . '%')
-					->paginate($perPage = 10, $columns = ['diklats.id AS id', 'diklats.nama_diklat AS nama_diklat', 'users.name AS username', 'gurus.NIP AS NIP', 'diklats.updated_at AS updated_at', 'diklats.created_at AS created_at']);
+					->paginate($perPage = 10, $columns = ['diklats.id AS id', 'diklats.nama_diklat AS nama_diklat', 'users.name AS username', 'users.username AS NIP', 'diklats.updated_at AS updated_at', 'diklats.created_at AS created_at']);
 
 				if ($dataDiklat->count() <= 0) {
 					$dataDiklat = ["searchNotFound" => true];
@@ -34,7 +34,7 @@ class AdminController extends Controller
 			} else {
 				$dataDiklat = Diklat::join('users', 'users.id', '=', 'diklats.id_user')
 					->join('gurus', 'gurus.user_id', '=', 'users.id')
-					->paginate($perPage = 10, $columns = ['diklats.id AS id', 'diklats.nama_diklat AS nama_diklat', 'users.name AS username', 'gurus.NIP AS NIP', 'diklats.updated_at AS updated_at', 'diklats.created_at AS created_at']);
+					->paginate($perPage = 10, $columns = ['diklats.id AS id', 'diklats.nama_diklat AS nama_diklat', 'users.name AS username', 'users.username AS NIP', 'diklats.updated_at AS updated_at', 'diklats.created_at AS created_at']);
 			}
 
 			$menu = 'dashboard';

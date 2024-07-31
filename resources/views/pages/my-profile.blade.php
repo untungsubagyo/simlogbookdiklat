@@ -131,7 +131,7 @@
                      </div>
 
                      <div class="row mb-3">
-                        <label for="username" class="col-md-4 col-lg-3 col-form-label">Name</label>
+                        <label for="username" class="col-md-4 col-lg-3 col-form-label">Username/NIP</label>
                         <div class="col-md-8 col-lg-9">
                            <input required name="username" type="text" class="form-control" id="username"
                               value="{{ $dataProfile->username }}">

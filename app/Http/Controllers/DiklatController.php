@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Diklat;
 use App\Models\guru;
-use App\Models\jenis_dokumen;
 use App\Models\JenisDiklat;
 use App\Models\KategoriKegiatan;
 use Illuminate\Http\Request;
@@ -25,13 +24,10 @@ class DiklatController extends Controller {
 	 */
 	public function index() {
 		$userdata = Auth::user();
-		$dataDiklat = Diklat::join('jenis_diklats', 'jenis_diklats.id', '=', 'diklats.id_jenis_diklat')
-			->join('kategori_kegiatans', 'kategori_kegiatans.id', '=', 'diklats.id_kategori_kegiatan_diklat')
+		$dataDiklat = Diklat::join('kategori_kegiatans', 'kategori_kegiatans.id', '=', 'diklats.id_kategori_kegiatan_diklat')
 			->where('diklats.id_user', '=', $userdata->id)
 			->get([
 				'diklats.*',
-				'jenis_diklats.nama AS nama_jenis_diklat',
-				'jenis_diklats.jenis_diklat AS jenis_diklat',
 				'kategori_kegiatans.name AS kategori_kegiatan',
 			]);
 
@@ -51,9 +47,9 @@ class DiklatController extends Controller {
 
 		$data_jenisDiklat = JenisDiklat::get();
 		$categories = KategoriKegiatan::get();
-		$jenis_dokunmen = jenis_dokumen::get();
+		// $jenis_dokunmen = jenis_dokumen::get();
 
-		return view('pages.guru.manage-diklat.form-add', compact('jenis_dokunmen', 'data_jenisDiklat', 'categories', 'isActivateUser'));
+		return view('pages.guru.manage-diklat.form-add', compact('data_jenisDiklat', 'categories', 'isActivateUser'));
 	}
 
 	/**
@@ -67,15 +63,13 @@ class DiklatController extends Controller {
 			return abort(403);
 		}
 
-
 		$raw_data_jenisDiklat = JenisDiklat::get(['id'])->toArray();
 		$raw_categories = KategoriKegiatan::get(['id'])->toArray();
-		$raw_jenis_dokumen = jenis_dokumen::get(['id'])->toArray();
-
 
 		$categories = array_map(function ($item) {return $item['id'];}, $raw_categories);
 		$data_jenisDiklat = array_map(function ($item) {return $item['id'];}, $raw_data_jenisDiklat);
-		$jenis_dokumen = array_map(function ($item) {return $item['id'];}, $raw_jenis_dokumen);
+
+		$request['id_jenis_dokumen'] = 1;
 
 		$documentErrorMessage = ValidationException::withMessages([
 			'file' => ['tolong inputkan file dokumen atau tautkan link dokumen'],
@@ -96,18 +90,19 @@ class DiklatController extends Controller {
 			"jumlah_jam" => ["required", "max:11"],
 			"no_sertifikat" => ["required", "max:50"],
 			"tanggal_sertifikat" => ["required"],
-			"tahun_penyelenggara" => ["required", "max:5"],
+			"tahun_penyelenggara" => ["required", "max:4"],
 			"tempat" => ["required"],
 			"tanggal_mulai" => ["required"],
 			"tanggal_selesai" => ["required"],
 			"no_sk_penugasan" => ["required", "max:21"],
 			"tanggal_sk_penugasan" => ["required"],
-			"id_jenis_diklat" => ["required", Rule::in($data_jenisDiklat)],
+			"nama_jenis_diklat" => ["required"],
+			"jenis_diklat" => ["required", Rule::in(['Pelatihan Profesional', 'Diklat Prajabatan', 'Diklat Kepemimpinan', 'Academic Exchange', 'Fungsional', 'Manajerial', 'Lainnya'])],
 			"id_kategori_kegiatan_diklat" => ["required", Rule::in($categories)],
 			"file_dokumen" => ["nullable", "file", "max:20000000"],
 			"nama_dokumen" => ["required", "max:100"],
 			"link_dokumen" => ["nullable", "max:500"],
-			"id_jenis_dokumen" => ["required", Rule::in($jenis_dokumen)],
+			"id_jenis_dokumen" => ["required"],
 			"keterangan_dokumen" => ["nullable"],
 		]);
 		$data['id_user'] = $id_user;
@@ -132,31 +127,25 @@ class DiklatController extends Controller {
 		$isActivateUser = guru::where('user_id', '=', $userdata->id)->get('id')->count() > 0;
 
 		if ($userdata->role_id == 1) {
-			$dataDiklat = Diklat::join('jenis_diklats', 'jenis_diklats.id', '=', 'diklats.id_jenis_diklat')
-				->join('kategori_kegiatans', 'kategori_kegiatans.id', '=', 'diklats.id_kategori_kegiatan_diklat')
+			$dataDiklat = Diklat::join('kategori_kegiatans', 'kategori_kegiatans.id', '=', 'diklats.id_kategori_kegiatan_diklat')
 				->join('users', 'users.id', '=', 'diklats.id_user')
 				->where('diklats.id', '=', $id)
 				->get([
 					'diklats.*',
 					'users.name AS username',
-					'jenis_diklats.nama AS nama_jenis_diklat',
-					'jenis_diklats.jenis_diklat AS jenis_diklat',
 					'kategori_kegiatans.name AS kategori_kegiatan'
 				]);
 		} else {
 			if (!$isActivateUser) {
 				return abort(404);
 			}
-			$dataDiklat = Diklat::join('jenis_diklats', 'jenis_diklats.id', '=', 'diklats.id_jenis_diklat')
-				->join('kategori_kegiatans', 'kategori_kegiatans.id', '=', 'diklats.id_kategori_kegiatan_diklat')
+			$dataDiklat = Diklat::join('kategori_kegiatans', 'kategori_kegiatans.id', '=', 'diklats.id_kategori_kegiatan_diklat')
 				->join('users', 'users.id', '=', 'diklats.id_user')
 				->where('diklats.id', '=', $id)
 				->where('diklats.id_user', '=', $userdata->id)
 				->get([
 					'diklats.*',
 					'users.name AS username',
-					'jenis_diklats.nama AS nama_jenis_diklat',
-					'jenis_diklats.jenis_diklat AS jenis_diklat',
 					'kategori_kegiatans.name AS kategori_kegiatan'
 				]);
 		}
@@ -180,10 +169,9 @@ class DiklatController extends Controller {
 
 		$diklat = Diklat::where('id', '=', $id)->get();
 		$data_jenisDiklat = JenisDiklat::get();
-		$jenis_dokumen = jenis_dokumen::get();
 		$categories = KategoriKegiatan::get();
 
-		return view('pages.guru.manage-diklat.form-edit', compact('diklat', 'data_jenisDiklat', 'categories', 'jenis_dokumen', 'isActivateUser'));
+		return view('pages.guru.manage-diklat.form-edit', compact('diklat', 'data_jenisDiklat', 'categories', 'isActivateUser'));
 	}
 
 	/**
@@ -199,13 +187,12 @@ class DiklatController extends Controller {
 
 		$raw_data_jenisDiklat = JenisDiklat::get(['id'])->toArray();
 		$raw_categories = KategoriKegiatan::get(['id'])->toArray();
-		$raw_jenis_dokumen = jenis_dokumen::get(['id'])->toArray();
 
 		$categories = array_map(function ($item) {return $item['id'];}, $raw_categories);
 		$data_jenisDiklat = array_map(function ($item) {return $item['id'];}, $raw_data_jenisDiklat);
-		$jenis_dokumen = array_map(function ($item) {return $item['id'];}, $raw_jenis_dokumen);
 
 
+		$request['id_jenis_dokumen'] = 1;
 		// return $categories;
 		// return $request->all();
 		$documentErrorMessage = ValidationException::withMessages([
@@ -227,18 +214,19 @@ class DiklatController extends Controller {
 			"jumlah_jam" => ["required", "max:11"],
 			"no_sertifikat" => ["required", "max:50"],
 			"tanggal_sertifikat" => ["required"],
-			"tahun_penyelenggara" => ["required", "max:5"],
+			"tahun_penyelenggara" => ["required", "max:4"],
 			"tempat" => ["required"],
 			"tanggal_mulai" => ["required"],
 			"tanggal_selesai" => ["required"],
 			"no_sk_penugasan" => ["required", "max:21"],
 			"tanggal_sk_penugasan" => ["required"],
-			"id_jenis_diklat" => ["required", Rule::in($data_jenisDiklat)],
+			"nama_jenis_diklat" => ["required"],
+			"jenis_diklat" => ["required", Rule::in(['Pelatihan Profesional', 'Diklat Prajabatan', 'Diklat Kepemimpinan', 'Academic Exchange', 'Fungsional', 'Manajerial', 'Lainnya'])],
 			"id_kategori_kegiatan_diklat" => ["required", Rule::in($categories)],
 			"file_dokumen" => ["required", "file", "max:1000000"], //* 1MB
 			"nama_dokumen" => ["required", "max:100"],
 			"link_dokumen" => ["nullable", "max:500"],
-			"id_jenis_dokumen" => ["required", Rule::in($jenis_dokumen)],
+			"id_jenis_dokumen" => ["required"],
 			"keterangan_dokumen" => ["nullable"],
 		]);
 		$data['id_user'] = $id_user;

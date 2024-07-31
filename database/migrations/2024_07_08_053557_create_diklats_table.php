@@ -30,15 +30,15 @@ return new class extends Migration {
          $table->string('nama_dokumen', 100);
          $table->string('link_dokumen', 500)->nullable();
          $table->text('keterangan_dokumen')->nullable();
+         
+         $table->string('nama_jenis_diklat')->nullable();
+         $table->enum('jenis_diklat', ['Pelatihan Profesional', 'Diklat Prajabatan', 'Diklat Kepemimpinan', 'Academic Exchange', 'Fungsional', 'Manajerial', 'Lainnya'])->nullable();
 
          $table->bigInteger('id_jenis_dokumen')->unsigned()->index();
          $table->foreign('id_jenis_dokumen')->references('id')->on('jenis_dokumens')->onDelete('cascade');
 
          $table->bigInteger('id_user')->unsigned()->index();
          $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-
-         $table->bigInteger('id_jenis_diklat')->unsigned()->index();
-         $table->foreign('id_jenis_diklat')->references('id')->on('jenis_diklats')->onDelete('cascade');
 
          $table->bigInteger('id_kategori_kegiatan_diklat')->unsigned()->index();
          $table->foreign('id_kategori_kegiatan_diklat')->references('id')->on('kategori_kegiatans')->onDelete('cascade');
